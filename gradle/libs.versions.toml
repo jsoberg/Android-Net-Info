@@ -55,6 +55,10 @@ test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robo
 test-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 
+[bundles]
+unitTest = ["test-junit-api", "test-junit-engine", "test-mockk", "test-truth"]
+
+
 # Plugins
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
 hilt-agp = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
