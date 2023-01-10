@@ -15,6 +15,7 @@ mockk = "1.13.2"
 robolectric = "4.9"
 truth = "1.1.3"
 
+
 [libraries]
 
 # AndroidX
@@ -54,15 +55,14 @@ test-mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" 
 test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 test-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
-
-[bundles]
-unitTest = ["test-junit-api", "test-junit-engine", "test-mockk", "test-truth"]
-
-
 # Plugins
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
 hilt-agp = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+
+[bundles]
+unitTest = ["test-junit-api", "test-junit-engine", "test-mockk", "test-truth"]
 
 [plugins]
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
