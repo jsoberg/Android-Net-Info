@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib)
+    api(projects.baseTypes)
 
     testImplementation(libs.bundles.unitTest)
 }
