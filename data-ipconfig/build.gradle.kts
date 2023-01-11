@@ -7,6 +7,8 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.domain)
+
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
     implementation(libs.kotlin.serializationJson)

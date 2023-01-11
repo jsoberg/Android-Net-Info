@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WanInfoNetworkModel(
+internal data class WanInfoNetworkModel(
     // WAN information
     @SerialName("ip")
     val ip: String?,

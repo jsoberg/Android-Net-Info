@@ -1,5 +1,5 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":data")
 include(":base-types")
+include(":data-ipconfig")
 include(":domain")
