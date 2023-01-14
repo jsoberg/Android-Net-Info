@@ -1,4 +1,4 @@
-package com.soberg.netinfo.data.ipconfig
+package com.soberg.netinfo.data.ipconfig.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -8,8 +8,6 @@ internal data class WanInfoNetworkModel(
     // WAN information
     @SerialName("ip")
     val ip: String?,
-    @SerialName("hostname")
-    val hostname: String?,
 
     // Location information
     @SerialName("country")
