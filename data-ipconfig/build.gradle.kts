@@ -18,4 +18,7 @@ dependencies {
 
     testImplementation(libs.bundles.unitTest)
     testImplementation(libs.test.kotlin.coroutines)
+    testImplementation(libs.test.ktor.mock)
+
+    testImplementation(testFixtures(projects.domain))
 }

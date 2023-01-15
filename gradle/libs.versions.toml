@@ -58,6 +58,7 @@ test-androidx-runner = { module = "androidx.test:runner", version.ref = "android
 test-junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
 test-junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
+test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 test-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 test-mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }

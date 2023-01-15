@@ -1,13 +1,14 @@
 package com.soberg.netinfo.data.ipconfig
 
+import com.soberg.netinfo.data.ipconfig.model.WanInfoNetworkModel
 import io.ktor.client.call.*
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
@@ -21,8 +22,8 @@ internal class IpConfigKtorClientTest {
     @Disabled("Only used to test response from ipconfig.io")
     @Test
     fun `ipconfig integration test`() = runTest {
-        val client = IpConfigKtorClient.create()
-        with(client.get(IpConfigKtorClient.Url)) {
+        val client = IpConfigKtorClient.create(OkHttp)
+        with(client.get(IpConfigUrl.Main)) {
             println("Response status code: $status")
             if (status == HttpStatusCode.OK) {
                 val networkModel = body<WanInfoNetworkModel>()
