@@ -1,8 +1,12 @@
 package com.soberg.netinfo.data.ipconfig.model
 
 import com.google.common.truth.Truth.assertThat
-import com.soberg.netinfo.base.type.geodetic.*
-import com.soberg.netinfo.base.type.network.Ipv4Address
+import com.soberg.netinfo.base.type.geodetic.Country
+import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
+import com.soberg.netinfo.base.type.geodetic.Location
+import com.soberg.netinfo.base.type.geodetic.Region
+import com.soberg.netinfo.base.type.geodetic.ZipCode
+import com.soberg.netinfo.base.type.network.IpAddress
 import com.soberg.netinfo.domain.model.WanInfo
 import org.junit.jupiter.api.Test
 
@@ -24,7 +28,7 @@ internal class WanInfoNetworkModelConversionsTest {
         assertThat(result.isSuccess).isTrue()
 
         val expected = WanInfo(
-            ip = Ipv4Address("10.9.8.7"),
+            ip = IpAddress("10.9.8.7"),
             ispGeoInfo = GeodeticInformation(
                 country = Country(
                     name = "Netherlands",
@@ -61,7 +65,7 @@ internal class WanInfoNetworkModelConversionsTest {
         assertThat(result.isSuccess).isTrue()
 
         val expected = WanInfo(
-            ip = Ipv4Address("10.9.8.7"),
+            ip = IpAddress("10.9.8.7"),
             ispGeoInfo = null,
         )
         assertThat(result.getOrThrow()).isEqualTo(expected)
@@ -76,7 +80,7 @@ internal class WanInfoNetworkModelConversionsTest {
         assertThat(result.isSuccess).isTrue()
 
         val expected = WanInfo(
-            ip = Ipv4Address("10.9.8.7"),
+            ip = IpAddress("10.9.8.7"),
             ispGeoInfo = null,
         )
         assertThat(result.getOrThrow()).isEqualTo(expected)
