@@ -13,11 +13,6 @@ buildscript {
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
     tasks.withType<Test> {
         useJUnitPlatform()
     }
