@@ -1,3 +1,5 @@
+package com.soberg.netinfo.gradle.plugin.ext
+
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -9,7 +11,7 @@ internal val Project.android: BaseExtension
     get() = extensions.findByName("android") as BaseExtension
 
 internal fun BaseExtension.kotlinOptions(configure: Action<KotlinJvmOptions>) =
-    androidExtensions.configure("kotlinOptions", configure)
+        androidExtensions.configure("kotlinOptions", configure)
 
 private val BaseExtension.androidExtensions: ExtensionContainer
     get() = (this as ExtensionAware).extensions

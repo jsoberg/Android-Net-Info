@@ -1,4 +1,9 @@
-import org.gradle.api.JavaVersion
+package com.soberg.netinfo.gradle.plugin
+
+import Plugins
+import Versions
+import com.soberg.netinfo.gradle.plugin.ext.android
+import com.soberg.netinfo.gradle.plugin.ext.kotlinOptions
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -12,12 +17,12 @@ class AndroidModulePlugin : Plugin<Project> {
     private fun configureAndroid(project: Project) = with(project) {
         with(android) {
             compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_11
-                targetCompatibility = JavaVersion.VERSION_11
+                sourceCompatibility = Versions.Android.Java.sourceCompatibility
+                targetCompatibility = Versions.Android.Java.targetCompatibility
             }
 
             kotlinOptions {
-                jvmTarget = "11"
+                jvmTarget = Versions.Kotlin.jvmTarget
                 allWarningsAsErrors = true
             }
 

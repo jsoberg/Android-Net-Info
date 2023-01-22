@@ -16,6 +16,12 @@ allprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = Versions.Kotlin.jvmTarget
+        }
+    }
 }
 
 tasks.register("clean", Delete::class) {

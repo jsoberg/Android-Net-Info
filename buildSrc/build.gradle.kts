@@ -6,12 +6,12 @@ gradlePlugin {
     plugins {
         register("android-module") {
             id = "android-module"
-            implementationClass = "AndroidModulePlugin"
+            implementationClass = "com.soberg.netinfo.gradle.plugin.AndroidModulePlugin"
         }
 
         register("kotlin-jvm-library-module") {
             id = "kotlin-jvm-library-module"
-            implementationClass = "KotlinJvmLibraryModulePlugin"
+            implementationClass = "com.soberg.netinfo.gradle.plugin.KotlinJvmLibraryModulePlugin"
         }
     }
 }
