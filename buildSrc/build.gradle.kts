@@ -8,6 +8,11 @@ gradlePlugin {
             id = "android-module"
             implementationClass = "AndroidModulePlugin"
         }
+
+        register("kotlin-jvm-library-module") {
+            id = "kotlin-jvm-library-module"
+            implementationClass = "KotlinJvmLibraryModulePlugin"
+        }
     }
 }
 

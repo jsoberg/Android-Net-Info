@@ -1,4 +1,3 @@
 plugins {
-    id("java-library")
-    kotlin("jvm")
+    id(Plugins.Local.KotlinJvmLibraryModule)
 }

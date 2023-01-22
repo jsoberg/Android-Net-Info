@@ -1,8 +1,7 @@
 // Temporary fix for https://youtrack.jetbrains.com/issue/KTIJ-19369
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("java-library")
-    kotlin("jvm")
+    id(Plugins.Local.KotlinJvmLibraryModule)
     alias(libs.plugins.kotlin.serialization)
 }
 

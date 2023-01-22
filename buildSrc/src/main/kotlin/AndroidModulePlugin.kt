@@ -5,7 +5,7 @@ import org.gradle.api.Project
 class AndroidModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        project.plugins.apply("kotlin-android")
+        project.plugins.apply(Plugins.Kotlin.Android)
         configureAndroid(project)
     }
 

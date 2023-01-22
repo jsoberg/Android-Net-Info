@@ -1,5 +1,4 @@
 plugins {
-    id("java-library")
-    id("java-test-fixtures")
-    kotlin("jvm")
+    id(Plugins.Java.TestFixtures)
+    id(Plugins.Local.KotlinJvmLibraryModule)
 }
