@@ -7,6 +7,7 @@ composeBom = "2023.01.00"
 composeCompiler = "1.4.0"
 composeNavigation = "2.5.3"
 dagger = "2.44.2"
+dependencyAnalysis = "1.18.0"
 junit = "5.9.2"
 kotlin = "1.8.0"
 kotlinCoroutines = "1.6.4"
@@ -78,5 +79,6 @@ ktor-client = ["ktor-client-contentNegotiation", "ktor-client-json", "ktor-clien
 
 
 [plugins]
+dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

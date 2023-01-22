@@ -1,3 +1,11 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+// Temporary fix for https://youtrack.jetbrains.com/issue/KTIJ-19369
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
+    alias(libs.plugins.dependencyAnalysis)
+}
+
 buildscript {
     repositories {
         google()
