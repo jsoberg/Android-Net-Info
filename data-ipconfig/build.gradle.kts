@@ -6,9 +6,8 @@ plugins {
 }
 
 dependencies {
+    api(projects.domain)
     implementation(projects.baseAnnotations)
-    implementation(projects.baseTypes)
-    implementation(projects.domain)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
