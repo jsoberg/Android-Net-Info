@@ -1,6 +1,7 @@
 package com.soberg.netinfo.gradle.plugin
 
 import Plugins
+import TestRunners
 import Versions
 import com.soberg.netinfo.gradle.plugin.ext.android
 import com.soberg.netinfo.gradle.plugin.ext.kotlinOptions
@@ -20,7 +21,7 @@ class AndroidModulePlugin : Plugin<Project> {
                 sourceCompatibility = Versions.Android.Java.sourceCompatibility
                 targetCompatibility = Versions.Android.Java.targetCompatibility
             }
-
+            
             kotlinOptions {
                 jvmTarget = Versions.Kotlin.jvmTarget
                 allWarningsAsErrors = true
@@ -30,6 +31,7 @@ class AndroidModulePlugin : Plugin<Project> {
             defaultConfig {
                 minSdk = Versions.Android.Sdk.min
                 targetSdk = Versions.Android.Sdk.target
+                testInstrumentationRunner = TestRunners.androidJUnit
             }
         }
     }
