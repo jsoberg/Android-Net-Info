@@ -4,10 +4,11 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.compose.material3)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.tooling)
-    implementation(libs.compose.ui)
+    val composeBom = platform(libs.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation(libs.bundles.compose.core)
 }
 
 android {
