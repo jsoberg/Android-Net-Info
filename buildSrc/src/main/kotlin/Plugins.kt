@@ -13,6 +13,7 @@ object Plugins {
     object Kotlin {
         const val Android = "kotlin-android"
         const val Jvm = "org.jetbrains.kotlin.jvm"
+        const val Kapt = "org.jetbrains.kotlin.kapt"
     }
 
     object Local {

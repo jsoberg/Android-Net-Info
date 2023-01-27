@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.dependencyAnalysis)
+    alias(libs.plugins.hilt) apply false
 }
 
 buildscript {
@@ -17,6 +18,9 @@ buildscript {
         classpath(libs.android.gradlePlugin)
         classpath(libs.kotlin.gradlePlugin)
         classpath(libs.hilt.agp)
+
+        // TODO: Fixes dependency conflict issues with Dagger/Hilt, re: https://github.com/google/dagger/issues/3068. Once this issues is resolved, remove this dependency.
+        classpath(libs.javaPoet)
     }
 }
 

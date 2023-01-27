@@ -8,6 +8,8 @@ composeCompiler = "1.4.0"
 composeNavigation = "2.5.3"
 dagger = "2.44.2"
 dependencyAnalysis = "1.18.0"
+googleMaterial = "1.8.0"
+javaPoet = "1.13.0"
 junit = "5.9.2"
 kotlin = "1.8.0"
 kotlinCoroutines = "1.6.4"
@@ -37,10 +39,17 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 # Dagger
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 
+# Google
+google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
+
 # Hilt
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 hilt-navigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.0.0" }
+
+# JavaPoet (For fixing dependency issue in Gradle with Dagger/Hilt)
+javaPoet = { module = "com.squareup:javapoet", version.ref = "javaPoet" }
 
 # Kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
