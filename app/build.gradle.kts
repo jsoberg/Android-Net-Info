@@ -29,6 +29,7 @@ dependencies {
     implementation(libs.kotlin.coroutines)
 
     implementation(libs.google.material)
+    implementation(libs.google.accompanist.systemUiController)
 
     implementation(libs.androidX.activityCompose)
     implementation(libs.androidX.navigationCompose)

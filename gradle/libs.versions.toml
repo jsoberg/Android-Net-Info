@@ -8,6 +8,7 @@ composeCompiler = "1.4.0"
 composeNavigation = "2.5.3"
 dagger = "2.44.2"
 dependencyAnalysis = "1.18.0"
+googleAccompanist = "0.28.0"
 googleMaterial = "1.8.0"
 javaPoet = "1.13.0"
 junit = "5.9.2"
@@ -40,6 +41,7 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 
 # Google
+google-accompanist-systemUiController = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "googleAccompanist" }
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
 
 # Hilt
