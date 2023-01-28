@@ -4,13 +4,18 @@ plugins {
 
 gradlePlugin {
     plugins {
-        register("android-module") {
-            id = "android-module"
+        register("android.module") {
+            id = "android.module"
             implementationClass = "com.soberg.netinfo.gradle.plugin.AndroidModulePlugin"
         }
 
-        register("kotlin-jvm-library-module") {
-            id = "kotlin-jvm-library-module"
+        register("deps") {
+            id = "deps"
+            implementationClass = "com.soberg.netinfo.gradle.plugin.DependenciesPlugin"
+        }
+
+        register("kotlin.library.module") {
+            id = "kotlin.library.module"
             implementationClass = "com.soberg.netinfo.gradle.plugin.KotlinJvmLibraryModulePlugin"
         }
     }

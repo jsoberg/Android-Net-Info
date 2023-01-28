@@ -1,10 +1,10 @@
 // Temporary fix for https://youtrack.jetbrains.com/issue/KTIJ-19369
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id(Plugins.Android.Application)
-    id(Plugins.Local.AndroidModule)
+    id("com.android.application")
+    id("android.module")
+    kotlin("kapt")
     alias(libs.plugins.hilt)
-    id(Plugins.Kotlin.Kapt)
 }
 
 android {

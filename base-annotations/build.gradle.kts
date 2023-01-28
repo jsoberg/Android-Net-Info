@@ -1,3 +1,3 @@
 plugins {
-    id(Plugins.Local.KotlinJvmLibraryModule)
+    id("kotlin.library.module")
 }

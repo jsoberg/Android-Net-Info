@@ -1,3 +1,5 @@
+package com.soberg.netinfo.gradle
+
 import org.gradle.api.JavaVersion
 
 object Versions {
@@ -5,7 +7,7 @@ object Versions {
     object Android {
         object Java {
             val sourceCompatibility = JavaVersion.VERSION_11
-            val targetCompatibility = JavaVersion.VERSION_11
+            val targetCompatibility = sourceCompatibility
         }
 
         object Sdk {

@@ -1,8 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.soberg.netinfo.gradle.Versions
 
 // Temporary fix for https://youtrack.jetbrains.com/issue/KTIJ-19369
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    id("deps")
     alias(libs.plugins.dependencyAnalysis)
     alias(libs.plugins.hilt) apply false
 }

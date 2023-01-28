@@ -1,6 +1,6 @@
 plugins {
-    id(Plugins.Java.TestFixtures)
-    id(Plugins.Local.KotlinJvmLibraryModule)
+    id("kotlin.library.module")
+    id("java-test-fixtures")
 }
 
 dependencies {

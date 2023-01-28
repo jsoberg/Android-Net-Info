@@ -3,9 +3,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()
     }
 }
+
+includeBuild("build-plugins")
 
 include(":app")
 include(":base-annotations")
