@@ -3,6 +3,7 @@ package com.soberg.netinfo.domain.model
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformationTestFixtures
 import com.soberg.netinfo.base.type.network.IpAddress
+import com.soberg.netinfo.domain.wan.model.WanInfo
 
 object WanInfoTestFixtures {
 

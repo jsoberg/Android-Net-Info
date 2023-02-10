@@ -4,7 +4,7 @@ package com.soberg.netinfo.data.ipconfig.model
 
 import com.soberg.netinfo.base.type.geodetic.*
 import com.soberg.netinfo.base.type.network.IpAddress
-import com.soberg.netinfo.domain.model.WanInfo
+import com.soberg.netinfo.domain.wan.model.WanInfo
 
 internal fun WanInfoNetworkModel.toDomain(): Result<WanInfo> = runCatching {
     WanInfo(

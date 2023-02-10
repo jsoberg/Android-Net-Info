@@ -1,4 +1,4 @@
-package com.soberg.netinfo.domain.model
+package com.soberg.netinfo.domain.wan.model
 
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.network.IpAddress

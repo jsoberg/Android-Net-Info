@@ -7,7 +7,7 @@ import com.soberg.netinfo.base.type.geodetic.Location
 import com.soberg.netinfo.base.type.geodetic.Region
 import com.soberg.netinfo.base.type.geodetic.ZipCode
 import com.soberg.netinfo.base.type.network.IpAddress
-import com.soberg.netinfo.domain.WanInfoRepository
+import com.soberg.netinfo.domain.wan.WanInfoRepository
 import com.soberg.netinfo.domain.model.WanInfoTestFixtures
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*

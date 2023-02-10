@@ -3,7 +3,7 @@ package com.soberg.netinfo.data.ipconfig
 import com.soberg.netinfo.base.annotation.IODispatcher
 import com.soberg.netinfo.data.ipconfig.model.WanInfoNetworkModel
 import com.soberg.netinfo.data.ipconfig.model.toDomain
-import com.soberg.netinfo.domain.WanInfoRepository
+import com.soberg.netinfo.domain.wan.WanInfoRepository
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*

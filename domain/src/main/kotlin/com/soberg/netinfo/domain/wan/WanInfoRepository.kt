@@ -1,10 +1,10 @@
-package com.soberg.netinfo.domain
+package com.soberg.netinfo.domain.wan
 
-import com.soberg.netinfo.domain.model.WanInfo
+import com.soberg.netinfo.domain.wan.model.WanInfo
 
 interface WanInfoRepository {
 
-    suspend fun loadWanInfo() : Result
+    suspend fun loadWanInfo(): Result
 
     sealed interface Result {
         data class Success(

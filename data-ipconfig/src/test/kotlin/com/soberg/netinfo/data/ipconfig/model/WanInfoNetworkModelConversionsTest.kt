@@ -7,7 +7,7 @@ import com.soberg.netinfo.base.type.geodetic.Location
 import com.soberg.netinfo.base.type.geodetic.Region
 import com.soberg.netinfo.base.type.geodetic.ZipCode
 import com.soberg.netinfo.base.type.network.IpAddress
-import com.soberg.netinfo.domain.model.WanInfo
+import com.soberg.netinfo.domain.wan.model.WanInfo
 import org.junit.jupiter.api.Test
 
 internal class WanInfoNetworkModelConversionsTest {
