@@ -1,5 +1,6 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.soberg.netinfo.gradle.KotlinCompilerArgs
 import com.soberg.netinfo.gradle.Versions
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 // Temporary fix for https://youtrack.jetbrains.com/issue/KTIJ-19369
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -34,6 +35,7 @@ allprojects {
     tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             jvmTarget = Versions.Kotlin.jvmTarget
+            freeCompilerArgs = freeCompilerArgs + KotlinCompilerArgs
         }
     }
 }
