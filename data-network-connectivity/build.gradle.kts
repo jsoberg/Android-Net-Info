@@ -12,11 +12,12 @@ dependencies {
     api(projects.domain)
     implementation(projects.baseAnnotations)
 
+    implementation(libs.kotlin.stdlib)
+
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.android)
 
-    testImplementation(libs.bundles.unitTest)
+    testImplementation(libs.bundles.robolectricTest)
     testImplementation(libs.test.kotlin.coroutines)
-    testImplementation(libs.test.robolectric)
     testImplementation(libs.test.turbine)
 }

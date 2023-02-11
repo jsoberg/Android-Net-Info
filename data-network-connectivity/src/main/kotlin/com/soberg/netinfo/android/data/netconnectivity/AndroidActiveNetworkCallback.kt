@@ -8,11 +8,11 @@ import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import kotlinx.coroutines.channels.ProducerScope
 
-private class AndroidActiveNetworkCallback constructor(
+internal class AndroidActiveNetworkCallback constructor(
     private val scope: ProducerScope<NetworkConnectionRepository.State>,
     private val connectivityManager: ConnectivityManager,
 ) : ConnectivityManager.NetworkCallback() {
-    
+
     override fun onAvailable(network: Network) {
         emitActiveNetworkInformation()
     }
@@ -66,8 +66,12 @@ private class AndroidActiveNetworkCallback constructor(
             else -> NetworkInterface.Type.Unknown
         }
     }
+
+    fun emitState() {
+        emitActiveNetworkInformation()
+    }
 }
 
 internal fun ProducerScope<NetworkConnectionRepository.State>.activeNetworkCallback(
     connectivityManager: ConnectivityManager,
-): ConnectivityManager.NetworkCallback = AndroidActiveNetworkCallback(this, connectivityManager)
+) = AndroidActiveNetworkCallback(this, connectivityManager)

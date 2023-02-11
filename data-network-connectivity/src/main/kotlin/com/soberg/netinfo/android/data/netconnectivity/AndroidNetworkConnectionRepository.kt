@@ -11,6 +11,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.plus
 import javax.inject.Inject
@@ -22,6 +23,7 @@ internal class AndroidNetworkConnectionRepository @Inject constructor(
 
     override val activeConnectionStateFlow: Flow<NetworkConnectionRepository.State> =
         createActiveConnectionFlow(connectivityManager)
+            .distinctUntilChanged()
             .shareIn(
                 scope = appCoroutineScope + CoroutineName("AndroidNetworkConnectionRepository"),
                 started = WhileSubscribed(),
@@ -41,6 +43,7 @@ internal class AndroidNetworkConnectionRepository @Inject constructor(
             // TODO Handle not having permissions granted.
             val callback = activeNetworkCallback(connectivityManager)
             connectivityManager.registerNetworkCallback(request, callback)
+            callback.emitState()
             awaitClose { connectivityManager.unregisterNetworkCallback(callback) }
         }
 }
