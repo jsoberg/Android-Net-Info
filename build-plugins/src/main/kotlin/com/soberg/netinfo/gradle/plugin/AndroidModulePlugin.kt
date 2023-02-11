@@ -32,6 +32,8 @@ class AndroidModulePlugin : Plugin<Project> {
                 targetSdk = Versions.Android.Sdk.target
                 testInstrumentationRunner = TestRunners.androidJUnit
             }
+            
+            testOptions.unitTests.isIncludeAndroidResources = true
         }
     }
 
