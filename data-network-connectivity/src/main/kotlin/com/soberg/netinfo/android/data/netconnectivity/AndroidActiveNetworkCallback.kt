@@ -1,6 +1,7 @@
 package com.soberg.netinfo.android.data.netconnectivity
 
 import android.net.ConnectivityManager
+import android.net.LinkProperties
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkCapabilities.*
@@ -17,14 +18,22 @@ internal class AndroidActiveNetworkCallback constructor(
         emitActiveNetworkInformation()
     }
 
-    override fun onLost(network: Network) {
-        emitActiveNetworkInformation()
-    }
-
     override fun onCapabilitiesChanged(
         network: Network,
         networkCapabilities: NetworkCapabilities
     ) {
+        emitActiveNetworkInformation()
+    }
+
+    override fun onLinkPropertiesChanged(network: Network, linkProperties: LinkProperties) {
+        emitActiveNetworkInformation()
+    }
+
+    override fun onLost(network: Network) {
+        emitActiveNetworkInformation()
+    }
+
+    override fun onUnavailable() {
         emitActiveNetworkInformation()
     }
 
