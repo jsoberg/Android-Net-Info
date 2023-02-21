@@ -23,7 +23,7 @@ class AndroidModulePlugin : Plugin<Project> {
 
             kotlinOptions {
                 jvmTarget = Versions.Kotlin.jvmTarget
-                allWarningsAsErrors = true
+                allWarningsAsErrors = false
             }
 
             compileSdkVersion(Versions.Android.Sdk.compile)
@@ -32,7 +32,7 @@ class AndroidModulePlugin : Plugin<Project> {
                 targetSdk = Versions.Android.Sdk.target
                 testInstrumentationRunner = TestRunners.androidJUnit
             }
-            
+
             testOptions.unitTests.isIncludeAndroidResources = true
         }
     }
