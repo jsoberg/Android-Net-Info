@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("android.module")
+    kotlin("kapt")
 }
 
 dependencies {
@@ -9,6 +10,10 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation(libs.bundles.compose.core)
+    implementation(libs.androidX.lifecycle.viewModel)
+
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.android)
 }
 
 android {
