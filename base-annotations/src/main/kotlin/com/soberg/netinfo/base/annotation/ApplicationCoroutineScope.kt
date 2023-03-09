@@ -1,5 +1,7 @@
 package com.soberg.netinfo.base.annotation
 
-@Target(AnnotationTarget.VALUE_PARAMETER)
-@Retention(AnnotationRetention.SOURCE)
+import javax.inject.Qualifier
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
 annotation class ApplicationCoroutineScope
