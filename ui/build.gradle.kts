@@ -5,6 +5,9 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.domain)
+    implementation(projects.infraViewmodelExt)
+
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
