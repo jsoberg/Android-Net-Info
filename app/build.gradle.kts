@@ -21,6 +21,10 @@ android {
 }
 
 dependencies {
+    implementation(projects.baseAnnotations)
+    implementation(projects.dataIpconfig)
+    implementation(projects.dataNetworkConnectivity)
+    implementation(projects.domain)
     implementation(projects.ui)
 
     val composeBom = platform(libs.compose.bom)
@@ -29,6 +33,8 @@ dependencies {
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
+
+    implementation(libs.ktor.client.core)
 
     implementation(libs.google.material)
     implementation(libs.google.accompanist.systemUiController)
