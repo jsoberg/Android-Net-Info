@@ -10,8 +10,9 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class IpConfigWanInfoRepository(
+class IpConfigWanInfoRepository @Inject constructor(
     private val client: HttpClient,
     @IODispatcher private val ioDispatcher: CoroutineDispatcher,
 ) : WanInfoRepository {

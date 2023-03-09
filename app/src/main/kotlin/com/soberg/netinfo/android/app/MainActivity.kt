@@ -3,7 +3,8 @@ package com.soberg.netinfo.android.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material3.Text
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.soberg.netinfo.android.ui.NetworkInfoScreen
 import com.soberg.netinfo.android.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,8 +16,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 SystemUISetup()
-                Text(
-                    text = "Test",
+                NetworkInfoScreen(
+                    viewModel = hiltViewModel(),
                 )
             }
         }

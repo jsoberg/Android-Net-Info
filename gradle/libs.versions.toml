@@ -63,6 +63,7 @@ kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref =
 
 # Ktor
 ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging-jvm", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -89,7 +90,7 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 
 [bundles]
 compose-core = ["compose-ui", "compose-material3", "compose-ui-tooling"]
-ktor-client = ["ktor-client-contentNegotiation", "ktor-client-json", "ktor-client-logging", "ktor-client-okhttp", "ktor-client-serialization"]
+ktor-client = ["ktor-client-contentNegotiation", "ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-okhttp", "ktor-client-serialization"]
 unitTest = ["test-junitJupiter", "test-mockk", "test-truth"]
 robolectricTest = ["test-androidx-coreKtx", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-truth"]
 
