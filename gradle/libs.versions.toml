@@ -3,8 +3,8 @@ androidGradlePlugin = "7.4.0"
 androidxActivity = "1.6.1"
 androidxLifecycle = "2.5.1"
 androidxCoreTest = "1.5.0"
-composeBom = "2023.01.00"
-composeCompiler = "1.4.0"
+composeBom = "2023.03.00"
+composeCompiler = "1.4.4"
 composeNavigation = "2.5.3"
 dagger = "2.44.2"
 dependencyAnalysis = "1.18.0"
@@ -13,7 +13,7 @@ googleMaterial = "1.8.0"
 javaPoet = "1.13.0"
 junit4 = "4.13.2"
 junitJupiter = "5.9.2"
-kotlin = "1.8.0"
+kotlin = "1.8.10"
 kotlinCoroutines = "1.6.4"
 kotlinSerialization = "1.4.1"
 ktor = "2.2.2"
@@ -71,6 +71,8 @@ ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json"
 
 # Test
 test-androidx-coreKtx = { module = "androidx.test:core-ktx", version.ref = "androidxCoreTest" }
+test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+test-compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
 test-junit4 = { module = "junit:junit", version.ref = "junit4" }
 test-junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
 test-junitVintageEngine = { module = "org.junit.vintage:junit-vintage-engine" }
@@ -92,7 +94,7 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 compose-core = ["compose-ui", "compose-material3", "compose-ui-tooling"]
 ktor-client = ["ktor-client-contentNegotiation", "ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-okhttp", "ktor-client-serialization"]
 unitTest = ["test-junitJupiter", "test-mockk", "test-truth"]
-robolectricTest = ["test-androidx-coreKtx", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-truth"]
+robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-truth"]
 
 
 [plugins]
