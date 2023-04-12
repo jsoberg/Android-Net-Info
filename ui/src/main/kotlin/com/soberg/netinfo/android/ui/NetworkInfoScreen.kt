@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.soberg.netinfo.android.ui.wan.WanInfoRow
 
 @Composable
 fun NetworkInfoScreen(
@@ -21,15 +20,33 @@ fun NetworkInfoScreen(
     state: NetworkInfoViewModel.State,
 ) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
     ) {
         when (state) {
             is NetworkInfoViewModel.State.CannotConnect,
             is NetworkInfoViewModel.State.Loading -> {
+                // TODO Add Loading
             }
             is NetworkInfoViewModel.State.Connected -> {
-                WanInfoRow(ipAddressString = state.wanIpAddressString)
+                NetworkInfoContent(
+                    wanIpAddress = state.wanIpAddress,
+                    onCopyWanIpClicked = {
+                        // TODO copy ip
+                    },
+                )
             }
         }
     }
+}
+
+@Composable
+fun NetworkInfoContent(
+    wanIpAddress: String,
+    onCopyWanIpClicked: (String) -> Unit,
+) {
+    CopyableTextRow(
+        text = wanIpAddress,
+        onCopyTextClicked = onCopyWanIpClicked,
+    )
 }

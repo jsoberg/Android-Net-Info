@@ -1,8 +1,13 @@
 package com.soberg.netinfo.android.ui.theme
 
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 object Dimens {
+
+    object FontSize {
+        val Large = 20.sp
+    }
 
     object Padding {
         val Base25 = 4.dp

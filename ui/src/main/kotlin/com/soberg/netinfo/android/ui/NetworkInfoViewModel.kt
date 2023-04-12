@@ -1,7 +1,11 @@
 package com.soberg.netinfo.android.ui
 
+import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
+import com.soberg.netinfo.android.ui.state.toDrawableRes
+import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import com.soberg.netinfo.domain.wan.WanInfoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,24 +31,35 @@ class NetworkInfoViewModel @Inject constructor(
             }
             is NetworkConnectionRepository.State.Connected -> {
                 val result = wanInfoRepository.loadWanInfo()
-                toViewState(result)
+                toViewState(
+                    localInterface = state.netInterface,
+                    wanResult = result,
+                )
             }
         }
 
-    private fun toViewState(result: WanInfoRepository.Result): State =
-        when (result) {
+    private fun toViewState(
+        localInterface: NetworkInterface,
+        wanResult: WanInfoRepository.Result,
+    ): State =
+        when (wanResult) {
             is WanInfoRepository.Result.Error -> State.CannotConnect
             is WanInfoRepository.Result.Success -> State.Connected(
-                wanIpAddressString = result.wanInfo.ip.toString()
+                wanIpAddress = wanResult.wanInfo.ip.toString(),
+                networkTypeDrawableRes = localInterface.type.toDrawableRes(),
             )
         }
 
+    @Immutable
     sealed interface State {
         object Loading : State
+
         object CannotConnect : State
 
         data class Connected(
-            val wanIpAddressString: String,
+            val wanIpAddress: String,
+            @DrawableRes
+            val networkTypeDrawableRes: Int,
         ) : State
     }
 }
