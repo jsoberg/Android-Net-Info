@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import com.soberg.netinfo.android.ui.text.CopyableTextRow
 
 @Composable
 fun NetworkInfoScreen(
