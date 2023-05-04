@@ -6,7 +6,7 @@ object Versions {
 
     object Android {
         object Java {
-            val sourceCompatibility = JavaVersion.VERSION_11
+            val sourceCompatibility = JavaVersion.VERSION_17
             val targetCompatibility = sourceCompatibility
         }
 
@@ -18,7 +18,7 @@ object Versions {
     }
 
     object Kotlin {
-        const val jvmTarget = "11"
+        const val jvmTarget = "17"
         const val languageVersion = "1.8"
     }
 }

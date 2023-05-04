@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "7.4.0"
+androidGradlePlugin = "8.0.1"
 androidxActivity = "1.6.1"
 androidxLifecycle = "2.5.1"
 androidxCoreTest = "1.5.0"
