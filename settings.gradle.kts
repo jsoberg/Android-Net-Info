@@ -6,7 +6,11 @@ dependencyResolutionManagement {
     }
 }
 
-includeBuild("build-plugins")
+pluginManagement {
+    includeBuild("build-logic")
+}
+
+rootProject.name = "android-net-info"
 
 include(":app")
 include(":base-annotations")
