@@ -1,5 +1,6 @@
 package com.soberg.netinfo.gradle
 
+import com.soberg.netinfo.gradle.Versions.Android.Java.targetCompatibility
 import org.gradle.api.JavaVersion
 
 object Versions {
@@ -18,7 +19,7 @@ object Versions {
     }
 
     object Kotlin {
-        const val jvmTarget = "17"
+        val jvmTarget = targetCompatibility.toString()
         const val languageVersion = "1.8"
     }
 }

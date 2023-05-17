@@ -9,13 +9,13 @@ import org.gradle.api.Project
 
 class AndroidModulePlugin : Plugin<Project> {
 
-    override fun apply(project: Project) {
-        project.plugins.apply("kotlin-android")
-        configureAndroid(project)
+    override fun apply(project: Project) = with(project) {
+        plugins.apply("kotlin-android")
+        configureAndroid()
     }
 
-    private fun configureAndroid(project: Project) = with(project) {
-        with(android) {
+    private fun Project.configureAndroid() {
+        android {
             compileOptions {
                 sourceCompatibility = Versions.Android.Java.sourceCompatibility
                 targetCompatibility = Versions.Android.Java.targetCompatibility
@@ -36,6 +36,5 @@ class AndroidModulePlugin : Plugin<Project> {
             testOptions.unitTests.isIncludeAndroidResources = true
         }
     }
-
 
 }

@@ -7,11 +7,13 @@ import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.plugins.ExtensionContainer
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
-internal val Project.android: BaseExtension
-    get() = extensions.findByName("android") as BaseExtension
+fun Project.android(configure: BaseExtension.() -> Unit) {
+    val android = extensions.findByName("android") as BaseExtension
+    configure(android)
+}
 
-internal fun BaseExtension.kotlinOptions(configure: Action<KotlinJvmOptions>) =
-        androidExtensions.configure("kotlinOptions", configure)
+fun BaseExtension.kotlinOptions(configure: Action<KotlinJvmOptions>) =
+    androidExtensions.configure("kotlinOptions", configure)
 
 private val BaseExtension.androidExtensions: ExtensionContainer
     get() = (this as ExtensionAware).extensions
