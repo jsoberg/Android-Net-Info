@@ -5,8 +5,8 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.domain)
-    implementation(projects.infraViewmodelExt)
+    implementation(projects.feature.domain)
+    implementation(projects.infra.viewmodelExt)
 
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)

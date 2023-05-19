@@ -9,8 +9,8 @@ android {
 }
 
 dependencies {
-    api(projects.domain)
-    implementation(projects.baseAnnotations)
+    api(projects.feature.domain)
+    implementation(projects.base.annotations)
 
     implementation(libs.kotlin.stdlib)
 

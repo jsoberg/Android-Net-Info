@@ -19,11 +19,11 @@ android {
 }
 
 dependencies {
-    implementation(projects.baseAnnotations)
-    implementation(projects.dataIpconfig)
-    implementation(projects.dataNetworkConnectivity)
-    implementation(projects.domain)
-    implementation(projects.ui)
+    implementation(projects.base.annotations)
+    implementation(projects.feature.data.ipconfig)
+    implementation(projects.feature.data.networkConnectivity)
+    implementation(projects.feature.domain)
+    implementation(projects.feature.ui)
 
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)

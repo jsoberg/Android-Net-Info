@@ -4,8 +4,8 @@ plugins {
 }
 
 dependencies {
-    api(projects.domain)
-    implementation(projects.baseAnnotations)
+    api(projects.feature.domain)
+    implementation(projects.base.annotations)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
@@ -18,5 +18,5 @@ dependencies {
     testImplementation(libs.test.kotlin.coroutines)
     testImplementation(libs.test.ktor.mock)
 
-    testImplementation(testFixtures(projects.domain))
+    testImplementation(testFixtures(projects.feature.domain))
 }

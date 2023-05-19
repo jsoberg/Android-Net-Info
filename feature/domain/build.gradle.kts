@@ -4,11 +4,11 @@ plugins {
 }
 
 dependencies {
-    api(projects.baseTypes)
+    api(projects.base.types)
 
     implementation(libs.kotlin.coroutines)
 
     testImplementation(libs.bundles.unitTest)
 
-    testFixturesApi(testFixtures(projects.baseTypes))
+    testFixturesApi(testFixtures(projects.base.types))
 }

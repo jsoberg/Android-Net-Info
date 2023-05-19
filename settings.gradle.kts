@@ -13,10 +13,10 @@ pluginManagement {
 rootProject.name = "android-net-info"
 
 include(":app")
-include(":base-annotations")
-include(":base-types")
-include(":data-ipconfig")
-include(":data-network-connectivity")
-include(":domain")
-include(":infra-viewmodel-ext")
-include(":ui")
+include(":base:annotations")
+include(":base:types")
+include(":feature:data:ipconfig")
+include(":feature:data:network-connectivity")
+include(":feature:domain")
+include(":feature:ui")
+include(":infra:viewmodel-ext")
