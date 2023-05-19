@@ -8,7 +8,7 @@ import com.soberg.netinfo.gradle.plugin.ext.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class AndroidModulePlugin : Plugin<Project> {
+open class AndroidModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
         plugins {

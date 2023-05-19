@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("android.compose")
     id("android.module")
     kotlin("kapt")
     alias(libs.plugins.hilt)
@@ -7,9 +8,6 @@ plugins {
 
 android {
     namespace = "com.soberg.netinfo.android.app"
-
-    buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
 
     defaultConfig {
         applicationId = "com.soberg.netinfo.android.app"
@@ -24,10 +22,6 @@ dependencies {
     implementation(projects.feature.data.networkConnectivity)
     implementation(projects.feature.domain)
     implementation(projects.feature.ui)
-
-    val composeBom = platform(libs.compose.bom)
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)

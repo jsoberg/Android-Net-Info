@@ -4,6 +4,11 @@ plugins {
 
 gradlePlugin {
     plugins {
+        register("android.compose") {
+            id = "android.compose"
+            implementationClass = "com.soberg.netinfo.gradle.plugin.AndroidComposeConventionPlugin"
+        }
+
         register("android.module") {
             id = "android.module"
             implementationClass = "com.soberg.netinfo.gradle.plugin.AndroidModulePlugin"

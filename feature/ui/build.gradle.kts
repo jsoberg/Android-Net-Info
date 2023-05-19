@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("android.compose")
     id("android.module")
     kotlin("kapt")
 }
@@ -7,11 +8,6 @@ plugins {
 dependencies {
     implementation(projects.feature.domain)
     implementation(projects.infra.viewmodelExt)
-
-    val composeBom = platform(libs.compose.bom)
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-    testImplementation(composeBom)
 
     implementation(libs.bundles.compose.core)
     implementation(libs.androidX.lifecycle.viewModel)
@@ -26,7 +22,4 @@ dependencies {
 
 android {
     namespace = "com.soberg.netinfo.android.ui"
-
-    buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
 }
