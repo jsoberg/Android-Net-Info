@@ -1,7 +1,6 @@
 package com.soberg.netinfo.gradle.plugin.ext
 
 import com.android.build.gradle.BaseExtension
-import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.plugins.ExtensionContainer
@@ -12,7 +11,7 @@ fun Project.android(configure: BaseExtension.() -> Unit) {
     configure(android)
 }
 
-fun BaseExtension.kotlinOptions(configure: Action<KotlinJvmOptions>) =
+fun BaseExtension.kotlinOptions(configure: KotlinJvmOptions.() -> Unit) =
     androidExtensions.configure("kotlinOptions", configure)
 
 private val BaseExtension.androidExtensions: ExtensionContainer

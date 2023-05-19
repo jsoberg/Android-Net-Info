@@ -4,13 +4,16 @@ import com.soberg.netinfo.gradle.TestRunners
 import com.soberg.netinfo.gradle.Versions
 import com.soberg.netinfo.gradle.plugin.ext.android
 import com.soberg.netinfo.gradle.plugin.ext.kotlinOptions
+import com.soberg.netinfo.gradle.plugin.ext.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class AndroidModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
-        plugins.apply("kotlin-android")
+        plugins {
+            apply("kotlin-android")
+        }
         configureAndroid()
     }
 
