@@ -5,6 +5,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
 import com.soberg.netinfo.android.ui.screen.state.toDrawableRes
+import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import com.soberg.netinfo.domain.wan.WanInfoRepository
@@ -46,10 +47,16 @@ class NetworkInfoViewModel @Inject constructor(
         when (wanResult) {
             is WanInfoRepository.Result.Error -> State.CannotConnect
             is WanInfoRepository.Result.Success -> State.Connected(
-                wanIpAddress = wanResult.wanInfo.ip.toString(),
+                wan = State.Connected.Wan(
+                    ipAddress = wanResult.wanInfo.ip.toString(),
+                    locationText = wanResult.wanInfo.ispGeoInfo?.locationDisplayText()
+                ),
                 networkTypeDrawableRes = localInterface.type.toDrawableRes(),
             )
         }
+
+    private fun GeodeticInformation.locationDisplayText(): String =
+        "$cityName ${region.code}, ${country.iso}"
 
     @Immutable
     sealed interface State {
@@ -58,9 +65,14 @@ class NetworkInfoViewModel @Inject constructor(
         object CannotConnect : State
 
         data class Connected(
-            val wanIpAddress: String,
+            val wan: Wan,
             @DrawableRes
             val networkTypeDrawableRes: Int,
-        ) : State
+        ) : State {
+            data class Wan(
+                val ipAddress: String,
+                val locationText: String?,
+            )
+        }
     }
 }

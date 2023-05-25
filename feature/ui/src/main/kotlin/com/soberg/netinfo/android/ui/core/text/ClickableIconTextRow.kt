@@ -1,5 +1,6 @@
 package com.soberg.netinfo.android.ui.core.text
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
@@ -19,27 +20,46 @@ import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CopyableTextRow(
     modifier: Modifier = Modifier,
     text: String,
-    onCopyTextClicked: (String) -> Unit,
+    token: TypographyToken.Body,
+    onCopyTextClicked: () -> Unit,
+) {
+    ClickableIconTextRow(
+        modifier = modifier,
+        text = text,
+        token = token,
+        iconDrawableRes = R.drawable.ic_content_copy,
+        onClicked = onCopyTextClicked,
+    )
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ClickableIconTextRow(
+    modifier: Modifier = Modifier,
+    text: String,
+    token: TypographyToken.Body,
+    @DrawableRes
+    iconDrawableRes: Int,
+    onClicked: () -> Unit,
 ) {
     Row(
         modifier = modifier
             .clickable {
-                onCopyTextClicked(text)
+                onClicked()
             }
             .padding(Dimens.Padding.Base25),
-        horizontalArrangement = Arrangement.spacedBy(Dimens.Padding.Base25),
+        horizontalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
         verticalAlignment = Alignment.CenterVertically,
     ) {
 
         Icon(
             modifier = Modifier
                 .size(24.dp),
-            painter = painterResource(R.drawable.ic_content_copy),
+            painter = painterResource(iconDrawableRes),
             contentDescription = null,
         )
 
@@ -47,16 +67,18 @@ fun CopyableTextRow(
             modifier = Modifier
                 .basicMarquee(),
             text = text,
-            token = TypographyToken.Body.Large,
+            token = token,
         )
     }
 }
+
 
 @A11yPreview
 @Composable
 private fun CopyableTextRowPreview() = ThemedPreview {
     CopyableTextRow(
         text = "192.168.0.101",
-        onCopyTextClicked = { }
+        token = TypographyToken.Body.Large,
+        onCopyTextClicked = { },
     )
 }

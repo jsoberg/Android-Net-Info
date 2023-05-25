@@ -13,9 +13,11 @@ import androidx.compose.ui.res.stringResource
 import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.core.text.ClickableIconTextRow
 import com.soberg.netinfo.android.ui.core.text.CopyableTextRow
 import com.soberg.netinfo.android.ui.core.text.Text
 import com.soberg.netinfo.android.ui.core.theme.Dimens
+import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 
 @Composable
 fun NetworkInfoScreen(
@@ -41,10 +43,13 @@ fun NetworkInfoScreen(
 
             is NetworkInfoViewModel.State.Connected -> {
                 ConnectedContent(
-                    state = state,
+                    state = state.wan,
                     onCopyWanIpClicked = {
                         // TODO copy ip
                     },
+                    onLocationClicked = {
+                        // TODO open maps
+                    }
                 )
             }
         }
@@ -53,19 +58,9 @@ fun NetworkInfoScreen(
 
 @Composable
 private fun ConnectedContent(
-    state: NetworkInfoViewModel.State.Connected,
-    onCopyWanIpClicked: (String) -> Unit,
-) {
-    WanInfoContent(
-        wanIpAddress = state.wanIpAddress,
-        onCopyWanIpClicked = onCopyWanIpClicked,
-    )
-}
-
-@Composable
-private fun WanInfoContent(
-    wanIpAddress: String,
-    onCopyWanIpClicked: (String) -> Unit,
+    state: NetworkInfoViewModel.State.Connected.Wan,
+    onCopyWanIpClicked: () -> Unit,
+    onLocationClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier.padding(Dimens.Padding.Base100),
@@ -76,9 +71,20 @@ private fun WanInfoContent(
         )
 
         CopyableTextRow(
-            text = wanIpAddress,
+            text = state.ipAddress,
+            token = TypographyToken.Body.Large,
             onCopyTextClicked = onCopyWanIpClicked,
         )
+
+        state.locationText?.let { locationText ->
+            ClickableIconTextRow(
+                text = locationText,
+                token = TypographyToken.Body.Large,
+                iconDrawableRes = R.drawable.ic_my_location,
+                onClicked = onLocationClicked,
+            )
+        }
+
     }
 }
 
@@ -87,7 +93,10 @@ private fun WanInfoContent(
 private fun NetworkInfoScreenPreview() = ThemedPreview {
     NetworkInfoScreen(
         state = NetworkInfoViewModel.State.Connected(
-            wanIpAddress = "109.123.654.321",
+            wan = NetworkInfoViewModel.State.Connected.Wan(
+                ipAddress = "109.123.654.321",
+                locationText = "New York NY, US"
+            ),
             networkTypeDrawableRes = R.drawable.ic_wifi,
         )
     )
