@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="wan_content_header">WAN</string>
+    <string name="lan_content_header">LAN</string>
+</resources>
