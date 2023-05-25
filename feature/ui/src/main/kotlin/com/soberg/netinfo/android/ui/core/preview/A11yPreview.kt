@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui.preview
+package com.soberg.netinfo.android.ui.core.preview
 
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview

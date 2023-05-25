@@ -1,10 +1,10 @@
-package com.soberg.netinfo.android.ui
+package com.soberg.netinfo.android.ui.screen
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
-import com.soberg.netinfo.android.ui.state.toDrawableRes
+import com.soberg.netinfo.android.ui.screen.state.toDrawableRes
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import com.soberg.netinfo.domain.wan.WanInfoRepository
@@ -29,6 +29,7 @@ class NetworkInfoViewModel @Inject constructor(
             is NetworkConnectionRepository.State.NotConnected -> {
                 State.CannotConnect
             }
+
             is NetworkConnectionRepository.State.Connected -> {
                 val result = wanInfoRepository.loadWanInfo()
                 toViewState(

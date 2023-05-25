@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui
+package com.soberg.netinfo.android.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,11 +10,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.soberg.netinfo.android.ui.preview.A11yPreview
-import com.soberg.netinfo.android.ui.preview.ThemedPreview
-import com.soberg.netinfo.android.ui.text.CopyableTextRow
-import com.soberg.netinfo.android.ui.text.Text
-import com.soberg.netinfo.android.ui.theme.Dimens
+import com.soberg.netinfo.android.ui.R
+import com.soberg.netinfo.android.ui.core.preview.A11yPreview
+import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.core.text.CopyableTextRow
+import com.soberg.netinfo.android.ui.core.text.Text
+import com.soberg.netinfo.android.ui.core.theme.Dimens
 
 @Composable
 fun NetworkInfoScreen(

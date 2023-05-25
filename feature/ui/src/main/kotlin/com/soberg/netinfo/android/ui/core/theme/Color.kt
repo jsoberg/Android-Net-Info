@@ -1,5 +1,5 @@
 /** Exported from the [Material3 Theme Builder](https://m3.material.io/theme-builder#/custom). */
-package com.soberg.netinfo.android.ui.theme
+package com.soberg.netinfo.android.ui.core.theme
 
 import androidx.compose.ui.graphics.Color
 

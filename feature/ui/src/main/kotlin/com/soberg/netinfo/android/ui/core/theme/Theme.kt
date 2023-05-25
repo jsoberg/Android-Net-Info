@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui.theme
+package com.soberg.netinfo.android.ui.core.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui.text
+package com.soberg.netinfo.android.ui.core.text
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.basicMarquee
@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.soberg.netinfo.android.ui.R
-import com.soberg.netinfo.android.ui.preview.A11yPreview
-import com.soberg.netinfo.android.ui.preview.ThemedPreview
-import com.soberg.netinfo.android.ui.theme.Dimens
-import com.soberg.netinfo.android.ui.theme.TypographyToken
+import com.soberg.netinfo.android.ui.core.preview.A11yPreview
+import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.core.theme.Dimens
+import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

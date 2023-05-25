@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.soberg.netinfo.android.ui.NetworkInfoScreen
-import com.soberg.netinfo.android.ui.theme.AppTheme
+import com.soberg.netinfo.android.ui.core.theme.AppTheme
+import com.soberg.netinfo.android.ui.screen.NetworkInfoScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,9 +1,9 @@
-package com.soberg.netinfo.android.ui.text
+package com.soberg.netinfo.android.ui.core.text
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.soberg.netinfo.android.ui.theme.TypographyToken
+import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 
 object Text {
 

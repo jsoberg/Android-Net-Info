@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui.state
+package com.soberg.netinfo.android.ui.screen.state
 
 import androidx.annotation.DrawableRes
 import com.soberg.netinfo.android.ui.R
