@@ -1,12 +1,9 @@
 package com.soberg.netinfo.android.ui.screen
 
-import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
-import com.soberg.netinfo.android.ui.screen.state.toDrawableRes
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
-import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import com.soberg.netinfo.domain.wan.WanInfoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,31 +24,27 @@ class NetworkInfoViewModel @Inject constructor(
 
     private suspend fun queryViewState(state: NetworkConnectionRepository.State): State =
         when (state) {
-            is NetworkConnectionRepository.State.NotConnected -> {
-                State.CannotConnect
-            }
+            is NetworkConnectionRepository.State.NoActiveConnection ->
+                State.NoConnectionsFound
 
             is NetworkConnectionRepository.State.Connected -> {
                 val result = wanInfoRepository.loadWanInfo()
-                toViewState(
-                    localInterface = state.netInterface,
-                    wanResult = result,
+                State.Ready(
+                    wan = toWanState(
+                        wanResult = result,
+                    )
                 )
             }
         }
 
-    private fun toViewState(
-        localInterface: NetworkInterface,
+    private fun toWanState(
         wanResult: WanInfoRepository.Result,
-    ): State =
+    ): WanState =
         when (wanResult) {
-            is WanInfoRepository.Result.Error -> State.CannotConnect
-            is WanInfoRepository.Result.Success -> State.Connected(
-                wan = State.Connected.Wan(
-                    ipAddress = wanResult.wanInfo.ip.toString(),
-                    locationText = wanResult.wanInfo.ispGeoInfo?.locationDisplayText()
-                ),
-                networkTypeDrawableRes = localInterface.type.toDrawableRes(),
+            is WanInfoRepository.Result.Error -> WanState.CannotConnect
+            is WanInfoRepository.Result.Success -> WanState.Ready(
+                ipAddress = wanResult.wanInfo.ip.toString(),
+                locationText = wanResult.wanInfo.ispGeoInfo?.locationDisplayText()
             )
         }
 
@@ -62,17 +55,22 @@ class NetworkInfoViewModel @Inject constructor(
     sealed interface State {
         object Loading : State
 
-        object CannotConnect : State
+        object NoConnectionsFound : State
 
-        data class Connected(
-            val wan: Wan,
-            @DrawableRes
-            val networkTypeDrawableRes: Int,
-        ) : State {
-            data class Wan(
-                val ipAddress: String,
-                val locationText: String?,
-            )
-        }
+        data class Ready(
+            val wan: WanState,
+        ) : State
+    }
+
+    @Immutable
+    sealed interface WanState {
+        object Loading : WanState
+
+        object CannotConnect : WanState
+
+        data class Ready(
+            val ipAddress: String,
+            val locationText: String?,
+        ) : WanState
     }
 }

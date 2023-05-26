@@ -4,7 +4,11 @@ import android.net.ConnectivityManager
 import android.net.LinkProperties
 import android.net.Network
 import android.net.NetworkCapabilities
-import android.net.NetworkCapabilities.*
+import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
+import android.net.NetworkCapabilities.TRANSPORT_CELLULAR
+import android.net.NetworkCapabilities.TRANSPORT_ETHERNET
+import android.net.NetworkCapabilities.TRANSPORT_VPN
+import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import kotlinx.coroutines.channels.ProducerScope
@@ -40,7 +44,7 @@ internal class AndroidActiveNetworkCallback constructor(
     private fun emitActiveNetworkInformation() = with(scope) {
         val activeNetwork = connectivityManager.activeNetwork
         if (activeNetwork == null) {
-            trySend(NetworkConnectionRepository.State.NotConnected)
+            trySend(NetworkConnectionRepository.State.NoActiveConnection)
         } else {
             val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
             val linkProperties = connectivityManager.getLinkProperties(activeNetwork)

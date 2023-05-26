@@ -77,7 +77,7 @@ internal class AndroidNetworkConnectionRepositoryTest {
     fun `emit not connected when there is no active network`() = runTest {
         shadowOf(connectivityManager).setDefaultNetworkActive(false)
         connectionRepository.activeConnectionStateFlow.test {
-            assertThat(awaitItem()).isEqualTo(State.NotConnected)
+            assertThat(awaitItem()).isEqualTo(State.NoActiveConnection)
         }
     }
 
@@ -85,7 +85,7 @@ internal class AndroidNetworkConnectionRepositoryTest {
     fun `emit network changes from active network for onAvailable`() = runTest {
         shadowOf(connectivityManager).setDefaultNetworkActive(false)
         connectionRepository.activeConnectionStateFlow.test {
-            assertThat(awaitItem()).isEqualTo(State.NotConnected)
+            assertThat(awaitItem()).isEqualTo(State.NoActiveConnection)
 
             shadowOf(connectivityManager).setDefaultNetworkActive(true)
             mockActiveNetwork(capabilities = listOf(NetworkCapabilities.NET_CAPABILITY_INTERNET))

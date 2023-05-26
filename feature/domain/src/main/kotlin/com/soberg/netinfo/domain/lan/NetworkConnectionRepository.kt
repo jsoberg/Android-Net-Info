@@ -8,7 +8,7 @@ interface NetworkConnectionRepository {
     val activeConnectionStateFlow: Flow<State>
 
     sealed interface State {
-        object NotConnected : State
+        object NoActiveConnection : State
 
         data class Connected(
             val netInterface: NetworkInterface,
