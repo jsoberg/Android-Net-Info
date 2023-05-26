@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -68,11 +69,13 @@ private fun ConnectedContent(
     ) {
         Text.Header(
             text = stringResource(id = R.string.wan_content_header),
+            color = MaterialTheme.colorScheme.primary,
         )
 
         CopyableTextRow(
             text = state.ipAddress,
             token = TypographyToken.Body.Large,
+            color = MaterialTheme.colorScheme.secondary,
             onCopyTextClicked = onCopyWanIpClicked,
         )
 
@@ -81,6 +84,7 @@ private fun ConnectedContent(
                 text = locationText,
                 token = TypographyToken.Body.Large,
                 iconDrawableRes = R.drawable.ic_my_location,
+                color = MaterialTheme.colorScheme.secondary,
                 onClicked = onLocationClicked,
             )
         }

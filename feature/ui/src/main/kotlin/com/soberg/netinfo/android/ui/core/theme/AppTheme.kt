@@ -1,27 +1,41 @@
 package com.soberg.netinfo.android.ui.core.theme
 
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 
 /** Exported from the [Material3 Theme Builder](https://m3.material.io/theme-builder#/custom). */
 @Composable
 fun AppTheme(
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    isDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colors = if (!useDarkTheme) {
-        LightColors
-    } else {
-        DarkColors
-    }
-
+    val colorScheme = getColorScheme(isDarkTheme)
     MaterialTheme(
-        colorScheme = colors,
+        colorScheme = colorScheme,
         content = content
     )
+}
+
+@Composable
+private fun getColorScheme(
+    isDarkTheme: Boolean
+): ColorScheme {
+    // Dynamic color only available on API 31 or above.
+    val useDynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    return when {
+        useDynamicColor && isDarkTheme -> dynamicDarkColorScheme(LocalContext.current)
+        useDynamicColor && !isDarkTheme -> dynamicLightColorScheme(LocalContext.current)
+        isDarkTheme -> DarkColors
+        else -> LightColors
+    }
 }
 
 private val LightColors = lightColorScheme(

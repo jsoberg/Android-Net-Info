@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.soberg.netinfo.android.ui.R
@@ -25,6 +27,7 @@ fun CopyableTextRow(
     modifier: Modifier = Modifier,
     text: String,
     token: TypographyToken.Body,
+    color: Color,
     onCopyTextClicked: () -> Unit,
 ) {
     ClickableIconTextRow(
@@ -32,6 +35,7 @@ fun CopyableTextRow(
         text = text,
         token = token,
         iconDrawableRes = R.drawable.ic_content_copy,
+        color = color,
         onClicked = onCopyTextClicked,
     )
 }
@@ -42,6 +46,7 @@ fun ClickableIconTextRow(
     modifier: Modifier = Modifier,
     text: String,
     token: TypographyToken.Body,
+    color: Color,
     @DrawableRes
     iconDrawableRes: Int,
     onClicked: () -> Unit,
@@ -60,6 +65,7 @@ fun ClickableIconTextRow(
             modifier = Modifier
                 .size(24.dp),
             painter = painterResource(iconDrawableRes),
+            tint = color,
             contentDescription = null,
         )
 
@@ -68,6 +74,7 @@ fun ClickableIconTextRow(
                 .basicMarquee(),
             text = text,
             token = token,
+            color = color,
         )
     }
 }
@@ -79,6 +86,7 @@ private fun CopyableTextRowPreview() = ThemedPreview {
     CopyableTextRow(
         text = "192.168.0.101",
         token = TypographyToken.Body.Large,
+        color = MaterialTheme.colorScheme.primary,
         onCopyTextClicked = { },
     )
 }
