@@ -32,6 +32,9 @@ repositories {
 }
 
 dependencies {
+    // Give plugin code access to the libs version catalog.
+    compileOnly(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
 }
