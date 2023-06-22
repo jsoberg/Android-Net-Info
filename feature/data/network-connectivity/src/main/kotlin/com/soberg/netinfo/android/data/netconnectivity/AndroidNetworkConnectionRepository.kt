@@ -3,6 +3,7 @@ package com.soberg.netinfo.android.data.netconnectivity
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import com.soberg.netinfo.android.data.netconnectivity.local.FindLocalIpAddressUseCase
 import com.soberg.netinfo.base.annotation.ApplicationCoroutineScope
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import kotlinx.coroutines.CoroutineName
@@ -18,11 +19,12 @@ import javax.inject.Inject
 
 internal class AndroidNetworkConnectionRepository @Inject constructor(
     @ApplicationCoroutineScope appCoroutineScope: CoroutineScope,
+    findLocalIpAddress: FindLocalIpAddressUseCase,
     connectivityManager: ConnectivityManager,
 ) : NetworkConnectionRepository {
 
     override val activeConnectionStateFlow: Flow<NetworkConnectionRepository.State> =
-        createActiveConnectionFlow(connectivityManager)
+        createActiveConnectionFlow(connectivityManager, findLocalIpAddress)
             .distinctUntilChanged()
             .shareIn(
                 scope = appCoroutineScope + CoroutineName("AndroidNetworkConnectionRepository"),
@@ -38,10 +40,13 @@ internal class AndroidNetworkConnectionRepository @Inject constructor(
         .addTransportType(NetworkCapabilities.TRANSPORT_VPN)
         .build()
 
-    private fun createActiveConnectionFlow(connectivityManager: ConnectivityManager) =
+    private fun createActiveConnectionFlow(
+        connectivityManager: ConnectivityManager,
+        findLocalIpAddress: FindLocalIpAddressUseCase,
+    ) =
         callbackFlow {
             // TODO Handle not having permissions granted.
-            val callback = activeNetworkCallback(connectivityManager)
+            val callback = activeNetworkCallback(connectivityManager, findLocalIpAddress)
             connectivityManager.registerNetworkCallback(request, callback)
             callback.emitState()
             awaitClose { connectivityManager.unregisterNetworkCallback(callback) }

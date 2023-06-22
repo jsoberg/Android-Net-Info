@@ -13,17 +13,15 @@ import androidx.compose.ui.res.stringResource
 import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
-import com.soberg.netinfo.android.ui.core.text.ClickableIconTextRow
 import com.soberg.netinfo.android.ui.core.text.CopyableTextRow
 import com.soberg.netinfo.android.ui.core.text.Text
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 
 @Composable
-internal fun WanCard(
-    state: NetworkInfoViewModel.WanState,
-    onCopyWanIpClicked: () -> Unit,
-    onLocationClicked: () -> Unit,
+internal fun LanCard(
+    state: NetworkInfoViewModel.LanState,
+    onCopyLanIpClicked: () -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -32,34 +30,31 @@ internal fun WanCard(
             .fillMaxWidth(),
     ) {
         when (state) {
-            is NetworkInfoViewModel.WanState.Ready -> {
-                WanReadyContent(
+            is NetworkInfoViewModel.LanState.Ready -> {
+                LanReadyContent(
                     state = state,
-                    onCopyWanIpClicked = onCopyWanIpClicked,
-                    onLocationClicked = onLocationClicked,
+                    onCopyLanIpClicked = onCopyLanIpClicked,
                 )
             }
 
-            is NetworkInfoViewModel.WanState.CannotConnect
-            -> {
-                // TODO: Show can't connect content
+            is NetworkInfoViewModel.LanState.Unknown -> {
+                // TODO: Show error/unknown state
             }
         }
     }
 }
 
 @Composable
-private fun WanReadyContent(
-    state: NetworkInfoViewModel.WanState.Ready,
-    onCopyWanIpClicked: () -> Unit,
-    onLocationClicked: () -> Unit,
+private fun LanReadyContent(
+    state: NetworkInfoViewModel.LanState.Ready,
+    onCopyLanIpClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier.padding(Dimens.Padding.Base100),
         verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
     ) {
         Text.Header(
-            text = stringResource(id = R.string.wan_content_header),
+            text = stringResource(id = R.string.lan_content_header),
             color = MaterialTheme.colorScheme.primary,
         )
 
@@ -67,30 +62,18 @@ private fun WanReadyContent(
             text = state.ipAddress,
             token = TypographyToken.Body.Large,
             color = MaterialTheme.colorScheme.secondary,
-            onCopyTextClicked = onCopyWanIpClicked,
+            onCopyTextClicked = onCopyLanIpClicked,
         )
-
-        state.locationText?.let { locationText ->
-            ClickableIconTextRow(
-                text = locationText,
-                token = TypographyToken.Body.Large,
-                iconDrawableRes = R.drawable.ic_my_location,
-                color = MaterialTheme.colorScheme.secondary,
-                onClicked = onLocationClicked,
-            )
-        }
     }
 }
 
 @A11yPreview
 @Composable
-private fun WanStateReadyPreview() = ThemedPreview {
-    WanCard(
-        state = NetworkInfoViewModel.WanState.Ready(
-            ipAddress = "109.123.654.321",
-            locationText = "New York NY, US"
+private fun LanStateReadyPreview() = ThemedPreview {
+    LanCard(
+        state = NetworkInfoViewModel.LanState.Ready(
+            ipAddress = "192.168.0.1",
         ),
-        onCopyWanIpClicked = { },
-        onLocationClicked = { },
+        onCopyLanIpClicked = { },
     )
 }

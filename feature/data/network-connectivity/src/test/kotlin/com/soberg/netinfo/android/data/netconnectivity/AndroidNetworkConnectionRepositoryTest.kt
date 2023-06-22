@@ -8,11 +8,13 @@ import android.net.NetworkCapabilities
 import androidx.test.core.app.ApplicationProvider
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
+import com.soberg.netinfo.android.data.netconnectivity.local.FindLocalIpAddressUseCase
 import com.soberg.netinfo.base.type.network.NetworkInterface.Properties.Internet
 import com.soberg.netinfo.base.type.network.NetworkInterface.Properties.VPN
 import com.soberg.netinfo.base.type.network.NetworkInterface.Type.Cellular
 import com.soberg.netinfo.base.type.network.NetworkInterface.Type.Wifi
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository.State
+import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -32,10 +34,14 @@ internal class AndroidNetworkConnectionRepositoryTest {
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val findLocalIpAddress: FindLocalIpAddressUseCase = mockk {
+        every { this@mockk.invoke(any()) } returns null
+    }
 
     private val connectionRepository = AndroidNetworkConnectionRepository(
         appCoroutineScope = coroutineScope,
         connectivityManager = connectivityManager,
+        findLocalIpAddress = findLocalIpAddress,
     )
 
     @Test

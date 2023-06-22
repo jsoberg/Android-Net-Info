@@ -9,13 +9,15 @@ import android.net.NetworkCapabilities.TRANSPORT_CELLULAR
 import android.net.NetworkCapabilities.TRANSPORT_ETHERNET
 import android.net.NetworkCapabilities.TRANSPORT_VPN
 import android.net.NetworkCapabilities.TRANSPORT_WIFI
+import com.soberg.netinfo.android.data.netconnectivity.local.FindLocalIpAddressUseCase
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import kotlinx.coroutines.channels.ProducerScope
 
-internal class AndroidActiveNetworkCallback constructor(
+internal class AndroidActiveNetworkCallback(
     private val scope: ProducerScope<NetworkConnectionRepository.State>,
     private val connectivityManager: ConnectivityManager,
+    private val findLocalIpAddress: FindLocalIpAddressUseCase,
 ) : ConnectivityManager.NetworkCallback() {
 
     override fun onAvailable(network: Network) {
@@ -49,8 +51,10 @@ internal class AndroidActiveNetworkCallback constructor(
             val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
             val linkProperties = connectivityManager.getLinkProperties(activeNetwork)
 
+            val interfaceName = linkProperties?.interfaceName
             val netInterface = NetworkInterface(
-                name = linkProperties?.interfaceName,
+                name = interfaceName,
+                ipAddress = interfaceName?.let(findLocalIpAddress::invoke),
                 type = capabilities?.let(::interfaceType) ?: NetworkInterface.Type.Unknown,
                 properties = capabilities?.let(::buildPropertiesList) ?: emptyList()
             )
@@ -87,4 +91,9 @@ internal class AndroidActiveNetworkCallback constructor(
 
 internal fun ProducerScope<NetworkConnectionRepository.State>.activeNetworkCallback(
     connectivityManager: ConnectivityManager,
-) = AndroidActiveNetworkCallback(this, connectivityManager)
+    findLocalIpAddress: FindLocalIpAddressUseCase,
+) = AndroidActiveNetworkCallback(
+    scope = this,
+    connectivityManager = connectivityManager,
+    findLocalIpAddress = findLocalIpAddress,
+)

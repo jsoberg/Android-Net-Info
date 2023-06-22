@@ -1,6 +1,7 @@
 package com.soberg.netinfo.android.ui.screen
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -32,8 +33,11 @@ fun NetworkInfoScreen(
             }
 
             is NetworkInfoViewModel.State.Ready -> {
-                WanCard(
-                    state = state.wan,
+                ReadyContent(
+                    state = state,
+                    onCopyLanIpClicked = {
+                        // TODO copy ip
+                    },
                     onCopyWanIpClicked = {
                         // TODO copy ip
                     },
@@ -46,11 +50,36 @@ fun NetworkInfoScreen(
     }
 }
 
+@Composable
+private fun ReadyContent(
+    state: NetworkInfoViewModel.State.Ready,
+    onCopyLanIpClicked: () -> Unit,
+    onCopyWanIpClicked: () -> Unit,
+    onLocationClicked: () -> Unit,
+) {
+    Column {
+
+        LanCard(
+            state = state.lan,
+            onCopyLanIpClicked = onCopyLanIpClicked,
+        )
+
+        WanCard(
+            state = state.wan,
+            onCopyWanIpClicked = onCopyWanIpClicked,
+            onLocationClicked = onLocationClicked,
+        )
+    }
+}
+
 @A11yPreview
 @Composable
 private fun NetworkInfoScreenPreview() = ThemedPreview {
     NetworkInfoScreen(
         state = NetworkInfoViewModel.State.Ready(
+            lan = NetworkInfoViewModel.LanState.Ready(
+                ipAddress = "192.168.0.1",
+            ),
             wan = NetworkInfoViewModel.WanState.Ready(
                 ipAddress = "109.123.654.321",
                 locationText = "New York NY, US"

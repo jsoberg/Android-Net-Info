@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
+import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import com.soberg.netinfo.domain.wan.WanInfoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,11 +31,22 @@ class NetworkInfoViewModel @Inject constructor(
             is NetworkConnectionRepository.State.Connected -> {
                 val result = wanInfoRepository.loadWanInfo()
                 State.Ready(
+                    lan = toLanState(state.netInterface),
                     wan = toWanState(
                         wanResult = result,
-                    )
+                    ),
                 )
             }
+        }
+
+    private fun toLanState(
+        netInterface: NetworkInterface,
+    ): LanState =
+        when (netInterface.ipAddress) {
+            null -> LanState.Unknown
+            else -> LanState.Ready(
+                ipAddress = netInterface.ipAddress!!.value,
+            )
         }
 
     private fun toWanState(
@@ -58,14 +70,22 @@ class NetworkInfoViewModel @Inject constructor(
         object NoConnectionsFound : State
 
         data class Ready(
+            val lan: LanState,
             val wan: WanState,
         ) : State
     }
 
     @Immutable
-    sealed interface WanState {
-        object Loading : WanState
+    sealed interface LanState {
+        object Unknown : LanState
 
+        data class Ready(
+            val ipAddress: String,
+        ) : LanState
+    }
+
+    @Immutable
+    sealed interface WanState {
         object CannotConnect : WanState
 
         data class Ready(
