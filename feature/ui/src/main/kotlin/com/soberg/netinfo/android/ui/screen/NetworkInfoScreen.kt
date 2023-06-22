@@ -9,6 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.screen.card.LanCard
+import com.soberg.netinfo.android.ui.screen.card.WanCard
 
 @Composable
 fun NetworkInfoScreen(

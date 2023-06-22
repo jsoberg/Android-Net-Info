@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui.screen
+package com.soberg.netinfo.android.ui.screen.card
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,15 +13,18 @@ import androidx.compose.ui.res.stringResource
 import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.core.text.ClickableIconTextRow
 import com.soberg.netinfo.android.ui.core.text.CopyableTextRow
 import com.soberg.netinfo.android.ui.core.text.Text
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
+import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel
 
 @Composable
-internal fun LanCard(
-    state: NetworkInfoViewModel.LanState,
-    onCopyLanIpClicked: () -> Unit,
+internal fun WanCard(
+    state: NetworkInfoViewModel.WanState,
+    onCopyWanIpClicked: () -> Unit,
+    onLocationClicked: () -> Unit,
 ) {
     Card(
         modifier = Modifier
@@ -30,31 +33,34 @@ internal fun LanCard(
             .fillMaxWidth(),
     ) {
         when (state) {
-            is NetworkInfoViewModel.LanState.Ready -> {
-                LanReadyContent(
+            is NetworkInfoViewModel.WanState.Ready -> {
+                WanReadyContent(
                     state = state,
-                    onCopyLanIpClicked = onCopyLanIpClicked,
+                    onCopyWanIpClicked = onCopyWanIpClicked,
+                    onLocationClicked = onLocationClicked,
                 )
             }
 
-            is NetworkInfoViewModel.LanState.Unknown -> {
-                // TODO: Show error/unknown state
+            is NetworkInfoViewModel.WanState.CannotConnect
+            -> {
+                // TODO: Show can't connect content
             }
         }
     }
 }
 
 @Composable
-private fun LanReadyContent(
-    state: NetworkInfoViewModel.LanState.Ready,
-    onCopyLanIpClicked: () -> Unit,
+private fun WanReadyContent(
+    state: NetworkInfoViewModel.WanState.Ready,
+    onCopyWanIpClicked: () -> Unit,
+    onLocationClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier.padding(Dimens.Padding.Base100),
         verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
     ) {
         Text.Header(
-            text = stringResource(id = R.string.lan_content_header),
+            text = stringResource(id = R.string.wan_content_header),
             color = MaterialTheme.colorScheme.primary,
         )
 
@@ -62,18 +68,30 @@ private fun LanReadyContent(
             text = state.ipAddress,
             token = TypographyToken.Body.Large,
             color = MaterialTheme.colorScheme.secondary,
-            onCopyTextClicked = onCopyLanIpClicked,
+            onCopyTextClicked = onCopyWanIpClicked,
         )
+
+        state.locationText?.let { locationText ->
+            ClickableIconTextRow(
+                text = locationText,
+                token = TypographyToken.Body.Large,
+                iconDrawableRes = R.drawable.ic_my_location,
+                color = MaterialTheme.colorScheme.secondary,
+                onClicked = onLocationClicked,
+            )
+        }
     }
 }
 
 @A11yPreview
 @Composable
-private fun LanStateReadyPreview() = ThemedPreview {
-    LanCard(
-        state = NetworkInfoViewModel.LanState.Ready(
-            ipAddress = "192.168.0.1",
+private fun WanStateReadyPreview() = ThemedPreview {
+    WanCard(
+        state = NetworkInfoViewModel.WanState.Ready(
+            ipAddress = "109.123.654.321",
+            locationText = "New York NY, US"
         ),
-        onCopyLanIpClicked = { },
+        onCopyWanIpClicked = { },
+        onLocationClicked = { },
     )
 }
