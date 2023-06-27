@@ -17,12 +17,16 @@ fun NetworkInfoScreen(
     viewModel: NetworkInfoViewModel,
 ) {
     val state by viewModel.stateFlow.collectAsState()
-    NetworkInfoScreen(state)
+    NetworkInfoScreen(
+        state = state,
+        onLocationClicked = viewModel::onLocationClicked,
+    )
 }
 
 @Composable
 fun NetworkInfoScreen(
     state: NetworkInfoViewModel.State,
+    onLocationClicked: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -43,9 +47,7 @@ fun NetworkInfoScreen(
                     onCopyWanIpClicked = {
                         // TODO copy ip
                     },
-                    onLocationClicked = {
-                        // TODO open maps
-                    }
+                    onLocationClicked = onLocationClicked,
                 )
             }
         }
@@ -86,6 +88,7 @@ private fun NetworkInfoScreenPreview() = ThemedPreview {
                 ipAddress = "109.123.654.321",
                 locationText = "New York NY, US"
             ),
-        )
+        ),
+        onLocationClicked = { },
     )
 }
