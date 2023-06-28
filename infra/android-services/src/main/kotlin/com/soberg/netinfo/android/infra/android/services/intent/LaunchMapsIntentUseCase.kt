@@ -1,4 +1,4 @@
-package com.soberg.netinfo.android.ui.screen
+package com.soberg.netinfo.android.infra.android.services.intent
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,7 @@ import com.soberg.netinfo.base.type.geodetic.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-internal class LaunchMapsIntentUseCase @Inject constructor(
+class LaunchMapsIntentUseCase @Inject constructor(
     @ApplicationContext val context: Context,
 ) {
     operator fun invoke(location: Location) {

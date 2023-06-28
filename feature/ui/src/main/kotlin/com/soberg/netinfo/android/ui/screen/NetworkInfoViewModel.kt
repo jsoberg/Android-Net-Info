@@ -2,6 +2,7 @@ package com.soberg.netinfo.android.ui.screen
 
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
+import com.soberg.netinfo.android.infra.android.services.intent.LaunchMapsIntentUseCase
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.network.NetworkInterface

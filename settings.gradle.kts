@@ -19,4 +19,6 @@ include(":feature:data:ipconfig")
 include(":feature:data:network-connectivity")
 include(":feature:domain")
 include(":feature:ui")
+include(":infra:android-services")
 include(":infra:viewmodel-ext")
+
