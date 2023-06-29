@@ -9,7 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class LaunchMapsIntentUseCase @Inject constructor(
-    @ApplicationContext val context: Context,
+    @ApplicationContext private val context: Context,
 ) {
     operator fun invoke(location: Location) {
         val openMapUri = Uri.parse("geo:${location.latitude},${location.longitude}")

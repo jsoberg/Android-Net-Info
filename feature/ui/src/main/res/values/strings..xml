@@ -2,4 +2,7 @@
 <resources>
     <string name="wan_content_header">WAN</string>
     <string name="lan_content_header">LAN</string>
+
+    <string name="lan_ip_copy_label">LAN IP Address</string>
+    <string name="wan_ip_copy_label">WAN IP Address</string>
 </resources>
