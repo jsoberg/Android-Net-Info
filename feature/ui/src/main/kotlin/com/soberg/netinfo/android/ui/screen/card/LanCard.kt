@@ -26,7 +26,6 @@ internal fun LanCard(
 ) {
     Card(
         modifier = Modifier
-            .padding(Dimens.Padding.Base50)
             .wrapContentHeight()
             .fillMaxWidth(),
     ) {

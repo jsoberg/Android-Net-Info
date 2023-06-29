@@ -2,9 +2,11 @@ package com.soberg.netinfo.android.ui.screen
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -14,6 +16,7 @@ import com.soberg.netinfo.android.infra.compose.ext.event.collectComposableEvent
 import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
 import com.soberg.netinfo.android.ui.screen.card.LanCard
 import com.soberg.netinfo.android.ui.screen.card.WanCard
@@ -90,7 +93,14 @@ private fun ReadyContent(
     onCopyWanIpClicked: () -> Unit,
     onLocationClicked: () -> Unit,
 ) {
-    Column {
+    Column(
+        modifier = Modifier
+            .padding(
+                horizontal = Dimens.Padding.Base100,
+                vertical = Dimens.Padding.Base100,
+            ),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base75),
+    ) {
 
         LanCard(
             state = state.lan,
