@@ -8,6 +8,7 @@ plugins {
 dependencies {
     implementation(projects.feature.domain)
     implementation(projects.infra.androidServices)
+    implementation(projects.infra.composeExt)
     implementation(projects.infra.viewmodelExt)
 
     implementation(libs.bundles.compose.core)

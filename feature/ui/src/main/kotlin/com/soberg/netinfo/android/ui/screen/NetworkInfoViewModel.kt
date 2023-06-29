@@ -13,8 +13,10 @@ import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import com.soberg.netinfo.domain.wan.WanInfoRepository
 import com.soberg.netinfo.domain.wan.model.WanInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,6 +33,9 @@ class NetworkInfoViewModel @Inject internal constructor(
         connectionRepository.activeConnectionStateFlow
             .map(::queryViewState)
     }
+
+    private val eventChannel = Channel<Event>()
+    val eventFlow = eventChannel.receiveAsFlow()
 
     private suspend fun queryViewState(state: NetworkConnectionRepository.State): State =
         when (state) {
@@ -89,6 +94,7 @@ class NetworkInfoViewModel @Inject internal constructor(
             labelResId = R.string.wan_ip_copy_label,
             valueToCopy = wanInfo.ip.value,
         )
+        eventChannel.trySend(Event.WanIpCopySuccess)
     }
 
     fun copyLanIpAddress() = ifLanInterfaceCached { iface ->
@@ -97,6 +103,7 @@ class NetworkInfoViewModel @Inject internal constructor(
                 labelResId = R.string.lan_ip_copy_label,
                 valueToCopy = ip.value,
             )
+            eventChannel.trySend(Event.LanIpCopySuccess)
         }
     }
 
@@ -141,6 +148,11 @@ class NetworkInfoViewModel @Inject internal constructor(
             val ipAddress: String,
             val locationText: String?,
         ) : WanState
+    }
+
+    sealed interface Event {
+        object LanIpCopySuccess : Event
+        object WanIpCopySuccess : Event
     }
 
     @MainThread

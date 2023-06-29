@@ -5,4 +5,7 @@
 
     <string name="lan_ip_copy_label">LAN IP Address</string>
     <string name="wan_ip_copy_label">WAN IP Address</string>
+
+    <string name="wan_ip_copied_message">WAN IP copied to clipboard</string>
+    <string name="lan_ip_copied_message">LAN IP copied to clipboard</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.soberg.netinfo.android.ui.screen
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,8 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import com.soberg.netinfo.android.infra.compose.ext.event.collectComposableEventFlow
+import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
+import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
 import com.soberg.netinfo.android.ui.screen.card.LanCard
 import com.soberg.netinfo.android.ui.screen.card.WanCard
 
@@ -16,6 +22,14 @@ import com.soberg.netinfo.android.ui.screen.card.WanCard
 fun NetworkInfoScreen(
     viewModel: NetworkInfoViewModel,
 ) {
+    val context = LocalContext.current
+    viewModel.eventFlow.collectComposableEventFlow { event ->
+        handleEvent(
+            context = context,
+            event = event,
+        )
+    }
+
     val state by viewModel.stateFlow.collectAsState()
     NetworkInfoScreen(
         state = state,
@@ -25,8 +39,23 @@ fun NetworkInfoScreen(
     )
 }
 
+private fun handleEvent(
+    context: Context,
+    event: Event,
+) {
+    when (event) {
+        is Event.WanIpCopySuccess -> {
+            Toast.makeText(context, R.string.wan_ip_copied_message, Toast.LENGTH_SHORT).show()
+        }
+
+        is Event.LanIpCopySuccess -> {
+            Toast.makeText(context, R.string.lan_ip_copied_message, Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+
 @Composable
-fun NetworkInfoScreen(
+private fun NetworkInfoScreen(
     state: NetworkInfoViewModel.State,
     onCopyLanIpClicked: () -> Unit,
     onCopyWanIpClicked: () -> Unit,
