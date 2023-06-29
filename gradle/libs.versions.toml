@@ -28,6 +28,7 @@ turbine = "1.0.0"
 # AndroidX
 androidX-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
 androidX-navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
+androidX-lifecycle-composeRuntime = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidX-lifecycle-composeViewModelUtilities = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidX-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
 
