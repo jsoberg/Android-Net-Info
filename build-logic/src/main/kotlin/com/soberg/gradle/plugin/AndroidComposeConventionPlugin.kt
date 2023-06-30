@@ -16,7 +16,6 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureCompose() {
-
         android {
             buildFeatures.compose = true
             composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()

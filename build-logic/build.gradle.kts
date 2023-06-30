@@ -14,9 +14,9 @@ gradlePlugin {
             implementationClass = "com.soberg.gradle.plugin.AndroidModulePlugin"
         }
 
-        register("deps") {
-            id = "deps"
-            implementationClass = "com.soberg.gradle.plugin.DependenciesPlugin"
+        register("convention.root") {
+            id = "convention.root"
+            implementationClass = "com.soberg.gradle.plugin.RootPlugin"
         }
 
         register("kotlin.library.module") {
