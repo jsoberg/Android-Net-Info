@@ -6,22 +6,22 @@ gradlePlugin {
     plugins {
         register("android.compose") {
             id = "android.compose"
-            implementationClass = "com.soberg.netinfo.gradle.plugin.AndroidComposeConventionPlugin"
+            implementationClass = "com.soberg.gradle.plugin.AndroidComposeConventionPlugin"
         }
 
         register("android.module") {
             id = "android.module"
-            implementationClass = "com.soberg.netinfo.gradle.plugin.AndroidModulePlugin"
+            implementationClass = "com.soberg.gradle.plugin.AndroidModulePlugin"
         }
 
         register("deps") {
             id = "deps"
-            implementationClass = "com.soberg.netinfo.gradle.plugin.DependenciesPlugin"
+            implementationClass = "com.soberg.gradle.plugin.DependenciesPlugin"
         }
 
         register("kotlin.library.module") {
             id = "kotlin.library.module"
-            implementationClass = "com.soberg.netinfo.gradle.plugin.KotlinJvmLibraryModulePlugin"
+            implementationClass = "com.soberg.gradle.plugin.KotlinJvmLibraryModulePlugin"
         }
     }
 }

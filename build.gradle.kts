@@ -1,5 +1,5 @@
-import com.soberg.netinfo.gradle.KotlinCompilerArgs
-import com.soberg.netinfo.gradle.Versions
+import com.soberg.gradle.KotlinCompilerArgs
+import com.soberg.gradle.Versions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {

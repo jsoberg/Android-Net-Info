@@ -1,4 +1,4 @@
-package com.soberg.netinfo.gradle.plugin.ext
+package com.soberg.gradle.plugin.ext
 
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 

@@ -1,4 +1,4 @@
-package com.soberg.netinfo.gradle.plugin
+package com.soberg.gradle.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

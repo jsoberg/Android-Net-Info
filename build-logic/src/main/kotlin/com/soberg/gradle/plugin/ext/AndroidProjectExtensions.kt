@@ -1,4 +1,4 @@
-package com.soberg.netinfo.gradle.plugin.ext
+package com.soberg.gradle.plugin.ext
 
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Project

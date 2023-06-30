@@ -1,6 +1,6 @@
-package com.soberg.netinfo.gradle
+package com.soberg.gradle
 
-import com.soberg.netinfo.gradle.Versions.Android.Java.targetCompatibility
+import com.soberg.gradle.Versions.Android.Java.targetCompatibility
 import org.gradle.api.JavaVersion
 
 object Versions {

@@ -1,10 +1,10 @@
-package com.soberg.netinfo.gradle.plugin
+package com.soberg.gradle.plugin
 
-import com.soberg.netinfo.gradle.plugin.ext.android
-import com.soberg.netinfo.gradle.plugin.ext.androidTestImplementation
-import com.soberg.netinfo.gradle.plugin.ext.implementation
-import com.soberg.netinfo.gradle.plugin.ext.libs
-import com.soberg.netinfo.gradle.plugin.ext.testImplementation
+import com.soberg.gradle.plugin.ext.android
+import com.soberg.gradle.plugin.ext.androidTestImplementation
+import com.soberg.gradle.plugin.ext.implementation
+import com.soberg.gradle.plugin.ext.libs
+import com.soberg.gradle.plugin.ext.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

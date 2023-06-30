@@ -1,8 +1,8 @@
-package com.soberg.netinfo.gradle.plugin
+package com.soberg.gradle.plugin
 
-import com.soberg.netinfo.gradle.Versions
-import com.soberg.netinfo.gradle.plugin.ext.kotlin
-import com.soberg.netinfo.gradle.plugin.ext.plugins
+import com.soberg.gradle.Versions
+import com.soberg.gradle.plugin.ext.kotlin
+import com.soberg.gradle.plugin.ext.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
