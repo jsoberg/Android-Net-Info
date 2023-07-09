@@ -1,11 +1,12 @@
 package com.soberg.netinfo.android.ui.screen
 
 import androidx.annotation.MainThread
-import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.android.services.clipboard.CopyToClipboardUseCase
 import com.soberg.netinfo.android.infra.android.services.intent.LaunchMapsIntentUseCase
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
+import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
+import com.soberg.netinfo.android.ui.screen.state.toViewState
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
@@ -29,25 +30,26 @@ class NetworkInfoViewModel @Inject internal constructor(
 
     private val dataCache = DataCache()
 
-    val stateFlow: StateFlow<State> = asStateFlow(initialValue = State.Loading) {
-        connectionRepository.activeConnectionStateFlow
-            .map(::queryViewState)
-    }
+    val stateFlow: StateFlow<NetworkInfoViewState> =
+        asStateFlow(initialValue = NetworkInfoViewState.Loading) {
+            connectionRepository.activeConnectionStateFlow
+                .map(::queryViewState)
+        }
 
     private val eventChannel = Channel<Event>()
     val eventFlow = eventChannel.receiveAsFlow()
 
-    private suspend fun queryViewState(state: NetworkConnectionRepository.State): State =
+    private suspend fun queryViewState(state: NetworkConnectionRepository.State): NetworkInfoViewState =
         when (state) {
             is NetworkConnectionRepository.State.NoActiveConnection -> {
                 dataCache.clear()
-                State.NoConnectionsFound
+                NetworkInfoViewState.NoConnectionsFound
             }
 
             is NetworkConnectionRepository.State.Connected -> {
                 dataCache.updateLan(state.netInterface)
                 val result = wanInfoRepository.loadWanInfo()
-                State.Ready(
+                NetworkInfoViewState.Ready(
                     lan = toLanState(state.netInterface),
                     wan = toWanState(
                         wanResult = result,
@@ -58,22 +60,23 @@ class NetworkInfoViewModel @Inject internal constructor(
 
     private fun toLanState(
         netInterface: NetworkInterface,
-    ): LanState =
+    ): NetworkInfoViewState.Ready.Lan =
         when (netInterface.ipAddress) {
-            null -> LanState.Unknown
-            else -> LanState.Ready(
+            null -> NetworkInfoViewState.Ready.Lan.Unknown
+            else -> NetworkInfoViewState.Ready.Lan.Connected(
                 ipAddress = netInterface.ipAddress!!.value,
+                type = netInterface.type.toViewState()
             )
         }
 
     private fun toWanState(
         wanResult: WanInfoRepository.Result,
-    ): WanState =
+    ): NetworkInfoViewState.Ready.Wan =
         when (wanResult) {
-            is WanInfoRepository.Result.Error -> WanState.CannotConnect
+            is WanInfoRepository.Result.Error -> NetworkInfoViewState.Ready.Wan.CannotConnect
             is WanInfoRepository.Result.Success -> {
                 dataCache.updateWan(wanResult.wanInfo)
-                WanState.Ready(
+                NetworkInfoViewState.Ready.Wan.Connected(
                     ipAddress = wanResult.wanInfo.ip.toString(),
                     locationText = wanResult.wanInfo.ispGeoInfo?.locationDisplayText(),
                 )
@@ -91,7 +94,7 @@ class NetworkInfoViewModel @Inject internal constructor(
 
     fun copyWanIpAddress() = ifWanInfoCached { wanInfo ->
         copyToClipboard(
-            labelResId = StringsR.string.wan_ip_copy_label,
+            labelResId = StringsR.string.external_ip_content_header,
             valueToCopy = wanInfo.ip.value,
         )
         eventChannel.trySend(Event.WanIpCopySuccess)
@@ -100,7 +103,7 @@ class NetworkInfoViewModel @Inject internal constructor(
     fun copyLanIpAddress() = ifLanInterfaceCached { iface ->
         iface.ipAddress?.let { ip ->
             copyToClipboard(
-                labelResId = StringsR.string.lan_ip_copy_label,
+                labelResId = StringsR.string.local_ip_content_header,
                 valueToCopy = ip.value,
             )
             eventChannel.trySend(Event.LanIpCopySuccess)
@@ -117,37 +120,6 @@ class NetworkInfoViewModel @Inject internal constructor(
         dataCache.cachedLanInterface?.let { iface ->
             block(iface)
         }
-    }
-
-    @Immutable
-    sealed interface State {
-        object Loading : State
-
-        object NoConnectionsFound : State
-
-        data class Ready(
-            val lan: LanState,
-            val wan: WanState,
-        ) : State
-    }
-
-    @Immutable
-    sealed interface LanState {
-        object Unknown : LanState
-
-        data class Ready(
-            val ipAddress: String,
-        ) : LanState
-    }
-
-    @Immutable
-    sealed interface WanState {
-        object CannotConnect : WanState
-
-        data class Ready(
-            val ipAddress: String,
-            val locationText: String?,
-        ) : WanState
     }
 
     sealed interface Event {

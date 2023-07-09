@@ -25,6 +25,21 @@ object Text {
     }
 
     @Composable
+    fun Title(
+        text: String,
+        modifier: Modifier = Modifier,
+        token: TypographyToken.Title = TypographyToken.Title.Medium,
+        color: Color = MaterialTheme.colorScheme.onSurface,
+    ) {
+        Base(
+            modifier = modifier,
+            text = text,
+            token = token,
+            color = color,
+        )
+    }
+
+    @Composable
     fun Body(
         text: String,
         modifier: Modifier = Modifier,

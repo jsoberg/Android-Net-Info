@@ -31,6 +31,26 @@ sealed interface TypographyToken {
         override val weight: FontWeight = FontWeight.Normal
     }
 
+    enum class Title(
+        override val size: TextUnit,
+        override val lineHeight: TextUnit,
+    ) : TypographyToken {
+        Large(
+            size = 22.sp,
+            lineHeight = 28.sp
+        ),
+        Medium(
+            size = 16.sp,
+            lineHeight = 24.sp
+        ),
+        Small(
+            size = 14.sp,
+            lineHeight = 20.sp
+        );
+
+        override val weight: FontWeight = FontWeight.Normal
+    }
+
     enum class Body(
         override val size: TextUnit,
         override val lineHeight: TextUnit,

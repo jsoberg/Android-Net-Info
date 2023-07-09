@@ -22,41 +22,18 @@ import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 import com.soberg.netinfo.feature.resources.drawables.R as DrawablesR
 
-@Composable
-fun CopyableTextRow(
-    modifier: Modifier = Modifier,
-    text: String,
-    token: TypographyToken.Body,
-    color: Color,
-    onCopyTextClicked: () -> Unit,
-) {
-    ClickableIconTextRow(
-        modifier = modifier,
-        text = text,
-        token = token,
-        iconDrawableRes = DrawablesR.drawable.ic_content_copy,
-        color = color,
-        onClicked = onCopyTextClicked,
-    )
-}
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ClickableIconTextRow(
+fun IconTextRow(
     modifier: Modifier = Modifier,
     text: String,
-    token: TypographyToken.Body,
+    token: TypographyToken.Body = TypographyToken.Body.Medium,
     color: Color,
     @DrawableRes
     iconDrawableRes: Int,
-    onClicked: () -> Unit,
 ) {
     Row(
-        modifier = modifier
-            .clickable {
-                onClicked()
-            }
-            .padding(Dimens.Padding.Base25),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -77,6 +54,44 @@ fun ClickableIconTextRow(
             color = color,
         )
     }
+}
+
+@Composable
+fun ClickableIconTextRow(
+    modifier: Modifier = Modifier,
+    text: String,
+    token: TypographyToken.Body = TypographyToken.Body.Medium,
+    color: Color,
+    @DrawableRes
+    iconDrawableRes: Int,
+    onClicked: () -> Unit,
+) {
+    IconTextRow(
+        modifier = modifier
+            .clickable(onClick = onClicked),
+        text = text,
+        token = token,
+        color = color,
+        iconDrawableRes = iconDrawableRes,
+    )
+}
+
+@Composable
+fun CopyableTextRow(
+    modifier: Modifier = Modifier,
+    text: String,
+    token: TypographyToken.Body = TypographyToken.Body.Medium,
+    color: Color,
+    onCopyTextClicked: () -> Unit,
+) {
+    ClickableIconTextRow(
+        modifier = modifier,
+        text = text,
+        token = token,
+        iconDrawableRes = DrawablesR.drawable.ic_content_copy,
+        color = color,
+        onClicked = onCopyTextClicked,
+    )
 }
 
 

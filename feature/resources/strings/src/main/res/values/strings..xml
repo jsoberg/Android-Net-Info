@@ -3,8 +3,15 @@
     <string name="wan_content_header">WAN</string>
     <string name="lan_content_header">LAN</string>
 
-    <string name="lan_ip_copy_label">LAN IP Address</string>
-    <string name="wan_ip_copy_label">WAN IP Address</string>
+    <string name="connection_type_content_header">Connection Type</string>
+    <string name="local_ip_content_header">Local IP Address</string>
+    <string name="external_ip_content_header">External IP Address</string>
+    <string name="ip_geolocation_content_header">IP Geolocation</string>
+
+    <string name="connection_type_no_connection">No Connection</string>
+    <string name="connection_type_cellular">Cellular</string>
+    <string name="connection_type_ethernet">Ethernet</string>
+    <string name="connection_type_wifi">WiFi</string>
 
     <string name="wan_ip_copied_message">WAN IP copied to clipboard</string>
     <string name="lan_ip_copied_message">LAN IP copied to clipboard</string>

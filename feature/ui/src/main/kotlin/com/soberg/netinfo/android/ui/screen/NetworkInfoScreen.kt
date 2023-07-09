@@ -17,8 +17,9 @@ import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
-import com.soberg.netinfo.android.ui.screen.card.LanCard
-import com.soberg.netinfo.android.ui.screen.card.WanCard
+import com.soberg.netinfo.android.ui.screen.card.LanContent
+import com.soberg.netinfo.android.ui.screen.card.WanContent
+import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 import com.soberg.netinfo.feature.resources.strings.R as StringsR
 
 @Composable
@@ -61,7 +62,7 @@ private fun handleEvent(
 
 @Composable
 private fun NetworkInfoScreen(
-    state: NetworkInfoViewModel.State,
+    state: NetworkInfoViewState,
     onCopyLanIpClicked: () -> Unit,
     onCopyWanIpClicked: () -> Unit,
     onLocationClicked: () -> Unit,
@@ -71,12 +72,12 @@ private fun NetworkInfoScreen(
             .fillMaxSize(),
     ) {
         when (state) {
-            is NetworkInfoViewModel.State.NoConnectionsFound,
-            is NetworkInfoViewModel.State.Loading -> {
+            is NetworkInfoViewState.NoConnectionsFound,
+            is NetworkInfoViewState.Loading -> {
                 // TODO Add Loading
             }
 
-            is NetworkInfoViewModel.State.Ready -> {
+            is NetworkInfoViewState.Ready -> {
                 ReadyContent(
                     state = state,
                     onCopyLanIpClicked = onCopyLanIpClicked,
@@ -90,7 +91,7 @@ private fun NetworkInfoScreen(
 
 @Composable
 private fun ReadyContent(
-    state: NetworkInfoViewModel.State.Ready,
+    state: NetworkInfoViewState.Ready,
     onCopyLanIpClicked: () -> Unit,
     onCopyWanIpClicked: () -> Unit,
     onLocationClicked: () -> Unit,
@@ -101,15 +102,15 @@ private fun ReadyContent(
                 horizontal = Dimens.Padding.Base100,
                 vertical = Dimens.Padding.Base100,
             ),
-        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base75),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
     ) {
 
-        LanCard(
+        LanContent(
             state = state.lan,
             onCopyLanIpClicked = onCopyLanIpClicked,
         )
 
-        WanCard(
+        WanContent(
             state = state.wan,
             onCopyWanIpClicked = onCopyWanIpClicked,
             onLocationClicked = onLocationClicked,
@@ -121,11 +122,12 @@ private fun ReadyContent(
 @Composable
 private fun NetworkInfoScreenPreview() = ThemedPreview {
     NetworkInfoScreen(
-        state = NetworkInfoViewModel.State.Ready(
-            lan = NetworkInfoViewModel.LanState.Ready(
+        state = NetworkInfoViewState.Ready(
+            lan = NetworkInfoViewState.Ready.Lan.Connected(
                 ipAddress = "192.168.0.1",
+                type = NetworkInfoViewState.Ready.Lan.ConnectionType.Cellular,
             ),
-            wan = NetworkInfoViewModel.WanState.Ready(
+            wan = NetworkInfoViewState.Ready.Wan.Connected(
                 ipAddress = "109.123.654.321",
                 locationText = "New York NY, US"
             ),
