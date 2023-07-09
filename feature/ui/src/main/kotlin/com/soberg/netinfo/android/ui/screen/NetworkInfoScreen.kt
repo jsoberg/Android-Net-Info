@@ -13,13 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.soberg.netinfo.android.infra.compose.ext.event.collectComposableEventFlow
-import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
 import com.soberg.netinfo.android.ui.screen.card.LanCard
 import com.soberg.netinfo.android.ui.screen.card.WanCard
+import com.soberg.netinfo.feature.resources.strings.R as StringsR
 
 @Composable
 fun NetworkInfoScreen(
@@ -48,11 +48,13 @@ private fun handleEvent(
 ) {
     when (event) {
         is Event.WanIpCopySuccess -> {
-            Toast.makeText(context, R.string.wan_ip_copied_message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, StringsR.string.wan_ip_copied_message, Toast.LENGTH_SHORT)
+                .show()
         }
 
         is Event.LanIpCopySuccess -> {
-            Toast.makeText(context, R.string.lan_ip_copied_message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, StringsR.string.lan_ip_copied_message, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }

@@ -10,7 +10,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.text.ClickableIconTextRow
@@ -19,6 +18,8 @@ import com.soberg.netinfo.android.ui.core.text.Text
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel
+import com.soberg.netinfo.feature.resources.drawables.R as DrawablesR
+import com.soberg.netinfo.feature.resources.strings.R as StringsR
 
 @Composable
 internal fun WanCard(
@@ -59,7 +60,7 @@ private fun WanReadyContent(
         verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
     ) {
         Text.Header(
-            text = stringResource(id = R.string.wan_content_header),
+            text = stringResource(id = StringsR.string.wan_content_header),
             color = MaterialTheme.colorScheme.primary,
         )
 
@@ -74,7 +75,7 @@ private fun WanReadyContent(
             ClickableIconTextRow(
                 text = locationText,
                 token = TypographyToken.Body.Large,
-                iconDrawableRes = R.drawable.ic_my_location,
+                iconDrawableRes = DrawablesR.drawable.ic_my_location,
                 color = MaterialTheme.colorScheme.secondary,
                 onClicked = onLocationClicked,
             )

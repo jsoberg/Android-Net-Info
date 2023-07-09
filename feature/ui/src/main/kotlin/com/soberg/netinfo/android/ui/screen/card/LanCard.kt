@@ -10,7 +10,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.text.CopyableTextRow
@@ -18,6 +17,7 @@ import com.soberg.netinfo.android.ui.core.text.Text
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel
+import com.soberg.netinfo.feature.resources.strings.R as StringsR
 
 @Composable
 internal fun LanCard(
@@ -54,7 +54,7 @@ private fun LanReadyContent(
         verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
     ) {
         Text.Header(
-            text = stringResource(id = R.string.lan_content_header),
+            text = stringResource(id = StringsR.string.lan_content_header),
             color = MaterialTheme.colorScheme.primary,
         )
 

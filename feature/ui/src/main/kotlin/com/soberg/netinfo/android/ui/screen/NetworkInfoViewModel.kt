@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.soberg.netinfo.android.infra.android.services.clipboard.CopyToClipboardUseCase
 import com.soberg.netinfo.android.infra.android.services.intent.LaunchMapsIntentUseCase
 import com.soberg.netinfo.android.infra.viewmodel.ext.asStateFlow
-import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
@@ -18,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
+import com.soberg.netinfo.feature.resources.strings.R as StringsR
 
 @HiltViewModel
 class NetworkInfoViewModel @Inject internal constructor(
@@ -91,7 +91,7 @@ class NetworkInfoViewModel @Inject internal constructor(
 
     fun copyWanIpAddress() = ifWanInfoCached { wanInfo ->
         copyToClipboard(
-            labelResId = R.string.wan_ip_copy_label,
+            labelResId = StringsR.string.wan_ip_copy_label,
             valueToCopy = wanInfo.ip.value,
         )
         eventChannel.trySend(Event.WanIpCopySuccess)
@@ -100,7 +100,7 @@ class NetworkInfoViewModel @Inject internal constructor(
     fun copyLanIpAddress() = ifLanInterfaceCached { iface ->
         iface.ipAddress?.let { ip ->
             copyToClipboard(
-                labelResId = R.string.lan_ip_copy_label,
+                labelResId = StringsR.string.lan_ip_copy_label,
                 valueToCopy = ip.value,
             )
             eventChannel.trySend(Event.LanIpCopySuccess)

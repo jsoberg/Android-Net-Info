@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.soberg.netinfo.android.ui.R
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.theme.Dimens
 import com.soberg.netinfo.android.ui.core.theme.TypographyToken
+import com.soberg.netinfo.feature.resources.drawables.R as DrawablesR
 
 @Composable
 fun CopyableTextRow(
@@ -34,7 +34,7 @@ fun CopyableTextRow(
         modifier = modifier,
         text = text,
         token = token,
-        iconDrawableRes = R.drawable.ic_content_copy,
+        iconDrawableRes = DrawablesR.drawable.ic_content_copy,
         color = color,
         onClicked = onCopyTextClicked,
     )

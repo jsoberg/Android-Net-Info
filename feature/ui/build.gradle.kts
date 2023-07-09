@@ -7,6 +7,8 @@ plugins {
 
 dependencies {
     implementation(projects.feature.domain)
+    implementation(projects.feature.resources.drawables)
+    implementation(projects.feature.resources.strings)
     implementation(projects.infra.androidServices)
     implementation(projects.infra.composeExt)
     implementation(projects.infra.viewmodelExt)
