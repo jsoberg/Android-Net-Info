@@ -34,6 +34,7 @@ internal class AndroidNetworkConnectionRepository @Inject constructor(
 
     private val request = NetworkRequest.Builder()
         .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        .removeCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
         .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
         .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
         .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
