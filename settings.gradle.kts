@@ -14,6 +14,7 @@ rootProject.name = "android-net-info"
 
 include(":app")
 include(":base:annotations")
+include(":base:logging")
 include(":base:types")
 include(":feature:data:ipconfig")
 include(":feature:data:network-connectivity")

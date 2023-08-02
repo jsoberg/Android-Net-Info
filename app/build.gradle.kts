@@ -18,6 +18,7 @@ android {
 
 dependencies {
     implementation(projects.base.annotations)
+    implementation(projects.base.logging)
     implementation(projects.feature.data.ipconfig)
     implementation(projects.feature.data.networkConnectivity)
     implementation(projects.feature.domain)
