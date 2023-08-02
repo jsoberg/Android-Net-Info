@@ -7,18 +7,19 @@ import com.soberg.netinfo.base.type.geodetic.Location
 import com.soberg.netinfo.base.type.geodetic.Region
 import com.soberg.netinfo.base.type.geodetic.ZipCode
 import com.soberg.netinfo.base.type.network.IpAddress
-import com.soberg.netinfo.domain.wan.WanInfoRepository
 import com.soberg.netinfo.domain.model.WanInfoTestFixtures
-import io.ktor.client.*
-import io.ktor.client.engine.mock.*
-import io.ktor.http.*
-import io.ktor.utils.io.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.soberg.netinfo.domain.wan.WanInfoRepository
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respond
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
+import io.ktor.utils.io.ByteReadChannel
+import io.mockk.mockk
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
 internal class IpConfigWanInfoRepositoryTest {
 
     private val ioDispatcher = StandardTestDispatcher()
@@ -148,6 +149,6 @@ internal class IpConfigWanInfoRepositoryTest {
             )
         }
         val client = IpConfigKtorClient.create(mockEngine)
-        return IpConfigWanInfoRepository(client, ioDispatcher)
+        return IpConfigWanInfoRepository(client, mockk(relaxed = true), ioDispatcher)
     }
 }
