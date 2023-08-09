@@ -2,7 +2,6 @@ package com.soberg.netinfo.android.ui.screen.card
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,6 +12,7 @@ import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.text.CopyableTextRow
 import com.soberg.netinfo.android.ui.core.text.IconTextRow
 import com.soberg.netinfo.android.ui.core.theme.Dimens
+import com.soberg.netinfo.android.ui.core.theme.TypographyToken
 import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 import com.soberg.netinfo.android.ui.screen.state.toDrawableResId
 import com.soberg.netinfo.android.ui.screen.state.toTextStringResId
@@ -47,26 +47,26 @@ private fun LanReadyContent(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base100),
     ) {
 
         TitledContent(
             titleResId = StringsR.string.connection_type_content_header,
         ) {
             IconTextRow(
-                modifier = Modifier.padding(bottom = Dimens.Padding.Base50),
                 text = stringResource(id = state.type.toTextStringResId()),
+                token = TypographyToken.Body.Large,
                 color = MaterialTheme.colorScheme.secondary,
                 iconDrawableRes = state.type.toDrawableResId(),
             )
         }
-        
+
         TitledContent(
             titleResId = StringsR.string.local_ip_content_header,
         ) {
             CopyableTextRow(
-                modifier = Modifier.padding(bottom = Dimens.Padding.Base50),
                 text = state.ipAddress,
+                token = TypographyToken.Body.Large,
                 color = MaterialTheme.colorScheme.secondary,
                 onCopyTextClicked = onCopyLanIpClicked,
             )

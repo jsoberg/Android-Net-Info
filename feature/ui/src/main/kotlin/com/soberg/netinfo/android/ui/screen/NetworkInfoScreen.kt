@@ -102,7 +102,7 @@ private fun ReadyContent(
                 horizontal = Dimens.Padding.Base100,
                 vertical = Dimens.Padding.Base100,
             ),
-        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base100),
     ) {
 
         LanContent(

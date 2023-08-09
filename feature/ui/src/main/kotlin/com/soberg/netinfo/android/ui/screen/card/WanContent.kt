@@ -50,14 +50,13 @@ private fun WanReadyContent(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base50),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Padding.Base100),
     ) {
 
         TitledContent(
             titleResId = StringsR.string.external_ip_content_header,
         ) {
             CopyableTextRow(
-                modifier = Modifier.padding(bottom = Dimens.Padding.Base50),
                 text = state.ipAddress,
                 token = TypographyToken.Body.Large,
                 color = MaterialTheme.colorScheme.secondary,
@@ -71,7 +70,6 @@ private fun WanReadyContent(
                 titleResId = StringsR.string.ip_geolocation_content_header,
             ) {
                 ClickableIconTextRow(
-                    modifier = Modifier.padding(bottom = Dimens.Padding.Base50),
                     text = locationText,
                     token = TypographyToken.Body.Large,
                     iconDrawableRes = DrawablesR.drawable.ic_my_location,
