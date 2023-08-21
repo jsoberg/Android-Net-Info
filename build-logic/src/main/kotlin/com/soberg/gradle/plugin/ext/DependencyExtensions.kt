@@ -1,5 +1,6 @@
 package com.soberg.gradle.plugin.ext
 
+import org.gradle.api.internal.catalog.DelegatingProjectDependency
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
 internal fun DependencyHandlerScope.implementation(dependencyNotation: Any) =
@@ -10,3 +11,8 @@ internal fun DependencyHandlerScope.testImplementation(dependencyNotation: Any) 
 
 internal fun DependencyHandlerScope.androidTestImplementation(dependencyNotation: Any) =
     add("androidTestImplementation", dependencyNotation)
+
+fun DependencyHandlerScope.koverImplementation(projectDep: DelegatingProjectDependency) {
+    add("kover", projectDep)
+    implementation(projectDep)
+}

@@ -45,5 +45,4 @@ class RootPlugin : Plugin<Project> {
             delete(rootProject.buildDir)
         }
     }
-
 }

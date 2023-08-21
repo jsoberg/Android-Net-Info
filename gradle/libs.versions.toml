@@ -16,6 +16,7 @@ junitJupiter = "5.10.0"
 kotlin = "1.9.0"
 kotlinCoroutines = "1.7.3"
 kotlinSerialization = "1.5.1"
+kover = "0.7.3"
 ktor = "2.3.3"
 mockk = "1.13.7"
 robolectric = "4.10.3"
@@ -102,3 +103,4 @@ robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", 
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
