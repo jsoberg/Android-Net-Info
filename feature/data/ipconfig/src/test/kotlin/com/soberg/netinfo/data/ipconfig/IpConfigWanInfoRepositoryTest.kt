@@ -149,6 +149,6 @@ internal class IpConfigWanInfoRepositoryTest {
             )
         }
         val client = IpConfigKtorClient.create(mockEngine)
-        return IpConfigWanInfoRepository(client, mockk(relaxed = true), ioDispatcher)
+        return IpConfigWanInfoRepository(mockk(relaxed = true), ioDispatcher) { client }
     }
 }

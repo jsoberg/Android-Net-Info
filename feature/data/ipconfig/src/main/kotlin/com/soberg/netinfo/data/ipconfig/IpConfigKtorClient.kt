@@ -15,7 +15,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import kotlin.time.Duration.Companion.seconds
 
-internal object IpConfigKtorClient {
+object IpConfigKtorClient {
     private val Timeout = 20.seconds
 
     fun create(

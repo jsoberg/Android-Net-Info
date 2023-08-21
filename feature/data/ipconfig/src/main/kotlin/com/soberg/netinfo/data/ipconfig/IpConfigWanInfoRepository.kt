@@ -18,6 +18,7 @@ import javax.inject.Inject
 class IpConfigWanInfoRepository @Inject constructor(
     private val log: Logger,
     @IODispatcher private val ioDispatcher: CoroutineDispatcher,
+    private val clientProvider: HttpClientProvider,
 ) : WanInfoRepository {
 
     companion object {
@@ -27,7 +28,7 @@ class IpConfigWanInfoRepository @Inject constructor(
     override suspend fun loadWanInfo(): WanInfoRepository.Result = withContext(ioDispatcher) {
         runCatching {
             // Note: This client would normally be reused, but here we always want the client to use the latest active network interface.
-            IpConfigKtorClient.create().use { client ->
+            clientProvider().use { client ->
                 runQuery(client)
             }
         }.fold(
@@ -50,4 +51,5 @@ class IpConfigWanInfoRepository @Inject constructor(
         }
     }
 
+    fun interface HttpClientProvider : () -> HttpClient
 }
