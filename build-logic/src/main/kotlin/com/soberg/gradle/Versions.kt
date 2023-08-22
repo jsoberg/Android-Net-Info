@@ -1,7 +1,8 @@
 package com.soberg.gradle
 
-import com.soberg.gradle.Versions.Android.Java.targetCompatibility
 import org.gradle.api.JavaVersion
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 object Versions {
 
@@ -18,8 +19,9 @@ object Versions {
         }
     }
 
+    // See https://kotlinlang.org/docs/gradle-compiler-options.html#types-for-compiler-options
     object Kotlin {
-        val jvmTarget = targetCompatibility.toString()
-        const val languageVersion = "1.8"
+        val jvmTarget = JvmTarget.JVM_17
+        val languageVersion = KotlinVersion.KOTLIN_1_9
     }
 }

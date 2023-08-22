@@ -25,7 +25,7 @@ open class AndroidModulePlugin : Plugin<Project> {
             }
 
             kotlinOptions {
-                jvmTarget = Versions.Kotlin.jvmTarget
+                jvmTarget = Versions.Android.Java.targetCompatibility.toString()
                 allWarningsAsErrors = false
             }
 

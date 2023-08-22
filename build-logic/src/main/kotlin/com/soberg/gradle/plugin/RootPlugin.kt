@@ -18,11 +18,7 @@ class RootPlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
         addRootCleanTask()
-
-        allprojects {
-            applyTestOptions()
-            applyKotlinCompileOptions()
-        }
+        configureSubProjects()
     }
 
     private fun Project.applyTestOptions() {
@@ -31,18 +27,29 @@ class RootPlugin : Plugin<Project> {
         }
     }
 
+    private fun Project.configureSubProjects() {
+        subprojects {
+            applyTestOptions()
+            applyKotlinCompileOptions()
+        }
+    }
+
     private fun Project.applyKotlinCompileOptions() {
         tasks.withType<KotlinCompile>().configureEach {
             kotlinOptions {
-                jvmTarget = Versions.Kotlin.jvmTarget
-                freeCompilerArgs = freeCompilerArgs + KotlinCompilerArgs
+                allWarningsAsErrors = false
+            }
+
+            compilerOptions {
+                freeCompilerArgs.addAll(KotlinCompilerArgs)
+                jvmTarget.set(Versions.Kotlin.jvmTarget)
             }
         }
     }
 
     private fun Project.addRootCleanTask() {
         tasks.register(CleanTaskName, Delete::class) {
-            delete(rootProject.buildDir)
+            delete(rootProject.layout.buildDirectory.asFile.get())
         }
     }
 }
