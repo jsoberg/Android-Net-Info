@@ -2,8 +2,8 @@ import com.soberg.gradle.plugin.ext.koverImplementation
 
 plugins {
     id("com.android.application")
-    id("android.compose")
-    id("android.module")
+    id("local.android.module")
+    id("local.android.compose")
     kotlin("kapt")
     alias(libs.plugins.hilt)
 }

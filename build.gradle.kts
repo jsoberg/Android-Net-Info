@@ -1,5 +1,5 @@
 plugins {
-    id("convention.root")
+    id("local.root")
     alias(libs.plugins.dependencyAnalysis)
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kover) apply false

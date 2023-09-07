@@ -4,23 +4,23 @@ plugins {
 
 gradlePlugin {
     plugins {
-        register("android.compose") {
-            id = "android.compose"
+        register("local.android.compose") {
+            id = "local.android.compose"
             implementationClass = "com.soberg.gradle.plugin.AndroidComposeConventionPlugin"
         }
 
-        register("android.module") {
-            id = "android.module"
+        register("local.android.module") {
+            id = "local.android.module"
             implementationClass = "com.soberg.gradle.plugin.AndroidModulePlugin"
         }
 
-        register("convention.root") {
-            id = "convention.root"
+        register("local.root") {
+            id = "local.root"
             implementationClass = "com.soberg.gradle.plugin.RootPlugin"
         }
 
-        register("kotlin.library.module") {
-            id = "kotlin.library.module"
+        register("local.kotlin.library.module") {
+            id = "local.kotlin.library.module"
             implementationClass = "com.soberg.gradle.plugin.KotlinJvmLibraryModulePlugin"
         }
     }

@@ -1,5 +1,5 @@
 plugins {
-    id("kotlin.library.module")
+    id("local.kotlin.library.module")
     id("java-test-fixtures")
 }
 

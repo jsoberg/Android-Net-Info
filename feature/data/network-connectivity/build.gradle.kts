@@ -1,6 +1,6 @@
 plugins {
     id("com.android.library")
-    id("android.module")
+    id("local.android.module")
     kotlin("kapt")
 }
 
