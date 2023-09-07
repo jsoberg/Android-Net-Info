@@ -14,7 +14,7 @@ javaPoet = "1.13.0"
 junit4 = "4.13.2"
 junitJupiter = "5.10.0"
 # Must be in line with Compose compiler: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 kotlinCoroutines = "1.7.3"
 kotlinSerialization = "1.6.0"
 kover = "0.7.3"
