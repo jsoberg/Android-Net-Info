@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 /** Safely collects this flow for a composable context, repeated on the [state] lifecycle event and
  * delivering all emitted events to [handleEvent]. */
 @Composable
-fun <Event> Flow<Event>.collectComposableEventFlow(
+fun <Event> Flow<Event>.CollectComposableEventFlow(
     state: Lifecycle.State = Lifecycle.State.STARTED,
     handleEvent: (Event) -> Unit,
 ) {

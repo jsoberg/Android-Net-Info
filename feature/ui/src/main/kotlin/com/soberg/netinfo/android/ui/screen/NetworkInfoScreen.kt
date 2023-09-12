@@ -12,7 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.soberg.netinfo.android.infra.compose.ext.event.collectComposableEventFlow
+import com.soberg.netinfo.android.infra.compose.ext.event.CollectComposableEventFlow
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.core.theme.Dimens
@@ -27,7 +27,7 @@ fun NetworkInfoScreen(
     viewModel: NetworkInfoViewModel,
 ) {
     val context = LocalContext.current
-    viewModel.eventFlow.collectComposableEventFlow { event ->
+    viewModel.eventFlow.CollectComposableEventFlow { event ->
         handleEvent(
             context = context,
             event = event,
