@@ -123,8 +123,8 @@ class NetworkInfoViewModel @Inject internal constructor(
     }
 
     sealed interface Event {
-        object LanIpCopySuccess : Event
-        object WanIpCopySuccess : Event
+        data object LanIpCopySuccess : Event
+        data object WanIpCopySuccess : Event
     }
 
     @MainThread

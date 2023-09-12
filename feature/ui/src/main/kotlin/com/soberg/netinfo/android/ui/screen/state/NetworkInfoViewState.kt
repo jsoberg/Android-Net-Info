@@ -5,9 +5,9 @@ import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState.Ready.Lan
 
 @Immutable
 sealed interface NetworkInfoViewState {
-    object Loading : NetworkInfoViewState
+    data object Loading : NetworkInfoViewState
 
-    object NoConnectionsFound : NetworkInfoViewState
+    data object NoConnectionsFound : NetworkInfoViewState
 
     data class Ready(
         val lan: Lan,
@@ -18,7 +18,7 @@ sealed interface NetworkInfoViewState {
         sealed interface Lan {
             val type: ConnectionType
 
-            object Unknown : Lan {
+            data object Unknown : Lan {
                 override val type: ConnectionType = NoConnection
             }
 
@@ -37,7 +37,7 @@ sealed interface NetworkInfoViewState {
 
         @Immutable
         sealed interface Wan {
-            object CannotConnect : Wan
+            data object CannotConnect : Wan
 
             data class Connected(
                 val ipAddress: String,

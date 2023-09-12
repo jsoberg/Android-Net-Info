@@ -11,6 +11,6 @@ interface WanInfoRepository {
             val wanInfo: WanInfo,
         ) : Result
 
-        object Error : Result
+        data object Error : Result
     }
 }
