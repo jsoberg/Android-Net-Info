@@ -12,4 +12,8 @@ object Dimens {
         val Base200 = 32.dp
         val Base250 = 40.dp
     }
+
+    object Sizes {
+        val RowIcon = 36.dp
+    }
 }

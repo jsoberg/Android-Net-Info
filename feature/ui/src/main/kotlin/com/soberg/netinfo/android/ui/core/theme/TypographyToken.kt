@@ -48,7 +48,7 @@ sealed interface TypographyToken {
             lineHeight = 20.sp
         );
 
-        override val weight: FontWeight = FontWeight.Normal
+        override val weight: FontWeight = FontWeight.Bold
     }
 
     enum class Body(
