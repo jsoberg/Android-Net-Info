@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("local.android.module")
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -14,7 +14,7 @@ dependencies {
 
     implementation(libs.kotlin.stdlib)
 
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
 
     testImplementation(libs.bundles.robolectricTest)

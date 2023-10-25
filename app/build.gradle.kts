@@ -4,8 +4,8 @@ plugins {
     id("com.android.application")
     id("local.android.module")
     id("local.android.compose")
-    kotlin("kapt")
     alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -39,14 +39,12 @@ dependencies {
     implementation(libs.compose.runtime)
     implementation(libs.bundles.compose.core)
 
-    kapt(libs.hilt.compiler)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.dagger)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigationCompose)
 }
-
-kapt.correctErrorTypes = true
 
 koverReport {
     filters {

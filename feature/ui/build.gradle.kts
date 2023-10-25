@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     id("local.android.module")
     id("local.android.compose")
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 dependencies {
@@ -16,7 +16,7 @@ dependencies {
     implementation(libs.bundles.compose.core)
     implementation(libs.androidX.lifecycle.viewModel)
 
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
 
     debugImplementation(libs.test.compose.manifest)

@@ -18,6 +18,8 @@ kotlin = "1.9.10"
 kotlinCoroutines = "1.7.3"
 kotlinSerialization = "1.6.0"
 kover = "0.7.4"
+# KSP version must align with Kotlin version: https://github.com/google/ksp/releases
+ksp = "1.9.10-1.0.13"
 ktor = "2.3.5"
 mockk = "1.13.8"
 robolectric = "4.10.3"
@@ -102,3 +104,4 @@ dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.re
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
