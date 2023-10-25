@@ -55,9 +55,6 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 hilt-navigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.0.0" }
 
-# JavaPoet (For fixing dependency issue in Gradle with Dagger/Hilt)
-javaPoet = { module = "com.squareup:javapoet", version.ref = "javaPoet" }
-
 # Kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
