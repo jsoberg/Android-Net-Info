@@ -1,28 +1,28 @@
 [versions]
-androidGradlePlugin = "8.1.2"
-androidxActivity = "1.8.0"
+androidGradlePlugin = "8.1.4"
+androidxActivity = "1.8.1"
 androidxLifecycle = "2.6.2"
 androidxCoreTest = "1.5.0"
 composeBom = "2023.10.01"
 composeCompiler = "1.5.3"
-composeNavigation = "2.7.4"
+composeNavigation = "2.7.5"
 dagger = "2.48.1"
-dependencyAnalysis = "1.25.0"
+dependencyAnalysis = "1.26.0"
 googleAccompanist = "0.32.0"
 googleMaterial = "1.10.0"
 javaPoet = "1.13.0"
 junit4 = "4.13.2"
-junitJupiter = "5.10.0"
+junitJupiter = "5.10.1"
 # Must be in line with Compose compiler: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 kotlinCoroutines = "1.7.3"
-kotlinSerialization = "1.6.0"
+kotlinSerialization = "1.6.1"
 kover = "0.7.4"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
-ksp = "1.9.10-1.0.13"
-ktor = "2.3.5"
+ksp = "1.9.20-1.0.14"
+ktor = "2.3.6"
 mockk = "1.13.8"
-robolectric = "4.10.3"
+robolectric = "4.11.1"
 truth = "1.1.5"
 turbine = "1.0.0"
 
@@ -55,7 +55,7 @@ google-material = { module = "com.google.android.material:material", version.ref
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
-hilt-navigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.0.0" }
+hilt-navigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.1.0" }
 
 # Kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
