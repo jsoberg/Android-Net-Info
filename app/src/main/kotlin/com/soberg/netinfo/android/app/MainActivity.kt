@@ -3,6 +3,7 @@ package com.soberg.netinfo.android.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Surface
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.soberg.netinfo.android.ui.core.theme.AppTheme
@@ -19,9 +20,13 @@ class MainActivity : ComponentActivity() {
                 SystemUISetup()
 
                 Surface {
-                    NetworkInfoScreen(
-                        viewModel = hiltViewModel(),
-                    )
+                    Column {
+                        AppToolbar()
+
+                        NetworkInfoScreen(
+                            viewModel = hiltViewModel(),
+                        )
+                    }
                 }
 
             }
