@@ -65,7 +65,8 @@ class NetworkInfoViewModel @Inject internal constructor(
             null -> NetworkInfoViewState.Ready.Lan.Unknown
             else -> NetworkInfoViewState.Ready.Lan.Connected(
                 ipAddress = netInterface.ipAddress!!.value,
-                type = netInterface.type.toViewState()
+                type = netInterface.type.toViewState(),
+                isConnectedToVpn = netInterface.isConnectedToVpn,
             )
         }
 

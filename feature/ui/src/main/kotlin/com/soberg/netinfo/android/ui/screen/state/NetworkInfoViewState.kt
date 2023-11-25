@@ -25,6 +25,7 @@ sealed interface NetworkInfoViewState {
             data class Connected(
                 val ipAddress: String,
                 override val type: ConnectionType,
+                val isConnectedToVpn: Boolean,
             ) : Lan
 
             enum class ConnectionType {

@@ -17,7 +17,7 @@ import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
 import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 import com.soberg.netinfo.android.ui.screen.state.toDrawableResId
 import com.soberg.netinfo.android.ui.screen.state.toTextStringResId
-import com.soberg.netinfo.feature.resources.drawables.R
+import com.soberg.netinfo.feature.resources.drawables.R as DrawablesR
 import com.soberg.netinfo.feature.resources.strings.R as StringsR
 
 @Composable
@@ -123,12 +123,30 @@ private fun LanReadyContent(
         iconDrawableRes = state.type.toDrawableResId(),
     )
 
+    val connectedToVpnContentTextRes = if (state.isConnectedToVpn) {
+        StringsR.string.vpn_connection_active
+    } else {
+        StringsR.string.vpn_connection_inactive
+    }
+
+    val connectedToVpnIconRes = if (state.isConnectedToVpn) {
+        DrawablesR.drawable.ic_vpn_lock
+    } else {
+        DrawablesR.drawable.ic_lock_open
+    }
+
+    NetworkListItem(
+        titleText = stringResource(StringsR.string.connected_to_vpn_content_header),
+        contentText = stringResource(id = connectedToVpnContentTextRes),
+        iconDrawableRes = connectedToVpnIconRes,
+    )
+
     NetworkListItem(
         modifier = Modifier
             .clickable(onClick = onCopyLanIpClicked),
         titleText = stringResource(StringsR.string.local_ip_content_header),
         contentText = state.ipAddress,
-        iconDrawableRes = R.drawable.ic_content_copy,
+        iconDrawableRes = DrawablesR.drawable.ic_content_copy,
     )
 }
 
@@ -165,7 +183,7 @@ private fun WanReadyContent(
             .clickable(onClick = onCopyWanIpClicked),
         titleText = stringResource(StringsR.string.external_ip_content_header),
         contentText = state.ipAddress,
-        iconDrawableRes = R.drawable.ic_content_copy,
+        iconDrawableRes = DrawablesR.drawable.ic_content_copy,
     )
 
     state.locationText?.let { locationText ->
@@ -174,7 +192,7 @@ private fun WanReadyContent(
                 .clickable(onClick = onLocationClicked),
             titleText = stringResource(StringsR.string.ip_geolocation_content_header),
             contentText = locationText,
-            iconDrawableRes = R.drawable.ic_my_location,
+            iconDrawableRes = DrawablesR.drawable.ic_my_location,
         )
     }
 }
@@ -187,6 +205,7 @@ private fun NetworkInfoScreenPreview() = ThemedPreview {
             lan = NetworkInfoViewState.Ready.Lan.Connected(
                 ipAddress = "192.168.0.1",
                 type = NetworkInfoViewState.Ready.Lan.ConnectionType.Cellular,
+                isConnectedToVpn = true,
             ),
             wan = NetworkInfoViewState.Ready.Wan.Connected(
                 ipAddress = "109.123.654.321",
