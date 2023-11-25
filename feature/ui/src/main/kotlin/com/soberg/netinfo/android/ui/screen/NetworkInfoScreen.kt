@@ -1,7 +1,6 @@
 package com.soberg.netinfo.android.ui.screen
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,13 +47,11 @@ private fun handleEvent(
 ) {
     when (event) {
         is Event.WanIpCopySuccess -> {
-            Toast.makeText(context, StringsR.string.wan_ip_copied_message, Toast.LENGTH_SHORT)
-                .show()
+            // TODO Determine if we should show a toast or not confirming copy based on API
         }
 
         is Event.LanIpCopySuccess -> {
-            Toast.makeText(context, StringsR.string.lan_ip_copied_message, Toast.LENGTH_SHORT)
-                .show()
+            // TODO Determine if we should show a toast or not confirming copy based on API
         }
     }
 }
