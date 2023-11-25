@@ -10,6 +10,10 @@ data class NetworkInterface(
     /** Properties that this interface has. */
     val properties: List<Properties>,
 ) {
+
+    val isConnectedToVpn: Boolean
+        get() = properties.contains(Properties.VPN)
+
     enum class Properties {
         /** Indicates that this network interface is connected through a VPN (Virtual Private Network). */
         VPN,
