@@ -1,6 +1,8 @@
 package com.soberg.netinfo.base.type.network
 
-import com.google.common.truth.Truth.assertThat
+import assertk.assertThat
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import com.soberg.netinfo.base.type.network.NetworkInterface.Properties
 import org.junit.jupiter.api.Test
 

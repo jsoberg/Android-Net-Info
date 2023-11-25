@@ -1,6 +1,8 @@
 package com.soberg.netinfo.data.ipconfig
 
-import com.google.common.truth.Truth.assertThat
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isInstanceOf
 import com.soberg.netinfo.base.type.geodetic.Country
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformationTestFixtures
 import com.soberg.netinfo.base.type.geodetic.Location

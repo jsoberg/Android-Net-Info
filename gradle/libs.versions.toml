@@ -3,6 +3,7 @@ androidGradlePlugin = "8.1.4"
 androidxActivity = "1.8.1"
 androidxLifecycle = "2.6.2"
 androidxCoreTest = "1.5.0"
+assertk = "0.27.0"
 composeBom = "2023.10.01"
 composeCompiler = "1.5.4"
 composeNavigation = "2.7.5"
@@ -23,7 +24,6 @@ ksp = "1.9.20-1.0.14"
 ktor = "2.3.6"
 mockk = "1.13.8"
 robolectric = "4.11.1"
-truth = "1.1.5"
 turbine = "1.0.0"
 
 
@@ -73,6 +73,7 @@ ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json"
 
 # Test
 test-androidx-coreKtx = { module = "androidx.test:core-ktx", version.ref = "androidxCoreTest" }
+test-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
 test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 test-compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
 test-junit4 = { module = "junit:junit", version.ref = "junit4" }
@@ -83,7 +84,6 @@ test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 test-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 test-mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
-test-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 # Plugins
@@ -95,8 +95,8 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 [bundles]
 compose-core = ["compose-ui", "compose-material3", "compose-ui-tooling"]
 ktor-client = ["ktor-client-contentNegotiation", "ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-okhttp", "ktor-client-serialization"]
-unitTest = ["test-junitJupiter", "test-mockk", "test-truth"]
-robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-truth"]
+unitTest = ["test-junitJupiter", "test-mockk", "test-assertk"]
+robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-assertk"]
 
 
 [plugins]

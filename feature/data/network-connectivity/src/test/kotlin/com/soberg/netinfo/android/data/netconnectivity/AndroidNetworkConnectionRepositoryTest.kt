@@ -7,7 +7,10 @@ import android.net.LinkProperties
 import android.net.NetworkCapabilities
 import androidx.test.core.app.ApplicationProvider
 import app.cash.turbine.test
-import com.google.common.truth.Truth.assertThat
+import assertk.assertThat
+import assertk.assertions.containsExactly
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import com.soberg.netinfo.android.data.netconnectivity.local.FindLocalIpAddressUseCase
 import com.soberg.netinfo.base.type.network.NetworkInterface.Properties.Internet
 import com.soberg.netinfo.base.type.network.NetworkInterface.Properties.VPN

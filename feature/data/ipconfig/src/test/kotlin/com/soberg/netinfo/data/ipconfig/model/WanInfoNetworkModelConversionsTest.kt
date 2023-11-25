@@ -1,6 +1,9 @@
 package com.soberg.netinfo.data.ipconfig.model
 
-import com.google.common.truth.Truth.assertThat
+import assertk.assertThat
+import assertk.assertions.hasMessage
+import assertk.assertions.isEqualTo
+import assertk.assertions.isTrue
 import com.soberg.netinfo.base.type.geodetic.Country
 import com.soberg.netinfo.base.type.geodetic.GeodeticInformation
 import com.soberg.netinfo.base.type.geodetic.Location
@@ -92,8 +95,7 @@ internal class WanInfoNetworkModelConversionsTest {
             ip = null,
         ).toDomain()
         assertThat(result.isFailure).isTrue()
-        assertThat(result.exceptionOrNull())
-            .hasMessageThat()
-            .isEqualTo("IP address must be present")
+        assertThat(result.exceptionOrNull()!!)
+            .hasMessage("IP address must be present")
     }
 }
