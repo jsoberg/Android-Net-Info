@@ -15,6 +15,5 @@ object Dimens {
 
     object Sizes {
         val RowIcon = 36.dp
-        val ToolbarIcon = 36.dp
     }
 }
