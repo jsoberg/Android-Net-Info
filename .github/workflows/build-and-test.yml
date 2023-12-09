@@ -1,6 +1,6 @@
 # Runs a gradle build for the entire project, and then runs all unit tests.
 
-name: Build & Test
+name: "Build & Test"
 
 on:
   push:
