@@ -51,6 +51,7 @@ koverReport {
     filters {
         excludes {
             annotatedBy("*Generated*", "*Preview*")
+            classes("*TestFixtures*")
         }
     }
 
