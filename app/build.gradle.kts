@@ -21,6 +21,7 @@ android {
 dependencies {
     koverImplementation(projects.base.annotations)
     koverImplementation(projects.base.logging)
+    koverImplementation(projects.base.types)
     koverImplementation(projects.feature.data.ipconfig)
     koverImplementation(projects.feature.data.networkConnectivity)
     koverImplementation(projects.feature.domain)
