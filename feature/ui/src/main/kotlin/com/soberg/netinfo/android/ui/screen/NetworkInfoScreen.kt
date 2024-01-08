@@ -14,6 +14,7 @@ import com.soberg.netinfo.android.infra.compose.ext.event.CollectComposableEvent
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
 import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
+import com.soberg.netinfo.android.ui.screen.loading.NetworkInfoLoading
 import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 import com.soberg.netinfo.android.ui.screen.state.toDrawableResId
 import com.soberg.netinfo.android.ui.screen.state.toTextStringResId
@@ -66,7 +67,9 @@ private fun NetworkInfoScreen(
     when (state) {
         is NetworkInfoViewState.NoConnectionsFound,
         is NetworkInfoViewState.Loading -> {
-            // TODO Add Loading
+            NetworkInfoLoading(
+                modifier = Modifier.fillMaxSize(),
+            )
         }
 
         is NetworkInfoViewState.Ready -> {
