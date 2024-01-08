@@ -6,14 +6,29 @@
   "packageRules": [
     {
       "description": "Groups all non-major dependencies into a single branch/PR",
-      "groupName": "all non-major dependencies",
+      "groupName": "all non-major dependencies (except kotlin)",
       "groupSlug": "all-minor-patch",
+      "excludePackagePatterns": [
+        "^org.jetbrains.kotlin",
+        "^com.google.devtools.ksp",
+        "^androidx.compose.compiler"
+      ],
       "matchPackagePatterns": [
         "*"
       ],
       "matchUpdateTypes": [
         "minor",
         "patch"
+      ]
+    },
+    {
+      "description": "Update Kotlin-dependent libraries together",
+      "groupName": "kotlin dependencies",
+      "groupSlug": "kotlin-dependencies-patch",
+      "matchPackagePatterns": [
+        "^org.jetbrains.kotlin",
+        "^com.google.devtools.ksp",
+        "^androidx.compose.compiler"
       ]
     }
   ]
