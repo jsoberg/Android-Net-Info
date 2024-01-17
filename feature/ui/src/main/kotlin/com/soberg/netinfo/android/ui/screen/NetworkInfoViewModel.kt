@@ -61,10 +61,10 @@ class NetworkInfoViewModel @Inject internal constructor(
     private fun toLanState(
         netInterface: NetworkInterface,
     ): NetworkInfoViewState.Ready.Lan =
-        when (netInterface.ipAddress) {
+        when (val ip = netInterface.ipAddress) {
             null -> NetworkInfoViewState.Ready.Lan.Unknown
             else -> NetworkInfoViewState.Ready.Lan.Connected(
-                ipAddress = netInterface.ipAddress!!.value,
+                ipAddress = ip.value,
                 type = netInterface.type.toViewState(),
                 isConnectedToVpn = netInterface.isConnectedToVpn,
             )
@@ -78,7 +78,7 @@ class NetworkInfoViewModel @Inject internal constructor(
             is WanInfoRepository.Result.Success -> {
                 dataCache.updateWan(wanResult.wanInfo)
                 NetworkInfoViewState.Ready.Wan.Connected(
-                    ipAddress = wanResult.wanInfo.ip.toString(),
+                    ipAddress = wanResult.wanInfo.ip.value,
                     locationText = wanResult.wanInfo.ispGeoInfo?.locationDisplayText(),
                 )
             }
