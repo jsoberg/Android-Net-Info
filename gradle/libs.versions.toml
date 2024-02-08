@@ -22,6 +22,7 @@ kover = "0.7.5"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
 ksp = "1.9.22-1.0.17"
 ktor = "2.3.7"
+lottie = "6.3.0"
 mockk = "1.13.9"
 robolectric = "4.11.1"
 turbine = "1.0.0"
@@ -70,6 +71,9 @@ ktor-client-json = { module = "io.ktor:ktor-client-json", version.ref = "ktor" }
 ktor-client-logging = { module = "io.ktor:ktor-client-logging-jvm", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Lottie
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
 
 # Test
 test-androidx-coreKtx = { module = "androidx.test:core-ktx", version.ref = "androidxCoreTest" }

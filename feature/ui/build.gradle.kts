@@ -8,6 +8,7 @@ plugins {
 dependencies {
     implementation(projects.feature.domain)
     implementation(projects.feature.resources.drawables)
+    implementation(projects.feature.resources.lottie)
     implementation(projects.feature.resources.strings)
     implementation(projects.infra.androidServices)
     implementation(projects.infra.composeExt)
@@ -15,6 +16,7 @@ dependencies {
 
     implementation(libs.bundles.compose.core)
     implementation(libs.androidX.lifecycle.viewModel)
+    implementation(libs.lottie.compose)
 
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
