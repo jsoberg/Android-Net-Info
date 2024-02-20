@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import com.soberg.netinfo.android.ui.core.pulltorefresh.PullToRefreshBox
 import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 import com.soberg.netinfo.android.ui.screen.state.toDrawableResId
 import com.soberg.netinfo.android.ui.screen.state.toTextStringResId
@@ -16,30 +17,36 @@ import com.soberg.netinfo.feature.resources.strings.R as StringsR
 @Composable
 internal fun NetworkInfoList(
     state: NetworkInfoViewState.Ready,
+    onRefreshStarted: () -> Unit,
     onCopyLanIpClicked: () -> Unit,
     onCopyWanIpClicked: () -> Unit,
     onLocationClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
+    PullToRefreshBox(
+        onRefreshStarted = onRefreshStarted,
+        modifier = modifier,
     ) {
-        when (val lanState = state.lan) {
-            is NetworkInfoViewState.Ready.Lan.Connected -> {
-                connectedLanListItems(
-                    state = lanState,
-                    onCopyLanIpClicked = onCopyLanIpClicked,
-                )
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            when (val lanState = state.lan) {
+                is NetworkInfoViewState.Ready.Lan.Connected -> {
+                    connectedLanListItems(
+                        state = lanState,
+                        onCopyLanIpClicked = onCopyLanIpClicked,
+                    )
 
-                wanListItems(
-                    state = state.wan,
-                    onCopyWanIpClicked = onCopyWanIpClicked,
-                    onLocationClicked = onLocationClicked,
-                )
-            }
+                    wanListItems(
+                        state = state.wan,
+                        onCopyWanIpClicked = onCopyWanIpClicked,
+                        onLocationClicked = onLocationClicked,
+                    )
+                }
 
-            is NetworkInfoViewState.Ready.Lan.Unknown -> {
-                // TODO: Show error/unknown state
+                is NetworkInfoViewState.Ready.Lan.Unknown -> {
+                    // TODO: Show error/unknown state
+                }
             }
         }
     }

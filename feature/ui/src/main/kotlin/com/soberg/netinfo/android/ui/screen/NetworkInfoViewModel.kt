@@ -87,6 +87,10 @@ class NetworkInfoViewModel @Inject internal constructor(
     private fun GeodeticInformation.locationDisplayText(): String =
         "$cityName ${region.code}, ${country.iso}"
 
+    fun pullToRefresh() {
+        // TODO Implement pull to refresh
+    }
+
     fun launchMapsAtLocation() = ifWanInfoCached { wanInfo ->
         wanInfo.ispGeoInfo?.let { geo ->
             launchMapsIntent(geo.location)
