@@ -7,6 +7,8 @@ interface NetworkConnectionRepository {
 
     val activeConnectionStateFlow: Flow<State>
 
+    fun restart()
+
     sealed interface State {
         data object NoActiveConnection : State
 

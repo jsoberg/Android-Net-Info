@@ -166,6 +166,21 @@ internal class AndroidNetworkConnectionRepositoryTest {
         }
     }
 
+    @Test
+    fun `emit changes after restarting connections`() = runTest {
+        mockActiveNetwork(interfaceName = "wlan0")
+        connectionRepository.activeConnectionStateFlow.test {
+            val first = awaitItem() as State.Connected
+            assertThat(first.netInterface.name).isEqualTo("wlan0")
+
+            mockActiveNetwork(interfaceName = "eth0")
+            expectNoEvents()
+            connectionRepository.restart()
+            val second = awaitItem() as State.Connected
+            assertThat(second.netInterface.name).isEqualTo("eth0")
+        }
+    }
+
     private val callbackCount: Int
         get() = shadowOf(connectivityManager).networkCallbacks.size
 

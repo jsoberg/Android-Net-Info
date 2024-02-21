@@ -10,9 +10,12 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.plus
 import javax.inject.Inject
@@ -23,14 +26,23 @@ internal class AndroidNetworkConnectionRepository @Inject constructor(
     connectivityManager: ConnectivityManager,
 ) : NetworkConnectionRepository {
 
+    private val _refreshFlow = MutableSharedFlow<Unit>(replay = 1)
+
+    override fun restart() {
+        _refreshFlow.tryEmit(Unit)
+    }
+
     override val activeConnectionStateFlow: Flow<NetworkConnectionRepository.State> =
-        createActiveConnectionFlow(connectivityManager, findLocalIpAddress)
-            .distinctUntilChanged()
-            .shareIn(
-                scope = appCoroutineScope + CoroutineName("AndroidNetworkConnectionRepository"),
-                started = WhileSubscribed(),
-                replay = 1,
-            )
+        _refreshFlow.flatMapLatest {
+            createActiveConnectionFlow(connectivityManager, findLocalIpAddress)
+                .distinctUntilChanged()
+        }.onStart {
+            _refreshFlow.tryEmit(Unit)
+        }.shareIn(
+            scope = appCoroutineScope + CoroutineName("AndroidNetworkConnectionRepository"),
+            started = WhileSubscribed(),
+            replay = 1,
+        )
 
     private val request = NetworkRequest.Builder()
         .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)

@@ -88,7 +88,7 @@ class NetworkInfoViewModel @Inject internal constructor(
         "$cityName ${region.code}, ${country.iso}"
 
     fun pullToRefresh() {
-        // TODO Implement pull to refresh
+        connectionRepository.restart()
     }
 
     fun launchMapsAtLocation() = ifWanInfoCached { wanInfo ->
