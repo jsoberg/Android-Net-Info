@@ -1,12 +1,11 @@
 package com.soberg.netinfo.android.ui.screen
 
-import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import com.soberg.netinfo.android.infra.compose.ext.event.CollectComposableEventFlow
 import com.soberg.netinfo.android.ui.core.preview.A11yPreview
 import com.soberg.netinfo.android.ui.core.preview.ThemedPreview
@@ -14,16 +13,14 @@ import com.soberg.netinfo.android.ui.screen.NetworkInfoViewModel.Event
 import com.soberg.netinfo.android.ui.screen.loading.NetworkInfoLoading
 import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 
+private const val Tag = "NetworkInfoScreen"
+
 @Composable
 fun NetworkInfoScreen(
     viewModel: NetworkInfoViewModel,
 ) {
-    val context = LocalContext.current
     viewModel.eventFlow.CollectComposableEventFlow { event ->
-        handleEvent(
-            context = context,
-            event = event,
-        )
+        handleEvent(event)
     }
 
     val state by viewModel.stateFlow.collectAsState()
@@ -36,17 +33,14 @@ fun NetworkInfoScreen(
     )
 }
 
-private fun handleEvent(
-    context: Context,
-    event: Event,
-) {
+private fun handleEvent(event: Event) {
     when (event) {
         is Event.WanIpCopySuccess -> {
-            // TODO Determine if we should show a toast or not confirming copy based on API
+            Log.d(Tag, "WAN IP Copied")
         }
 
         is Event.LanIpCopySuccess -> {
-            // TODO Determine if we should show a toast or not confirming copy based on API
+            Log.d(Tag, "LAN IP Copied")
         }
     }
 }
