@@ -26,4 +26,5 @@ include(":feature:ui")
 include(":infra:android-services")
 include(":infra:compose-ext")
 include(":infra:viewmodel-ext")
+include(":test:coroutines-test-ext")
 
