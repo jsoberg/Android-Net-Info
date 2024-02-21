@@ -56,12 +56,10 @@ internal class AndroidNetworkConnectionRepository @Inject constructor(
     private fun createActiveConnectionFlow(
         connectivityManager: ConnectivityManager,
         findLocalIpAddress: FindLocalIpAddressUseCase,
-    ) =
-        callbackFlow {
-            // TODO Handle not having permissions granted.
-            val callback = activeNetworkCallback(connectivityManager, findLocalIpAddress)
-            connectivityManager.registerNetworkCallback(request, callback)
-            callback.emitState()
-            awaitClose { connectivityManager.unregisterNetworkCallback(callback) }
-        }
+    ) = callbackFlow {
+        val callback = activeNetworkCallback(connectivityManager, findLocalIpAddress)
+        connectivityManager.registerNetworkCallback(request, callback)
+        callback.emitState()
+        awaitClose { connectivityManager.unregisterNetworkCallback(callback) }
+    }
 }
