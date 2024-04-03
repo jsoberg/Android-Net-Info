@@ -1,13 +1,13 @@
 [versions]
-androidGradlePlugin = "8.2.2"
+androidGradlePlugin = "8.3.1"
 androidxActivity = "1.8.2"
 androidxLifecycle = "2.7.0"
 androidxCoreTest = "1.5.0"
 assertk = "0.28.0"
-composeBom = "2024.02.01"
+composeBom = "2024.04.00"
 composeCompiler = "1.5.8"
 composeNavigation = "2.7.7"
-dagger = "2.50"
+dagger = "2.51.1"
 dependencyAnalysis = "1.30.0"
 googleAccompanist = "0.34.0"
 googleMaterial = "1.11.0"
@@ -21,11 +21,11 @@ kotlinSerialization = "1.6.3"
 kover = "0.7.6"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
 ksp = "1.9.22-1.0.17"
-ktor = "2.3.8"
-lottie = "6.3.0"
-mockk = "1.13.9"
-robolectric = "4.11.1"
-turbine = "1.0.0"
+ktor = "2.3.9"
+lottie = "6.4.0"
+mockk = "1.13.10"
+robolectric = "4.12.1"
+turbine = "1.1.0"
 
 
 [libraries]
