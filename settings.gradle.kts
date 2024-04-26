@@ -1,13 +1,14 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-dependencyResolutionManagement {
+pluginManagement {
+    includeBuild("build-logic")
+
     repositories {
+        gradlePluginPortal()
         google()
-        mavenCentral()
     }
 }
 
-pluginManagement {
-    includeBuild("build-logic")
+plugins {
+    id("local.root.settings")
 }
 
 rootProject.name = "android-net-info"

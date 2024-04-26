@@ -4,6 +4,11 @@ dependencyResolutionManagement {
             from(files("../gradle/libs.versions.toml"))
         }
     }
+
+    repositories {
+        gradlePluginPortal()
+        google()
+    }
 }
 
 rootProject.name = "build-logic"

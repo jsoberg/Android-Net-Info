@@ -1,5 +1,5 @@
 plugins {
-    id("local.root")
+    id("local.root.project")
     alias(libs.plugins.dependencyAnalysis)
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kover) apply false

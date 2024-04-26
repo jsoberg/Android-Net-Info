@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-class RootPlugin : Plugin<Project> {
+class RootProjectPlugin : Plugin<Project> {
 
     companion object {
         private const val CleanTaskName = "clean"

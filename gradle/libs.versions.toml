@@ -11,7 +11,7 @@ dagger = "2.51.1"
 dependencyAnalysis = "1.31.0"
 googleAccompanist = "0.34.0"
 googleMaterial = "1.11.0"
-javaPoet = "1.13.0"
+javapoet = "1.13.0"
 junit4 = "4.13.2"
 junitJupiter = "5.10.2"
 # Must be in line with Compose compiler: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
@@ -57,6 +57,9 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagge
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 hilt-navigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version = "1.2.0" }
+
+# Java Poet (For fixing dependency issue in Gradle with Dagger/Hilt)
+javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 
 # Kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
