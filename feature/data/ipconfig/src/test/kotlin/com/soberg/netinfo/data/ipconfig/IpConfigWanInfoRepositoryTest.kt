@@ -9,17 +9,24 @@ import com.soberg.netinfo.base.type.geodetic.Location
 import com.soberg.netinfo.base.type.geodetic.Region
 import com.soberg.netinfo.base.type.geodetic.ZipCode
 import com.soberg.netinfo.base.type.network.IpAddress
+import com.soberg.netinfo.data.ipconfig.IpConfigWanInfoRepository.HttpQuery
 import com.soberg.netinfo.domain.model.WanInfoTestFixtures
 import com.soberg.netinfo.domain.wan.WanInfoRepository
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
+import io.ktor.client.request.get
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
+import java.net.ConnectException
+import java.net.UnknownHostException
 
 internal class IpConfigWanInfoRepositoryTest {
 
@@ -138,6 +145,45 @@ internal class IpConfigWanInfoRepositoryTest {
             assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
         }
 
+    @Test
+    fun `retry when UnknownHostException received`() =
+        runTest(ioDispatcher) {
+            val query: HttpQuery = mockk {
+                coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws UnknownHostException("Test")
+            }
+            val repo = IpConfigWanInfoRepository(ioDispatcher, query)
+
+            val result = repo.loadWanInfo()
+            assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
+            coVerify(exactly = 2) { query.invoke(IpConfigUrl.Main) }
+        }
+
+    @Test
+    fun `retry when ConnectException received`() =
+        runTest(ioDispatcher) {
+            val query: HttpQuery = mockk {
+                coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws ConnectException("Test")
+            }
+            val repo = IpConfigWanInfoRepository(ioDispatcher, query)
+
+            val result = repo.loadWanInfo()
+            assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
+            coVerify(exactly = 2) { query.invoke(IpConfigUrl.Main) }
+        }
+
+    @Test
+    fun `not retry when generic exception received`() =
+        runTest(ioDispatcher) {
+            val query: HttpQuery = mockk {
+                coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws IllegalStateException("Test")
+            }
+            val repo = IpConfigWanInfoRepository(ioDispatcher, query)
+
+            val result = repo.loadWanInfo()
+            assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
+            coVerify(exactly = 1) { query.invoke(IpConfigUrl.Main) }
+        }
+
     private fun create(
         bodyContent: String,
         statusCode: HttpStatusCode,
@@ -150,6 +196,7 @@ internal class IpConfigWanInfoRepositoryTest {
             )
         }
         val client = IpConfigKtorClient.create(mockEngine)
-        return IpConfigWanInfoRepository(ioDispatcher) { client }
+        val query = HttpQuery { url -> client.get(url) }
+        return IpConfigWanInfoRepository(ioDispatcher, query)
     }
 }

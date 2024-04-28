@@ -1,8 +1,6 @@
 package com.soberg.netinfo.android.app.di
 
 import com.soberg.netinfo.data.ipconfig.IpConfigWanInfoRepository
-import com.soberg.netinfo.data.ipconfig.IpConfigWanInfoRepository.HttpClientProvider
-import com.soberg.netinfo.data.ipconfig.IpConfigWanInfoRepository.KtorHttpClientProvider
 import com.soberg.netinfo.domain.wan.WanInfoRepository
 import dagger.Binds
 import dagger.Module
@@ -17,7 +15,8 @@ internal abstract class IpConfigModule {
     companion object {
         @Provides
         @Singleton
-        internal fun provideHttpClientProvider(): HttpClientProvider = KtorHttpClientProvider()
+        internal fun provideHttpQuery(): IpConfigWanInfoRepository.HttpQuery =
+            IpConfigWanInfoRepository.KtorHttpQuery()
     }
 
     @Binds
