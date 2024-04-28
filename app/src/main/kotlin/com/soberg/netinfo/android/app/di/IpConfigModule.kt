@@ -9,13 +9,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.ktor.client.*
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
 internal abstract class IpConfigModule {
-
     companion object {
         @Provides
         @Singleton

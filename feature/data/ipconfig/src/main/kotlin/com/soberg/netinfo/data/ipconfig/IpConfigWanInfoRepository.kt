@@ -16,7 +16,6 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class IpConfigWanInfoRepository @Inject constructor(
-    private val log: Logger,
     @IODispatcher private val ioDispatcher: CoroutineDispatcher,
     private val clientProvider: HttpClientProvider,
 ) : WanInfoRepository {
@@ -40,13 +39,13 @@ class IpConfigWanInfoRepository @Inject constructor(
     private suspend fun runQuery(client: HttpClient): WanInfo {
         val response = client.get(IpConfigUrl.Main)
         return if (response.status == HttpStatusCode.OK) {
-            log.debug(Tag, "Query to ipconfig.io succeeded")
+            Logger.debug(Tag, "Query to ipconfig.io succeeded")
             response.body<WanInfoNetworkModel>()
                 .toDomain()
-                .logErrorIfException(log, Tag)
+                .logErrorIfException(Tag)
                 .getOrThrow()
         } else {
-            log.debug(Tag, "Query to ipconfig.io failed")
+            Logger.debug(Tag, "Query to ipconfig.io failed")
             error("Received status code ${response.status}")
         }
     }

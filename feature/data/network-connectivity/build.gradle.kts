@@ -11,6 +11,7 @@ android {
 dependencies {
     api(projects.feature.domain)
     implementation(projects.base.annotations)
+    implementation(projects.base.logging)
 
     implementation(libs.kotlin.stdlib)
 

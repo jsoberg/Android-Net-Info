@@ -1,12 +1,11 @@
 package com.soberg.netinfo.base.logging
 
 fun <T> Result<T>.logErrorIfException(
-    log: Logger,
     tag: String,
+    message: String = exceptionOrNull()?.message ?: "Error obtaining result"
 ): Result<T> {
     if (isFailure) {
-        val exception = exceptionOrNull()
-        log.error(tag, exception?.message ?: "Error obtaining result", exception)
+        Logger.error(tag, message, exceptionOrNull())
     }
     return this
 }
