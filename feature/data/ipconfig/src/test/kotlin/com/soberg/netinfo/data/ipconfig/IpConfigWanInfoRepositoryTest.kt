@@ -17,7 +17,6 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.utils.io.ByteReadChannel
-import io.mockk.mockk
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
@@ -151,6 +150,6 @@ internal class IpConfigWanInfoRepositoryTest {
             )
         }
         val client = IpConfigKtorClient.create(mockEngine)
-        return IpConfigWanInfoRepository(mockk(relaxed = true), ioDispatcher) { client }
+        return IpConfigWanInfoRepository(ioDispatcher) { client }
     }
 }

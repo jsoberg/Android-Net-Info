@@ -5,11 +5,13 @@ import android.net.LinkProperties
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
+import android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED
 import android.net.NetworkCapabilities.TRANSPORT_CELLULAR
 import android.net.NetworkCapabilities.TRANSPORT_ETHERNET
 import android.net.NetworkCapabilities.TRANSPORT_VPN
 import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import com.soberg.netinfo.android.data.netconnectivity.local.FindLocalIpAddressUseCase
+import com.soberg.netinfo.base.logging.Logger
 import com.soberg.netinfo.base.type.network.NetworkInterface
 import com.soberg.netinfo.domain.lan.NetworkConnectionRepository
 import kotlinx.coroutines.channels.ProducerScope
@@ -19,6 +21,10 @@ internal class AndroidActiveNetworkCallback(
     private val connectivityManager: ConnectivityManager,
     private val findLocalIpAddress: FindLocalIpAddressUseCase,
 ) : ConnectivityManager.NetworkCallback() {
+
+    companion object {
+        private const val Tag = "AndroidActiveNetworkCallback"
+    }
 
     override fun onAvailable(network: Network) {
         emitActiveNetworkInformation()
@@ -46,16 +52,19 @@ internal class AndroidActiveNetworkCallback(
     private fun emitActiveNetworkInformation() = with(scope) {
         val activeNetwork = connectivityManager.activeNetwork
         if (activeNetwork == null) {
+            Logger.debug(Tag, "Active network update to None")
             trySend(NetworkConnectionRepository.State.NoActiveConnection)
         } else {
             val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork)
+            val type = capabilities?.let(::interfaceType) ?: NetworkInterface.Type.Unknown
             val linkProperties = connectivityManager.getLinkProperties(activeNetwork)
 
             val interfaceName = linkProperties?.interfaceName
+            Logger.debug(Tag, "Active network update to $interfaceName, type $type")
             val netInterface = NetworkInterface(
                 name = interfaceName,
                 ipAddress = interfaceName?.let(findLocalIpAddress::invoke),
-                type = capabilities?.let(::interfaceType) ?: NetworkInterface.Type.Unknown,
+                type = type,
                 properties = capabilities?.let(::buildPropertiesList) ?: emptyList()
             )
             trySend(NetworkConnectionRepository.State.Connected(netInterface))
@@ -65,7 +74,9 @@ internal class AndroidActiveNetworkCallback(
     private fun buildPropertiesList(
         capabilities: NetworkCapabilities
     ) = buildList {
-        if (capabilities.hasCapability(NET_CAPABILITY_INTERNET)) {
+        if (capabilities.hasCapability(NET_CAPABILITY_INTERNET) &&
+            capabilities.hasCapability(NET_CAPABILITY_VALIDATED)
+        ) {
             add(NetworkInterface.Properties.Internet)
         }
         if (capabilities.hasTransport(TRANSPORT_VPN)) {

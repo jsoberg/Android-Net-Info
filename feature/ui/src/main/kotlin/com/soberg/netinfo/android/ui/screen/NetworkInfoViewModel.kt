@@ -48,12 +48,15 @@ class NetworkInfoViewModel @Inject internal constructor(
 
             is NetworkConnectionRepository.State.Connected -> {
                 dataCache.updateLan(state.netInterface)
-                val result = wanInfoRepository.loadWanInfo()
+                val wanResult = if (state.netInterface.canConnectToInternet) {
+                    toWanState(wanResult = wanInfoRepository.loadWanInfo())
+                } else {
+                    NetworkInfoViewState.Ready.Wan.CannotConnect
+                }
+
                 NetworkInfoViewState.Ready(
                     lan = toLanState(state.netInterface),
-                    wan = toWanState(
-                        wanResult = result,
-                    ),
+                    wan = wanResult,
                 )
             }
         }

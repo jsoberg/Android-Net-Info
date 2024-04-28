@@ -5,6 +5,8 @@ import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback
 import android.net.LinkProperties
 import android.net.NetworkCapabilities
+import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
+import android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED
 import androidx.test.core.app.ApplicationProvider
 import app.cash.turbine.test
 import assertk.assertThat
@@ -97,7 +99,12 @@ internal class AndroidNetworkConnectionRepositoryTest {
             assertThat(awaitItem()).isEqualTo(State.NoActiveConnection)
 
             shadowOf(connectivityManager).setDefaultNetworkActive(true)
-            mockActiveNetwork(capabilities = listOf(NetworkCapabilities.NET_CAPABILITY_INTERNET))
+            mockActiveNetwork(
+                capabilities = listOf(
+                    NET_CAPABILITY_INTERNET,
+                    NET_CAPABILITY_VALIDATED,
+                )
+            )
             callback.onAvailable(mockk())
             val second = awaitItem() as State.Connected
             assertThat(second.netInterface.properties).containsExactly(Internet)
@@ -106,7 +113,7 @@ internal class AndroidNetworkConnectionRepositoryTest {
 
     @Test
     fun `emit network changes from active network for onCapabilitiesChanged`() = runTest {
-        mockActiveNetwork(capabilities = listOf(NetworkCapabilities.NET_CAPABILITY_INTERNET))
+        mockActiveNetwork(capabilities = listOf(NET_CAPABILITY_INTERNET, NET_CAPABILITY_VALIDATED))
         connectionRepository.activeConnectionStateFlow.test {
             val first = awaitItem() as State.Connected
             assertThat(first.netInterface.properties).containsExactly(Internet)
@@ -120,7 +127,7 @@ internal class AndroidNetworkConnectionRepositoryTest {
 
     @Test
     fun `emit network changes from active network for onLinkPropertiesChanged`() = runTest {
-        mockActiveNetwork(capabilities = listOf(NetworkCapabilities.NET_CAPABILITY_INTERNET))
+        mockActiveNetwork(capabilities = listOf(NET_CAPABILITY_INTERNET, NET_CAPABILITY_VALIDATED))
         connectionRepository.activeConnectionStateFlow.test {
             val first = awaitItem() as State.Connected
             assertThat(first.netInterface.properties).containsExactly(Internet)
@@ -130,11 +137,20 @@ internal class AndroidNetworkConnectionRepositoryTest {
                     NetworkCapabilities.TRANSPORT_WIFI,
                     NetworkCapabilities.TRANSPORT_VPN
                 ),
-                capabilities = listOf(NetworkCapabilities.NET_CAPABILITY_INTERNET),
+                capabilities = listOf(NET_CAPABILITY_INTERNET, NET_CAPABILITY_VALIDATED),
             )
             callback.onLinkPropertiesChanged(mockk(), mockk())
             val second = awaitItem() as State.Connected
             assertThat(second.netInterface.properties).containsExactly(Internet, VPN)
+        }
+    }
+
+    @Test
+    fun `emit without Internet property when validated capability not found`() = runTest {
+        mockActiveNetwork(capabilities = listOf(NET_CAPABILITY_INTERNET))
+        connectionRepository.activeConnectionStateFlow.test {
+            val first = awaitItem() as State.Connected
+            assertThat(first.netInterface.properties).isEmpty()
         }
     }
 
@@ -190,7 +206,7 @@ internal class AndroidNetworkConnectionRepositoryTest {
     private fun mockActiveNetwork(
         interfaceName: String? = "wlan0",
         transportTypes: List<Int> = listOf(NetworkCapabilities.TRANSPORT_WIFI),
-        capabilities: List<Int> = listOf(NetworkCapabilities.NET_CAPABILITY_INTERNET),
+        capabilities: List<Int> = listOf(NET_CAPABILITY_INTERNET),
     ) {
         val shadowCapabilities = ShadowNetworkCapabilities.newInstance()
         transportTypes.forEach { transport ->

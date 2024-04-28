@@ -24,4 +24,20 @@ internal class NetworkInterfaceTest {
         assertThat(iface.isConnectedToVpn).isFalse()
     }
 
+    @Test
+    fun `return true for canConnectToInternet when Internet property present`() {
+        val iface = NetworkInterfaceTestFixtures.get(
+            properties = listOf(Properties.Internet)
+        )
+        assertThat(iface.canConnectToInternet).isTrue()
+    }
+
+    @Test
+    fun `return false for canConnectToInternet when Internet property not present`() {
+        val iface = NetworkInterfaceTestFixtures.get(
+            properties = listOf(Properties.VPN)
+        )
+        assertThat(iface.canConnectToInternet).isFalse()
+    }
+
 }

@@ -2,7 +2,6 @@ package com.soberg.netinfo.data.ipconfig
 
 import com.soberg.netinfo.base.annotation.IODispatcher
 import com.soberg.netinfo.base.logging.Logger
-import com.soberg.netinfo.base.logging.logErrorIfException
 import com.soberg.netinfo.data.ipconfig.model.WanInfoNetworkModel
 import com.soberg.netinfo.data.ipconfig.model.toDomain
 import com.soberg.netinfo.domain.wan.WanInfoRepository
@@ -31,24 +30,31 @@ class IpConfigWanInfoRepository @Inject constructor(
                 runQuery(client)
             }
         }.fold(
-            onSuccess = WanInfoRepository.Result::Success,
-            onFailure = { WanInfoRepository.Result.Error },
+            onSuccess = { info ->
+                Logger.debug(Tag, "Query to ipconfig.io succeeded, IP ${info.ip}")
+                WanInfoRepository.Result.Success(info)
+            },
+            onFailure = { error ->
+                Logger.warn(Tag, "Query to ipconfig.io failed", error)
+                WanInfoRepository.Result.Error
+            },
         )
     }
 
     private suspend fun runQuery(client: HttpClient): WanInfo {
         val response = client.get(IpConfigUrl.Main)
         return if (response.status == HttpStatusCode.OK) {
-            Logger.debug(Tag, "Query to ipconfig.io succeeded")
             response.body<WanInfoNetworkModel>()
                 .toDomain()
-                .logErrorIfException(Tag)
                 .getOrThrow()
         } else {
-            Logger.debug(Tag, "Query to ipconfig.io failed")
             error("Received status code ${response.status}")
         }
     }
 
     fun interface HttpClientProvider : () -> HttpClient
+
+    class KtorHttpClientProvider : HttpClientProvider {
+        override fun invoke(): HttpClient = IpConfigKtorClient.create()
+    }
 }
