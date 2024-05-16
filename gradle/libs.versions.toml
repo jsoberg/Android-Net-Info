@@ -32,6 +32,8 @@ turbine = "1.1.0"
 
 # AndroidX
 androidX-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+## This is only present in the TOML so that Renovate will pickup the version.
+android-composeCompiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 androidX-navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 androidX-lifecycle-composeRuntime = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidX-lifecycle-composeViewModelUtilities = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
