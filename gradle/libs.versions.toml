@@ -1,7 +1,7 @@
 [versions]
 androidGradlePlugin = "8.4.0"
 androidxActivity = "1.9.0"
-androidxLifecycle = "2.7.0"
+androidxLifecycle = "2.8.0"
 androidxCoreTest = "1.5.0"
 assertk = "0.28.1"
 composeBom = "2024.05.00"
@@ -23,7 +23,7 @@ kover = "0.8.0"
 ksp = "1.9.24-1.0.20"
 ktor = "2.3.11"
 lottie = "6.4.0"
-mockk = "1.13.10"
+mockk = "1.13.11"
 robolectric = "4.12.1"
 turbine = "1.1.0"
 
