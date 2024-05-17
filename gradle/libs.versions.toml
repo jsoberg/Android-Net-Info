@@ -5,7 +5,7 @@ androidxLifecycle = "2.7.0"
 androidxCoreTest = "1.5.0"
 assertk = "0.28.1"
 composeBom = "2024.05.00"
-composeCompiler = "1.5.12"
+composeCompiler = "1.5.14"
 composeNavigation = "2.7.7"
 dagger = "2.51.1"
 dependencyAnalysis = "1.31.0"
@@ -15,12 +15,12 @@ javapoet = "1.13.0"
 junit4 = "4.13.2"
 junitJupiter = "5.10.2"
 # Must be in line with Compose compiler: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-kotlin = "1.9.23"
-kotlinCoroutines = "1.8.0"
+kotlin = "1.9.24"
+kotlinCoroutines = "1.8.1"
 kotlinSerialization = "1.6.3"
-kover = "0.7.6"
+kover = "0.8.0"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
-ksp = "1.9.23-1.0.20"
+ksp = "1.9.24-1.0.20"
 ktor = "2.3.11"
 lottie = "6.4.0"
 mockk = "1.13.10"
@@ -32,6 +32,8 @@ turbine = "1.1.0"
 
 # AndroidX
 androidX-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
+## This is only present in the TOML so that Renovate will pickup the version.
+android-composeCompiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 androidX-navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 androidX-lifecycle-composeRuntime = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidX-lifecycle-composeViewModelUtilities = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }

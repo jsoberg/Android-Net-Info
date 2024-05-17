@@ -47,18 +47,21 @@ dependencies {
     implementation(libs.hilt.navigationCompose)
 }
 
-koverReport {
-    filters {
-        excludes {
-            annotatedBy("*Generated*", "*Preview*")
-            classes("*TestFixtures*")
+kover {
+    reports {
+        filters {
+            excludes {
+                androidGeneratedClasses()
+                annotatedBy("*Generated*", "*Preview*")
+                classes("*TestFixtures*")
+            }
         }
-    }
 
-    androidReports("debug") {
-        html {
-            onCheck = false
-            setReportDir(layout.buildDirectory.dir("reports/kover/html"))
+        variant("debug") {
+            html {
+                onCheck = false
+                htmlDir = layout.buildDirectory.dir("reports/kover/html")
+            }
         }
     }
 }
