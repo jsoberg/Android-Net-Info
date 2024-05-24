@@ -2,24 +2,21 @@ package com.soberg.gradle.plugin
 
 import com.soberg.gradle.plugin.ext.android
 import com.soberg.gradle.plugin.ext.androidTestImplementation
+import com.soberg.gradle.plugin.ext.composeCompiler
 import com.soberg.gradle.plugin.ext.implementation
 import com.soberg.gradle.plugin.ext.libs
+import com.soberg.gradle.plugin.ext.plugins
 import com.soberg.gradle.plugin.ext.testImplementation
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 
 class AndroidComposeConventionPlugin : Plugin<Project> {
 
-    private companion object {
-        private const val ComposeCompilerPluginPrepend =
-            "plugin:androidx.compose.compiler.plugins.kotlin"
-    }
-
     override fun apply(project: Project) = with(project) {
+        plugins {
+            apply("org.jetbrains.kotlin.plugin.compose")
+        }
         configureCompose()
         configureComposeMetrics()
     }
@@ -27,11 +24,10 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
     private fun Project.configureCompose() {
         android {
             buildFeatures.compose = true
-            composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
         }
 
         dependencies {
-            val bom = platform(libs.compose.bom)
+            val bom = platform(libs.findLibrary("compose-bom").get())
             implementation(bom)
             androidTestImplementation(bom)
             testImplementation(bom)
@@ -39,19 +35,15 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureComposeMetrics() {
-        val composeMetricsDir = layout.buildDirectory.dir("compose-metrics").get().asFile
-        val composeReportsDir = layout.buildDirectory.dir("compose-reports").get().asFile
+        composeCompiler {
+            enableStrongSkippingMode.set(true)
 
-        tasks.withType<KotlinCompile>().configureEach {
-            kotlinOptions {
-                freeCompilerArgs = freeCompilerArgs + listOf(
-                    "-P",
-                    "$ComposeCompilerPluginPrepend:metricsDestination=${composeMetricsDir.absolutePath}",
-
-                    "-P",
-                    "$ComposeCompilerPluginPrepend:reportsDestination=${composeReportsDir.absolutePath}",
-                )
-            }
+            stabilityConfigurationFile.set(
+                layout.buildDirectory.dir("compose-metrics").get().asFile
+            )
+            reportsDestination.set(
+                layout.buildDirectory.dir("compose-reports").get().asFile
+            )
         }
     }
 }

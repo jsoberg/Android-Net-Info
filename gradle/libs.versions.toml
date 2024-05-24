@@ -5,7 +5,6 @@ androidxLifecycle = "2.8.0"
 androidxCoreTest = "1.5.0"
 assertk = "0.28.1"
 composeBom = "2024.05.00"
-composeCompiler = "1.5.14"
 composeNavigation = "2.7.7"
 dagger = "2.51.1"
 dependencyAnalysis = "1.31.0"
@@ -32,8 +31,6 @@ turbine = "1.1.0"
 
 # AndroidX
 androidX-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
-## This is only present in the TOML so that Renovate will pickup the version.
-android-composeCompiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 androidX-navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 androidX-lifecycle-composeRuntime = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidX-lifecycle-composeViewModelUtilities = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
@@ -97,9 +94,9 @@ test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 # Plugins
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+composeCompiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 hilt-agp = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "dagger" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-
 
 [bundles]
 compose-core = ["compose-ui", "compose-material3", "compose-ui-tooling"]
@@ -109,6 +106,7 @@ robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", 
 
 
 [plugins]
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
