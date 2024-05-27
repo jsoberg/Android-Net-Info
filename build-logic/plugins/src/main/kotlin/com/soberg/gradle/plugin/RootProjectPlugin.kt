@@ -21,16 +21,16 @@ class RootProjectPlugin : Plugin<Project> {
         configureSubProjects()
     }
 
-    private fun Project.applyTestOptions() {
-        tasks.withType<Test> {
-            useJUnitPlatform()
-        }
-    }
-
     private fun Project.configureSubProjects() {
         subprojects {
             applyTestOptions()
             applyKotlinCompileOptions()
+        }
+    }
+
+    private fun Project.applyTestOptions() {
+        tasks.withType<Test> {
+            useJUnitPlatform()
         }
     }
 
