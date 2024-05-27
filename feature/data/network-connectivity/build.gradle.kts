@@ -1,6 +1,5 @@
 plugins {
-    id("com.android.library")
-    id("local.android.module")
+    id("local.android.library")
     alias(libs.plugins.ksp)
 }
 

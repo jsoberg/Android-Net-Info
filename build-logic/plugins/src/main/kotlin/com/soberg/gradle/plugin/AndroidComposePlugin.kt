@@ -1,6 +1,6 @@
 package com.soberg.gradle.plugin
 
-import com.soberg.gradle.plugin.ext.android
+import com.soberg.gradle.plugin.ext.androidCommon
 import com.soberg.gradle.plugin.ext.androidTestImplementation
 import com.soberg.gradle.plugin.ext.composeCompiler
 import com.soberg.gradle.plugin.ext.implementation
@@ -11,7 +11,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class AndroidComposeConventionPlugin : Plugin<Project> {
+class AndroidComposePlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
         plugins {
@@ -22,7 +22,7 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureCompose() {
-        android {
+        androidCommon {
             buildFeatures.compose = true
         }
 

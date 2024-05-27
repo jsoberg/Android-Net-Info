@@ -1,8 +1,7 @@
 import com.soberg.gradle.plugin.ext.koverImplementation
 
 plugins {
-    id("com.android.application")
-    id("local.android.module")
+    id("local.android.app")
     id("local.android.compose")
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)

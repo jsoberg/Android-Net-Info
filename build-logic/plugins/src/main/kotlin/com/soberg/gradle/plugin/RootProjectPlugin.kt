@@ -36,8 +36,8 @@ class RootProjectPlugin : Plugin<Project> {
 
     private fun Project.applyKotlinCompileOptions() {
         tasks.withType<KotlinCompile>().configureEach {
-            kotlinOptions {
-                allWarningsAsErrors = false
+            compilerOptions {
+                allWarningsAsErrors.set(false)
             }
 
             compilerOptions {
