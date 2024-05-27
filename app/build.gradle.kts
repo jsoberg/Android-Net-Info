@@ -1,5 +1,3 @@
-import com.soberg.gradle.plugin.ext.koverImplementation
-
 plugins {
     id("local.android.app")
     id("local.android.compose")
@@ -18,13 +16,13 @@ android {
 }
 
 dependencies {
-    koverImplementation(projects.base.annotations)
-    koverImplementation(projects.base.logging)
-    koverImplementation(projects.base.types)
-    koverImplementation(projects.feature.data.ipconfig)
-    koverImplementation(projects.feature.data.networkConnectivity)
-    koverImplementation(projects.feature.domain)
-    koverImplementation(projects.feature.ui)
+    implementation(projects.base.annotations)
+    implementation(projects.base.logging)
+    implementation(projects.base.types)
+    implementation(projects.feature.data.ipconfig)
+    implementation(projects.feature.data.networkConnectivity)
+    implementation(projects.feature.domain)
+    implementation(projects.feature.ui)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
@@ -44,23 +42,4 @@ dependencies {
     implementation(libs.dagger)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigationCompose)
-}
-
-kover {
-    reports {
-        filters {
-            excludes {
-                androidGeneratedClasses()
-                annotatedBy("*Generated*", "*Preview*")
-                classes("*TestFixtures*")
-            }
-        }
-
-        variant("debug") {
-            html {
-                onCheck = false
-                htmlDir = layout.buildDirectory.dir("reports/kover/html")
-            }
-        }
-    }
 }

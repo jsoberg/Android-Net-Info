@@ -12,10 +12,6 @@
         "^org.jetbrains.kotlin",
         "^com.google.devtools.ksp"
       ],
-      "matchPackagePatterns": [
-        "*",
-        "^org.jetbrains.kotlinx.kover"
-      ],
       "matchUpdateTypes": [
         "minor",
         "patch"
@@ -25,9 +21,6 @@
       "description": "Update Kotlin-dependent libraries together",
       "groupName": "kotlin dependencies",
       "groupSlug": "kotlin-dependencies-patch",
-      "excludePackagePatterns": [
-        "^org.jetbrains.kotlinx.kover"
-      ],
       "matchPackagePatterns": [
         "^org.jetbrains.kotlin",
         "^com.google.devtools.ksp"
