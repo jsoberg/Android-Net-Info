@@ -38,12 +38,13 @@ class AndroidComposeConventionPlugin : Plugin<Project> {
         composeCompiler {
             enableStrongSkippingMode.set(true)
 
-            stabilityConfigurationFile.set(
-                layout.buildDirectory.dir("compose-metrics").get().asFile
-            )
-            reportsDestination.set(
-                layout.buildDirectory.dir("compose-reports").get().asFile
-            )
+            // TODO Enable config/reports
+            /*            stabilityConfigurationFile.set(
+                            layout.buildDirectory.dir("compose_compiler").get().asFile
+                        )
+                        reportsDestination.set(
+                            rootProject.layout.projectDirectory.file("stability_config.conf").asFile
+                        )*/
         }
     }
 }

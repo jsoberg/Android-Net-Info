@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.dependencyAnalysis)
-    alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.ksp) apply false
