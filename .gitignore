@@ -52,3 +52,6 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+# Kotlin 2.0+
+.kotlin/

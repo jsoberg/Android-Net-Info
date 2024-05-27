@@ -11,8 +11,6 @@ plugins {
     id("local.root.settings")
 }
 
-rootProject.name = "android-net-info"
-
 include(":app")
 include(":base:annotations")
 include(":base:logging")

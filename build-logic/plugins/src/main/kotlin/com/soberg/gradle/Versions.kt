@@ -22,6 +22,6 @@ object Versions {
     // See https://kotlinlang.org/docs/gradle-compiler-options.html#types-for-compiler-options
     object Kotlin {
         val jvmTarget = JvmTarget.JVM_17
-        val languageVersion = KotlinVersion.KOTLIN_1_9
+        val languageVersion = KotlinVersion.KOTLIN_2_0
     }
 }
