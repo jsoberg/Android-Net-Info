@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.dependencyAnalysis)
+
     alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kover) apply false
     alias(libs.plugins.ksp) apply false
 
@@ -12,12 +14,6 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
-    }
-
-    dependencies {
-        classpath(libs.android.gradlePlugin)
-        classpath(libs.hilt.agp)
-        classpath(libs.kotlin.gradlePlugin)
     }
 }
 
