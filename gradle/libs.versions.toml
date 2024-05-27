@@ -13,11 +13,9 @@ googleMaterial = "1.12.0"
 javapoet = "1.13.0"
 junit4 = "4.13.2"
 junitJupiter = "5.10.2"
-# Must be in line with Compose compiler: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
 kotlin = "2.0.0"
 kotlinCoroutines = "1.8.1"
 kotlinSerialization = "1.6.3"
-kover = "0.8.0"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
 ksp = "2.0.0-1.0.21"
 ktor = "2.3.11"
@@ -110,5 +108,4 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

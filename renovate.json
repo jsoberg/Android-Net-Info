@@ -10,12 +10,7 @@
       "groupSlug": "all-minor-patch",
       "excludePackagePatterns": [
         "^org.jetbrains.kotlin",
-        "^com.google.devtools.ksp",
-        "^androidx.compose.compiler"
-      ],
-      "matchPackagePatterns": [
-        "*",
-        "^org.jetbrains.kotlinx.kover"
+        "^com.google.devtools.ksp"
       ],
       "matchUpdateTypes": [
         "minor",
@@ -26,13 +21,9 @@
       "description": "Update Kotlin-dependent libraries together",
       "groupName": "kotlin dependencies",
       "groupSlug": "kotlin-dependencies-patch",
-      "excludePackagePatterns": [
-        "^org.jetbrains.kotlinx.kover"
-      ],
       "matchPackagePatterns": [
         "^org.jetbrains.kotlin",
-        "^com.google.devtools.ksp",
-        "^androidx.compose.compiler"
+        "^com.google.devtools.ksp"
       ]
     }
   ]
