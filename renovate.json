@@ -10,8 +10,7 @@
       "groupSlug": "all-minor-patch",
       "excludePackagePatterns": [
         "^org.jetbrains.kotlin",
-        "^com.google.devtools.ksp",
-        "^androidx.compose.compiler"
+        "^com.google.devtools.ksp"
       ],
       "matchPackagePatterns": [
         "*",
@@ -31,8 +30,7 @@
       ],
       "matchPackagePatterns": [
         "^org.jetbrains.kotlin",
-        "^com.google.devtools.ksp",
-        "^androidx.compose.compiler"
+        "^com.google.devtools.ksp"
       ]
     }
   ]
