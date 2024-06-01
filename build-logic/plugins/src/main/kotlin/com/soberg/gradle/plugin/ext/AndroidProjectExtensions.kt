@@ -4,10 +4,9 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.kotlin.dsl.findByType
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 internal fun Project.androidLibrary(configure: LibraryExtension.() -> Unit) {
     extensions.findByType<LibraryExtension>()?.configure()
@@ -35,10 +34,8 @@ internal fun Project.getAndroidCommonExtension(): AndroidCommonExtension {
     }
 }
 
-fun AndroidCommonExtension.kotlinOptions(configure: KotlinJvmOptions.() -> Unit) =
-    androidExtensions.configure("kotlinOptions", configure)
-
-private val AndroidCommonExtension.androidExtensions: ExtensionContainer
-    get() = (this as ExtensionAware).extensions
+internal fun Project.kotlinAndroid(configure: KotlinAndroidProjectExtension.() -> Unit) {
+    extensions.getByType<KotlinAndroidProjectExtension>().configure()
+}
 
 internal typealias AndroidCommonExtension = CommonExtension<*, *, *, *, *, *>

@@ -10,6 +10,7 @@ object Versions {
         object Java {
             val sourceCompatibility = JavaVersion.VERSION_17
             val targetCompatibility = sourceCompatibility
+            val jvmTarget = JvmTarget.JVM_17
         }
 
         object Sdk {

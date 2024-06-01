@@ -3,7 +3,7 @@ package com.soberg.gradle.plugin.config
 import com.soberg.gradle.TestRunners
 import com.soberg.gradle.Versions
 import com.soberg.gradle.plugin.ext.androidCommon
-import com.soberg.gradle.plugin.ext.kotlinOptions
+import com.soberg.gradle.plugin.ext.kotlinAndroid
 import org.gradle.api.Project
 
 internal fun Project.configureAndroidCommon() {
@@ -13,9 +13,12 @@ internal fun Project.configureAndroidCommon() {
             targetCompatibility = Versions.Android.Java.targetCompatibility
         }
 
-        kotlinOptions {
-            jvmTarget = Versions.Android.Java.targetCompatibility.toString()
-            allWarningsAsErrors = false
+        kotlinAndroid {
+            compilerOptions {
+                jvmTarget.set(Versions.Android.Java.jvmTarget)
+                languageVersion.set(Versions.Kotlin.languageVersion)
+                allWarningsAsErrors.set(false)
+            }
         }
 
         compileSdk = Versions.Android.Sdk.compile
