@@ -1,3 +1,3 @@
 plugins {
-    id("local.kotlin.library.module")
+    alias(libs.plugins.local.kotlin.library)
 }

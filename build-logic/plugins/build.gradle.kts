@@ -6,7 +6,7 @@ dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.composeCompiler.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
-    
+
     // TODO: Fixes dependency conflict issues with Dagger/Hilt, re: https://github.com/google/dagger/issues/3068. Once this issues is resolved and we upgrade dagger/hilt, remove this dependency.
     implementation(libs.javapoet)
 }
@@ -28,8 +28,8 @@ gradlePlugin {
             implementationClass = "com.soberg.gradle.plugin.AndroidLibraryPlugin"
         }
 
-        register("local.kotlin.library.module") {
-            id = "local.kotlin.library.module"
+        register("local.kotlin.library") {
+            id = "local.kotlin.library"
             implementationClass = "com.soberg.gradle.plugin.KotlinJvmLibraryModulePlugin"
         }
 

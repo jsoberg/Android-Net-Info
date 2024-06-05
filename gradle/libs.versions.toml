@@ -109,3 +109,10 @@ dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.re
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+java-testFixtures = { id = "java-test-fixtures" }
+
+local-android-app = { id = "local.android.app" }
+local-android-compose = { id = "local.android.compose" }
+local-android-library = { id = "local.android.library" }
+local-kotlin-library = { id = "local.kotlin.library" }

@@ -1,6 +1,6 @@
 plugins {
-    id("local.kotlin.library.module")
-    id("java-test-fixtures")
+    alias(libs.plugins.local.kotlin.library)
+    alias(libs.plugins.java.testFixtures)
 }
 
 dependencies {

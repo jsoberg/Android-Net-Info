@@ -1,6 +1,6 @@
 plugins {
-    id("local.android.library")
-    id("local.android.compose")
+    alias(libs.plugins.local.android.library)
+    alias(libs.plugins.local.android.compose)
 }
 
 android {
