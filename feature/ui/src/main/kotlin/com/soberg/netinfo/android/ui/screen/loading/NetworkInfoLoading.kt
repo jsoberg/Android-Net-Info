@@ -34,7 +34,7 @@ fun NetworkInfoLoading(
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(LottieR.raw.lottie_loading_animation))
         val progress by animateLottieCompositionAsState(
             composition = composition,
-            speed = 1.25f,
+            speed = 1.5f,
             iterations = LottieConstants.IterateForever,
         )
 
