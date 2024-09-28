@@ -35,16 +35,10 @@ class AndroidComposePlugin : Plugin<Project> {
     }
 
     private fun Project.configureComposeMetrics() {
-        val composeMetricsDir = layout.buildDirectory.dir("compose-metrics").get().asFile
-        val composeReportsDir = layout.buildDirectory.dir("compose-reports").get().asFile
-
         composeCompiler {
-            enableStrongSkippingMode.set(true)
-
-            if (project.findProperty("composeCompilerMetrics") == "true") {
-                metricsDestination.set(composeMetricsDir)
-            }
-            if (project.findProperty("composeCompilerReports") == "true") {
+            if (project.providers.gradleProperty("composeCompilerReports").orNull == "true") {
+                val composeReportsDir = layout.buildDirectory.dir("compose-compiler").get().asFile
+                metricsDestination.set(composeReportsDir)
                 reportsDestination.set(composeReportsDir)
             }
         }
