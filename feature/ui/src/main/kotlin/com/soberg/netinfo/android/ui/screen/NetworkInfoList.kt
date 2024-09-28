@@ -7,7 +7,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.soberg.netinfo.android.ui.core.pulltorefresh.PullToRefreshBox
+import com.soberg.netinfo.android.ui.core.pulltorefresh.PullToRefreshContainer
 import com.soberg.netinfo.android.ui.screen.state.NetworkInfoViewState
 import com.soberg.netinfo.android.ui.screen.state.toDrawableResId
 import com.soberg.netinfo.android.ui.screen.state.toTextStringResId
@@ -23,7 +23,7 @@ internal fun NetworkInfoList(
     onLocationClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    PullToRefreshBox(
+    PullToRefreshContainer(
         onRefreshStarted = onRefreshStarted,
         modifier = modifier,
     ) {
