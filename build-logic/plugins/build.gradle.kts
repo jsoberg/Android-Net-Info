@@ -7,8 +7,19 @@ dependencies {
     implementation(libs.composeCompiler.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
 
-    // TODO: Fixes dependency conflict issues with Dagger/Hilt, re: https://github.com/google/dagger/issues/3068. Once this issues is resolved and we upgrade dagger/hilt, remove this dependency.
-    implementation(libs.javapoet)
+    // TODO: Fixes dependency conflict issues with Dagger/Hilt, re: https://github.com/google/dagger/issues/3068.
+    implementation(libs.javapoet) {
+        because(
+            "Required for fixing dependency conflict with Dagger/Hilt 2.40.2 and above (see https://github.com/google/dagger/issues/3068)"
+        )
+    }
+
+    // TODO: Fixes dependency analysis resolution conflict, re: https://github.com/autonomousapps/dependency-analysis-gradle-plugin/issues/1240
+    implementation(libs.google.guava) {
+        because(
+            "Required for fixing dependency conflict with Dependency Analysis 1.33.0 and above (see https://github.com/autonomousapps/dependency-analysis-gradle-plugin/issues/1240)"
+        )
+    }
 }
 
 gradlePlugin {

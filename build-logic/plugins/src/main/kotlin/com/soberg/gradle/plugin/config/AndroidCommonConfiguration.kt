@@ -9,13 +9,13 @@ import org.gradle.api.Project
 internal fun Project.configureAndroidCommon() {
     androidCommon {
         compileOptions {
-            sourceCompatibility = Versions.Android.Java.sourceCompatibility
-            targetCompatibility = Versions.Android.Java.targetCompatibility
+            sourceCompatibility = Versions.Java.sourceCompatibility
+            targetCompatibility = Versions.Java.targetCompatibility
         }
 
         kotlinAndroid {
             compilerOptions {
-                jvmTarget.set(Versions.Android.Java.jvmTarget)
+                jvmTarget.set(Versions.Kotlin.jvmTarget)
                 languageVersion.set(Versions.Kotlin.languageVersion)
                 allWarningsAsErrors.set(false)
             }

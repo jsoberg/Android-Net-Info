@@ -1,6 +1,7 @@
 package com.soberg.gradle.plugin
 
 import com.soberg.gradle.Versions
+import com.soberg.gradle.plugin.ext.configureJavaToolchain
 import com.soberg.gradle.plugin.ext.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,7 +14,9 @@ class KotlinJvmLibraryModulePlugin : Plugin<Project> {
         plugins {
             apply("org.jetbrains.kotlin.jvm")
             apply("java-library")
+            applyDependencyAnalysisPlugin()
         }
+        configureJavaToolchain()
         configureKotlin()
     }
 
