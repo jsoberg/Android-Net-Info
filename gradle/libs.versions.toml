@@ -60,6 +60,9 @@ hilt-navigationCompose = { module = "androidx.hilt:hilt-navigation-compose", ver
 # Java Poet (For fixing dependency issue in Gradle with Dagger/Hilt)
 javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 
+# JavaX
+javax-inject = { module = "javax.inject:javax.inject", version = "1" }
+
 # Kotlin
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
@@ -104,8 +107,8 @@ ktor-client = ["ktor-client-contentNegotiation", "ktor-client-core", "ktor-clien
 unitTest = ["test-junitJupiter", "test-mockk", "test-assertk"]
 robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-assertk"]
 
-
 [plugins]
+# External Plugins
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
@@ -114,6 +117,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 java-testFixtures = { id = "java-test-fixtures" }
 
+# Local Plugins from build-logic
 local-android-app = { id = "local.android.app" }
 local-android-compose = { id = "local.android.compose" }
 local-android-library = { id = "local.android.library" }

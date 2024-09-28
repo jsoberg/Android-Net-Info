@@ -11,9 +11,8 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
     implementation(libs.kotlin.serializationJson)
+    implementation(libs.javax.inject)
     implementation(libs.bundles.ktor.client)
-
-    implementation(libs.dagger)
 
     testImplementation(libs.bundles.unitTest)
     testImplementation(libs.test.kotlin.coroutines)

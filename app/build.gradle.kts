@@ -18,7 +18,6 @@ android {
 dependencies {
     implementation(projects.base.annotations)
     implementation(projects.base.logging)
-    implementation(projects.base.types)
     implementation(projects.feature.data.ipconfig)
     implementation(projects.feature.data.networkConnectivity)
     implementation(projects.feature.domain)
@@ -27,10 +26,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.coroutines)
 
-    implementation(libs.ktor.client.core)
-
     implementation(libs.google.material)
-    implementation(libs.google.accompanist.systemUiController)
 
     implementation(libs.androidX.activityCompose)
     implementation(libs.androidX.navigationCompose)

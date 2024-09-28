@@ -14,7 +14,6 @@ dependencies {
     implementation(projects.infra.viewmodelExt)
 
     implementation(libs.bundles.compose.core)
-    implementation(libs.androidX.lifecycle.viewModel)
     implementation(libs.lottie.compose)
 
     ksp(libs.hilt.compiler)
