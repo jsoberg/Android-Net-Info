@@ -19,7 +19,7 @@ kotlinCoroutines = "1.9.0"
 kotlinSerialization = "1.7.3"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
 ksp = "2.0.21-1.0.26"
-ktor = "2.3.12"
+ktor = "3.0.0"
 lottie = "6.5.2"
 mockk = "1.13.13"
 robolectric = "4.13"
