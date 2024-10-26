@@ -1,12 +1,15 @@
 # Runs a gradle build for the entire project, and then runs all unit tests.
-
 name: "Build & Test"
 
 on:
+  # Automatically run on pushes directly to main.
   push:
     branches: [ main ]
+  # Automatically run on PRs off of main.
   pull_request:
     branches: [ main ]
+  # Allow manual re-reuns.
+  workflow_dispatch:
 
 jobs:
   build-and-test:
