@@ -9,9 +9,39 @@ pluginManagement {
 
 plugins {
     id("local.root.settings")
-    // Can't apply this version from the TOML, since this is applied in settings before the TOML is ready to use.
+    // Can't apply these version from the TOML, since they're applied in settings before the TOML is ready to use.
+
     // See https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    // See https://kotlin.github.io/kotlinx-kover/gradle-plugin/aggregated.html
+    id("org.jetbrains.kotlinx.kover.aggregation") version "0.8.3"
+}
+
+kover {
+    enableCoverage()
+
+    reports {
+        excludedClasses.addAll(
+            "*Module",
+            "*TestFixtures",
+        )
+
+        excludedProjects.addAll(
+            ":base:annotations",
+            ":test:coroutine-test-ext",
+        )
+
+        excludesAnnotatedBy.addAll(
+            // Dagger/Hilt
+            "*DaggerGenerated*",
+            "*Generated*",
+            "*Module*",
+            "*Provides*",
+            // Compose previews
+            "*Preview*",
+            "*A11yPreview*",
+        )
+    }
 }
 
 include(":app")
