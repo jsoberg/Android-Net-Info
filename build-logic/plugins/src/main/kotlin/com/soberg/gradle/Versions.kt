@@ -16,7 +16,7 @@ object Versions {
     }
 
     object Java {
-        val sourceCompatibility = JavaVersion.VERSION_17
+        val sourceCompatibility = JavaVersion.VERSION_21
         val targetCompatibility = sourceCompatibility
         val toolchainVersion: JavaLanguageVersion =
             JavaLanguageVersion.of(sourceCompatibility.toString())
@@ -24,7 +24,7 @@ object Versions {
 
     // See https://kotlinlang.org/docs/gradle-compiler-options.html#types-for-compiler-options
     object Kotlin {
-        val jvmTarget = JvmTarget.JVM_17
+        val jvmTarget = JvmTarget.JVM_21
         val languageVersion = KotlinVersion.KOTLIN_2_0
     }
 }
