@@ -99,6 +99,10 @@ internal class AndroidNetworkConnectionRepositoryTest {
             assertThat(awaitItem()).isEqualTo(State.NoActiveConnection)
 
             shadowOf(connectivityManager).setDefaultNetworkActive(true)
+            val second = awaitItem() as State.Connected
+            // Default active network doesn't yet have capabilities.
+            assertThat(second.netInterface.properties).isEmpty()
+
             mockActiveNetwork(
                 capabilities = listOf(
                     NET_CAPABILITY_INTERNET,
@@ -106,8 +110,9 @@ internal class AndroidNetworkConnectionRepositoryTest {
                 )
             )
             callback.onAvailable(mockk())
-            val second = awaitItem() as State.Connected
-            assertThat(second.netInterface.properties).containsExactly(Internet)
+
+            val last = awaitItem() as State.Connected
+            assertThat(last.netInterface.properties).containsExactly(Internet)
         }
     }
 
