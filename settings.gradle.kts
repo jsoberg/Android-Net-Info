@@ -12,7 +12,7 @@ plugins {
     // Can't apply these version from the TOML, since they're applied in settings before the TOML is ready to use.
 
     // See https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
     // See https://kotlin.github.io/kotlinx-kover/gradle-plugin/aggregated.html
     id("org.jetbrains.kotlinx.kover.aggregation") version "0.9.1"
 }
