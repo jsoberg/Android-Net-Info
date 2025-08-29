@@ -87,6 +87,7 @@ test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 test-compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
 test-junit4 = { module = "junit:junit", version.ref = "junit4" }
 test-junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
+test-junitJupiterLauncher = { module = "org.junit.platform:junit-platform-launcher" }
 test-junitVintageEngine = { module = "org.junit.vintage:junit-vintage-engine" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
 test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }

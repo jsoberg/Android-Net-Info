@@ -5,4 +5,5 @@ plugins {
 
 dependencies {
     testImplementation(libs.bundles.unitTest)
+    testRuntimeOnly(libs.test.junitJupiterLauncher)
 }

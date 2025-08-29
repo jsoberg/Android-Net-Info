@@ -8,6 +8,8 @@ dependencies {
 
     implementation(libs.kotlin.coroutines)
 
+    testRuntimeOnly(libs.test.junitJupiterLauncher)
+
     testImplementation(libs.bundles.unitTest)
 
     testFixturesApi(testFixtures(projects.base.types))
