@@ -1,29 +1,29 @@
 [versions]
-androidGradlePlugin = "8.10.1"
+androidGradlePlugin = "8.12.2"
 androidxActivity = "1.10.1"
-androidxLifecycle = "2.9.1"
-androidxCoreTest = "1.6.1"
+androidxLifecycle = "2.9.3"
+androidxCoreTest = "1.7.0"
 assertk = "0.28.1"
-composeBom = "2025.06.01"
-composeNavigation = "2.9.0"
-dagger = "2.56.2"
-dependencyAnalysis = "2.7.0"
+composeBom = "2025.08.01"
+composeNavigation = "2.9.3"
+dagger = "2.57.1"
+dependencyAnalysis = "3.0.1"
 googleAccompanist = "0.36.0"
-googleGuava = "33.4.0-jre"
+googleGuava = "33.4.8-jre"
 googleMaterial = "1.12.0"
 javapoet = "1.13.0"
 junit4 = "4.13.2"
-junitJupiter = "5.11.4"
-kotlin = "2.2.0"
+junitJupiter = "5.13.4"
+kotlin = "2.2.10"
 kotlinCoroutines = "1.10.2"
 kotlinSerialization = "1.9.0"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
-ksp = "2.2.0-2.0.2"
-ktor = "3.0.3"
-lottie = "6.6.2"
-mockk = "1.13.16"
-robolectric = "4.14.1"
-turbine = "1.2.0"
+ksp = "2.2.10-2.0.2"
+ktor = "3.2.3"
+lottie = "6.6.7"
+mockk = "1.14.5"
+robolectric = "4.16"
+turbine = "1.2.1"
 
 
 [libraries]
@@ -87,6 +87,7 @@ test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 test-compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
 test-junit4 = { module = "junit:junit", version.ref = "junit4" }
 test-junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
+test-junitJupiterLauncher = { module = "org.junit.platform:junit-platform-launcher" }
 test-junitVintageEngine = { module = "org.junit.vintage:junit-vintage-engine" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
 test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }

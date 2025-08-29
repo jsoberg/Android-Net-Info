@@ -17,6 +17,8 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
 
+    testRuntimeOnly(libs.test.junitJupiterLauncher)
+
     testImplementation(libs.bundles.robolectricTest)
     testImplementation(libs.test.kotlin.coroutines)
     testImplementation(libs.test.turbine)

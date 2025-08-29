@@ -14,6 +14,8 @@ dependencies {
     implementation(libs.javax.inject)
     implementation(libs.bundles.ktor.client)
 
+    testRuntimeOnly(libs.test.junitJupiterLauncher)
+
     testImplementation(libs.bundles.unitTest)
     testImplementation(libs.test.kotlin.coroutines)
     testImplementation(libs.test.ktor.mock)
