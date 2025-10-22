@@ -14,7 +14,7 @@ plugins {
     // See https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
     // See https://kotlin.github.io/kotlinx-kover/gradle-plugin/aggregated.html
-    id("org.jetbrains.kotlinx.kover.aggregation") version "0.9.1"
+    id("org.jetbrains.kotlinx.kover.aggregation") version "0.9.3"
 }
 
 kover {
