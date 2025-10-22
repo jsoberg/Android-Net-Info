@@ -9,9 +9,9 @@ object Versions {
 
     object Android {
         object Sdk {
-            const val min = 23
-            const val compile = 35
-            const val target = 35
+            const val Min = 23
+            const val Compile = 36
+            const val Target = 36
         }
     }
 
@@ -25,6 +25,6 @@ object Versions {
     // See https://kotlinlang.org/docs/gradle-compiler-options.html#types-for-compiler-options
     object Kotlin {
         val jvmTarget = JvmTarget.JVM_21
-        val languageVersion = KotlinVersion.KOTLIN_2_0
+        val languageVersion = KotlinVersion.KOTLIN_2_2
     }
 }
