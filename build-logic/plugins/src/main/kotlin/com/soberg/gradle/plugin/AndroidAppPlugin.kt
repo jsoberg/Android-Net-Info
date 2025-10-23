@@ -20,7 +20,7 @@ open class AndroidAppPlugin : Plugin<Project> {
             configureAndroidCommon()
 
             defaultConfig {
-                targetSdk = Versions.Android.Sdk.target
+                targetSdk = Versions.Android.Sdk.Target
             }
         }
     }

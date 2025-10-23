@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.local.kotlin.library)
+    alias(libs.plugins.local.junit.testable)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -13,8 +14,6 @@ dependencies {
     implementation(libs.kotlin.serializationJson)
     implementation(libs.javax.inject)
     implementation(libs.bundles.ktor.client)
-
-    testRuntimeOnly(libs.test.junitJupiterLauncher)
 
     testImplementation(libs.bundles.unitTest)
     testImplementation(libs.test.kotlin.coroutines)

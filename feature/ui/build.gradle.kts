@@ -18,10 +18,6 @@ dependencies {
 
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
-
-    debugImplementation(libs.test.compose.manifest)
-    testImplementation(libs.bundles.robolectricTest)
-    testImplementation(libs.test.compose.junit)
 }
 
 android {

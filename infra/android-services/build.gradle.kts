@@ -9,10 +9,5 @@ android {
 dependencies {
     implementation(libs.hilt.android)
     implementation(libs.kotlin.stdlib)
-
     implementation(projects.base.types)
-
-    testImplementation(libs.bundles.robolectricTest)
-    testImplementation(libs.test.kotlin.coroutines)
-    testImplementation(libs.test.turbine)
 }

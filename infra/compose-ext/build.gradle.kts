@@ -12,8 +12,4 @@ dependencies {
 
     implementation(libs.compose.ui)
     implementation(libs.androidX.lifecycle.composeRuntime)
-
-    testImplementation(libs.bundles.robolectricTest)
-    testImplementation(libs.test.kotlin.coroutines)
-    testImplementation(libs.test.turbine)
 }

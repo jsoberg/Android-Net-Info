@@ -21,9 +21,9 @@ internal fun Project.configureAndroidCommon() {
             }
         }
 
-        compileSdk = Versions.Android.Sdk.compile
+        compileSdk = Versions.Android.Sdk.Compile
         defaultConfig {
-            minSdk = Versions.Android.Sdk.min
+            minSdk = Versions.Android.Sdk.Min
             testInstrumentationRunner = TestRunners.androidJUnit
         }
 
