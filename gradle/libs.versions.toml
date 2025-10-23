@@ -14,7 +14,7 @@ googleMaterial = "1.13.0"
 javapoet = "1.13.0"
 junit4 = "4.13.2"
 junitJupiterBom = "6.0.0"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 kotlinCoroutines = "1.10.2"
 kotlinSerialization = "1.9.0"
 # KSP version must align with Kotlin version: https://github.com/google/ksp/releases
