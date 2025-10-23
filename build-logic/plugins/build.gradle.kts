@@ -39,6 +39,11 @@ gradlePlugin {
             implementationClass = "com.soberg.gradle.plugin.AndroidLibraryPlugin"
         }
 
+        register("local.junit.testable") {
+            id = "local.junit.testable"
+            implementationClass = "com.soberg.gradle.plugin.JunitTestablePlugin"
+        }
+
         register("local.kotlin.library") {
             id = "local.kotlin.library"
             implementationClass = "com.soberg.gradle.plugin.KotlinJvmLibraryModulePlugin"

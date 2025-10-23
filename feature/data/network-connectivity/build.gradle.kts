@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.local.android.library)
+    alias(libs.plugins.local.junit.testable)
     alias(libs.plugins.ksp)
 }
 
@@ -16,8 +17,6 @@ dependencies {
 
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.android)
-
-    testRuntimeOnly(libs.test.junitJupiterLauncher)
 
     testImplementation(libs.bundles.robolectricTest)
     testImplementation(libs.test.kotlin.coroutines)

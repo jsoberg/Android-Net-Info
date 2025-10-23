@@ -13,7 +13,7 @@ googleGuava = "33.5.0-jre"
 googleMaterial = "1.13.0"
 javapoet = "1.13.0"
 junit4 = "4.13.2"
-junitJupiter = "6.0.0"
+junitJupiterBom = "6.0.0"
 kotlin = "2.2.20"
 kotlinCoroutines = "1.10.2"
 kotlinSerialization = "1.9.0"
@@ -84,17 +84,21 @@ lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "
 test-androidx-coreKtx = { module = "androidx.test:core-ktx", version.ref = "androidxCoreTest" }
 test-assertk = { module = "com.willowtreeapps.assertk:assertk", version.ref = "assertk" }
 test-compose-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-test-compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
-test-junit4 = { module = "junit:junit", version.ref = "junit4" }
-test-junitJupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
-test-junitJupiterLauncher = { module = "org.junit.platform:junit-platform-launcher" }
-test-junitVintageEngine = { module = "org.junit.vintage:junit-vintage-engine" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinCoroutines" }
 test-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 test-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 test-mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+
+# Test - JUnit
+test-junitJupiter-bom = { group = "org.junit", name = "junit-bom", version.ref = "junitJupiterBom" }
+test-junitJupiter = { module = "org.junit.jupiter:junit-jupiter" }
+test-junitJupiter-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+test-junitVintageEngine = { module = "org.junit.vintage:junit-vintage-engine" }
+
+test-compose-junit = { module = "androidx.compose.ui:ui-test-junit4" }
+test-junit4 = { module = "junit:junit", version.ref = "junit4" }
 
 # Plugins
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
@@ -105,8 +109,8 @@ kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 [bundles]
 compose-core = ["compose-ui", "compose-material3", "compose-ui-tooling"]
 ktor-client = ["ktor-client-contentNegotiation", "ktor-client-core", "ktor-client-json", "ktor-client-logging", "ktor-client-okhttp", "ktor-client-serialization"]
-unitTest = ["test-junitJupiter", "test-mockk", "test-assertk"]
-robolectricTest = ["test-androidx-coreKtx", "test-junitJupiter", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-assertk"]
+unitTest = ["test-mockk", "test-assertk"]
+robolectricTest = ["test-androidx-coreKtx", "test-junit4", "test-junitVintageEngine", "test-mockk", "test-robolectric", "test-assertk"]
 
 [plugins]
 # External Plugins
@@ -122,4 +126,5 @@ java-testFixtures = { id = "java-test-fixtures" }
 local-android-app = { id = "local.android.app" }
 local-android-compose = { id = "local.android.compose" }
 local-android-library = { id = "local.android.library" }
+local-junit-testable = { id = "local.junit.testable" }
 local-kotlin-library = { id = "local.kotlin.library" }

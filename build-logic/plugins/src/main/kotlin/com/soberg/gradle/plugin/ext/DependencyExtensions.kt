@@ -8,5 +8,8 @@ internal fun DependencyHandlerScope.implementation(dependencyNotation: Any) =
 internal fun DependencyHandlerScope.testImplementation(dependencyNotation: Any) =
     add("testImplementation", dependencyNotation)
 
+internal fun DependencyHandlerScope.testRuntimeOnly(dependencyNotation: Any) =
+    add("testRuntimeOnly", dependencyNotation)
+
 internal fun DependencyHandlerScope.androidTestImplementation(dependencyNotation: Any) =
     add("androidTestImplementation", dependencyNotation)

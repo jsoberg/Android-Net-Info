@@ -31,6 +31,7 @@ class RootProjectPlugin : Plugin<Project> {
     private fun Project.applyTestOptions() {
         tasks.withType<Test> {
             useJUnitPlatform()
+            failOnNoDiscoveredTests.set(false)
         }
     }
 
