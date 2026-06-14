@@ -21,18 +21,18 @@ internal abstract class AndroidNetworkConnectionModule {
     companion object {
         @Provides
         @Singleton
-        internal fun provideConnectivityManager(@ApplicationContext appContext: Context): ConnectivityManager =
+        fun provideConnectivityManager(@ApplicationContext appContext: Context): ConnectivityManager =
             getSystemService(appContext, ConnectivityManager::class.java) as ConnectivityManager
 
         @Provides
-        internal fun providesGetNetworkInterfaceByNameUseCase(): GetNetworkInterfaceByNameUseCase =
+        fun providesGetNetworkInterfaceByNameUseCase(): GetNetworkInterfaceByNameUseCase =
             object : GetNetworkInterfaceByNameUseCase {
                 override fun invoke(interfaceName: String): NetworkInterface? =
                     NetworkInterface.getByName(interfaceName)
             }
 
         @Provides
-        internal fun providesFindLocalIpAddressUseCase(
+        fun providesFindLocalIpAddressUseCase(
             getNetworkInterfaceByName: GetNetworkInterfaceByNameUseCase,
         ): FindLocalIpAddressUseCase = FindLocalIpAddressUseCase(
             getNetworkInterfaceByName = getNetworkInterfaceByName
@@ -40,5 +40,5 @@ internal abstract class AndroidNetworkConnectionModule {
     }
 
     @Binds
-    internal abstract fun provideConnectionRepository(repository: AndroidNetworkConnectionRepository): NetworkConnectionRepository
+    abstract fun provideConnectionRepository(repository: AndroidNetworkConnectionRepository): NetworkConnectionRepository
 }
