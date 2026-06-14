@@ -35,6 +35,7 @@ dependencies {
 
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.android.compiler)
+    ksp(libs.kotlin.metadata.jvm)
     implementation(libs.dagger)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigationCompose)

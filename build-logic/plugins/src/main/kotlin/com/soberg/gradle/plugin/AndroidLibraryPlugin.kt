@@ -10,7 +10,6 @@ open class AndroidLibraryPlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
         plugins {
-            apply("kotlin-android")
             apply("com.android.library")
             applyDependencyAnalysisPlugin()
         }
