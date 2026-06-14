@@ -14,4 +14,7 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
     }
+    dependencies {
+        classpath(libs.kotlin.metadata.jvm)
+    }
 }
