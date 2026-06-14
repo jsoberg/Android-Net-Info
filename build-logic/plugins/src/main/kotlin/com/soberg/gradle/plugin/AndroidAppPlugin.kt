@@ -11,7 +11,6 @@ import org.gradle.api.Project
 open class AndroidAppPlugin : Plugin<Project> {
     override fun apply(project: Project) = with(project) {
         plugins {
-            apply("kotlin-android")
             apply("com.android.application")
             applyDependencyAnalysisPlugin()
         }

@@ -8,7 +8,7 @@ import org.gradle.api.Project
 
 internal fun Project.configureAndroidCommon() {
     androidCommon {
-        compileOptions {
+        compileOptions.apply {
             sourceCompatibility = Versions.Java.sourceCompatibility
             targetCompatibility = Versions.Java.targetCompatibility
         }
@@ -22,7 +22,7 @@ internal fun Project.configureAndroidCommon() {
         }
 
         compileSdk = Versions.Android.Sdk.Compile
-        defaultConfig {
+        defaultConfig.apply {
             minSdk = Versions.Android.Sdk.Min
             testInstrumentationRunner = TestRunners.androidJUnit
         }

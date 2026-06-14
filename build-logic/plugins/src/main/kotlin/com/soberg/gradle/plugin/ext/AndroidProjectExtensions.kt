@@ -19,23 +19,12 @@ internal fun Project.androidApp(configure: ApplicationExtension.() -> Unit) {
 }
 
 internal fun Project.androidCommon(configure: AndroidCommonExtension.() -> Unit) {
-    getAndroidCommonExtension().configure()
-}
-
-internal fun Project.getAndroidCommonExtension(): AndroidCommonExtension {
-    extensions.findByType<LibraryExtension>()?.let { lib ->
-        // We're an Android library
-        return lib
-    } ?: run {
-        extensions.findByType<ApplicationExtension>()?.let { app ->
-            // We're an Android application
-            return app
-        } ?: error("Module ${this.name} cannot find Android library or application extension")
-    }
+    extensions.findByType<CommonExtension>()?.configure()
+        ?: error("Module ${this.name} cannot find Android library or application extension")
 }
 
 internal fun Project.kotlinAndroid(configure: KotlinAndroidProjectExtension.() -> Unit) {
     extensions.getByType<KotlinAndroidProjectExtension>().configure()
 }
 
-internal typealias AndroidCommonExtension = CommonExtension<*, *, *, *, *, *>
+internal typealias AndroidCommonExtension = CommonExtension
