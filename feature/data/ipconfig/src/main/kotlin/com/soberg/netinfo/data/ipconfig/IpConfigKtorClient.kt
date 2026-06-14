@@ -20,13 +20,15 @@ object IpConfigKtorClient {
 
     fun create(
         engineFactory: HttpClientEngineFactory<HttpClientEngineConfig> = OkHttp,
-    ) = HttpClient(engineFactory) { applyForIpConfig() }
+        includeTimeout: Boolean = true,
+    ) = HttpClient(engineFactory) { applyForIpConfig(includeTimeout = includeTimeout) }
 
     fun create(
         engine: HttpClientEngine,
-    ) = HttpClient(engine) { applyForIpConfig() }
+        includeTimeout: Boolean = true,
+    ) = HttpClient(engine) { applyForIpConfig(includeTimeout = includeTimeout) }
 
-    private fun HttpClientConfig<*>.applyForIpConfig() {
+    private fun HttpClientConfig<*>.applyForIpConfig(includeTimeout: Boolean) {
         install(ContentNegotiation) {
             json(
                 Json {
@@ -35,10 +37,12 @@ object IpConfigKtorClient {
                 }
             )
         }
-        install(HttpTimeout) {
-            socketTimeoutMillis = Timeout.inWholeMilliseconds
-            requestTimeoutMillis = Timeout.inWholeMilliseconds
-            connectTimeoutMillis = Timeout.inWholeMilliseconds
+        if (includeTimeout) {
+            install(HttpTimeout) {
+                socketTimeoutMillis = Timeout.inWholeMilliseconds
+                requestTimeoutMillis = Timeout.inWholeMilliseconds
+                connectTimeoutMillis = Timeout.inWholeMilliseconds
+            }
         }
         defaultRequest {
             contentType(ContentType.Application.Json)

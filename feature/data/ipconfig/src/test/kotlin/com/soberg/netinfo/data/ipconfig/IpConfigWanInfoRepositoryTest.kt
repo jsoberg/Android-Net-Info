@@ -18,7 +18,6 @@ import io.ktor.client.request.get
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
-import io.ktor.utils.io.ByteReadChannel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -105,14 +104,10 @@ internal class IpConfigWanInfoRepositoryTest {
                     country = Country(
                         name = "United States",
                         iso = "US",
-                    ),
-                    region = Region(
+                    ), region = Region(
                         name = "New Jersey",
                         code = "NJ",
-                    ),
-                    zipCode = ZipCode("08601"),
-                    cityName = "Trenton",
-                    location = Location(
+                    ), zipCode = ZipCode("08601"), cityName = "Trenton", location = Location(
                         latitude = 40.2206,
                         longitude = -74.7597,
                     )
@@ -146,56 +141,53 @@ internal class IpConfigWanInfoRepositoryTest {
         }
 
     @Test
-    fun `retry when UnknownHostException received`() =
-        runTest(ioDispatcher) {
-            val query: HttpQuery = mockk {
-                coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws UnknownHostException("Test")
-            }
-            val repo = IpConfigWanInfoRepository(ioDispatcher, query)
-
-            val result = repo.loadWanInfo()
-            assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
-            coVerify(exactly = 2) { query.invoke(IpConfigUrl.Main) }
+    fun `retry when UnknownHostException received`() = runTest(ioDispatcher) {
+        val query: HttpQuery = mockk {
+            coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws UnknownHostException("Test")
         }
+        val repo = IpConfigWanInfoRepository(ioDispatcher, query)
+
+        val result = repo.loadWanInfo()
+        assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
+        coVerify(exactly = 2) { query.invoke(IpConfigUrl.Main) }
+    }
 
     @Test
-    fun `retry when ConnectException received`() =
-        runTest(ioDispatcher) {
-            val query: HttpQuery = mockk {
-                coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws ConnectException("Test")
-            }
-            val repo = IpConfigWanInfoRepository(ioDispatcher, query)
-
-            val result = repo.loadWanInfo()
-            assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
-            coVerify(exactly = 2) { query.invoke(IpConfigUrl.Main) }
+    fun `retry when ConnectException received`() = runTest(ioDispatcher) {
+        val query: HttpQuery = mockk {
+            coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws ConnectException("Test")
         }
+        val repo = IpConfigWanInfoRepository(ioDispatcher, query)
+
+        val result = repo.loadWanInfo()
+        assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
+        coVerify(exactly = 2) { query.invoke(IpConfigUrl.Main) }
+    }
 
     @Test
-    fun `not retry when generic exception received`() =
-        runTest(ioDispatcher) {
-            val query: HttpQuery = mockk {
-                coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws IllegalStateException("Test")
-            }
-            val repo = IpConfigWanInfoRepository(ioDispatcher, query)
-
-            val result = repo.loadWanInfo()
-            assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
-            coVerify(exactly = 1) { query.invoke(IpConfigUrl.Main) }
+    fun `not retry when generic exception received`() = runTest(ioDispatcher) {
+        val query: HttpQuery = mockk {
+            coEvery { this@mockk.invoke(IpConfigUrl.Main) } throws IllegalStateException("Test")
         }
+        val repo = IpConfigWanInfoRepository(ioDispatcher, query)
+
+        val result = repo.loadWanInfo()
+        assertThat(result).isEqualTo(WanInfoRepository.Result.Error)
+        coVerify(exactly = 1) { query.invoke(IpConfigUrl.Main) }
+    }
 
     private fun create(
         bodyContent: String,
         statusCode: HttpStatusCode,
     ): IpConfigWanInfoRepository {
-        val mockEngine = MockEngine {
+        val mockEngine = MockEngine { _ ->
             respond(
-                content = ByteReadChannel(bodyContent),
+                content = bodyContent,
                 status = statusCode,
                 headers = headersOf(HttpHeaders.ContentType, "application/json")
             )
         }
-        val client = IpConfigKtorClient.create(mockEngine)
+        val client = IpConfigKtorClient.create(mockEngine, includeTimeout = false)
         val query = HttpQuery { url -> client.get(url) }
         return IpConfigWanInfoRepository(ioDispatcher, query)
     }
