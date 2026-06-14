@@ -11,12 +11,12 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class ServicesModule {
+internal class ServicesModule {
 
     companion object {
         @Provides
         @Singleton
-        internal fun provideClipboardManager(
+        fun provideClipboardManager(
             @ApplicationContext context: Context,
         ): ClipboardManager =
             context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager

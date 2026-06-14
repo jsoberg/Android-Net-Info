@@ -15,10 +15,10 @@ internal abstract class IpConfigModule {
     companion object {
         @Provides
         @Singleton
-        internal fun provideHttpQuery(): IpConfigWanInfoRepository.HttpQuery =
+        fun provideHttpQuery(): IpConfigWanInfoRepository.HttpQuery =
             IpConfigWanInfoRepository.KtorHttpQuery()
     }
 
     @Binds
-    internal abstract fun provideWanInfoRepository(repo: IpConfigWanInfoRepository): WanInfoRepository
+    abstract fun provideWanInfoRepository(repo: IpConfigWanInfoRepository): WanInfoRepository
 }
